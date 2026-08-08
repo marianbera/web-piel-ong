@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #1a1a2e;
+
+  /* Paleta oficial Asociación PIEL — alineada al brandbook (Frame 7).
+     TODO(PIEL): confirmar los hex exactos del brandbook (estos son la mejor lectura de los swatches). */
+  --color-piel-blue: #2b74b6;
+  --color-piel-red: #e2352a;
+  --color-piel-navy: #1e1a47;
+  --color-piel-burgundy: #8a1f3e;
+  --color-piel-blue-soft: #8fb4e3;
+  --color-piel-periwinkle: #b0bfd2;
+  --color-piel-cream: #ece3d8;
+  --color-piel-offwhite: #f6f4f1;
+  --color-piel-ink: #1a1a2e;
+  --color-piel-white: #ffffff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* Alias semánticos usados en todo el sitio */
+  --color-primary: var(--color-piel-blue);
+  --color-secondary: var(--color-piel-burgundy);
+  --color-accent: var(--color-piel-cream);
+  --color-piel-text: var(--color-piel-ink);
+
+  /* Tokens de marca expuestos directamente (bg-piel-navy, text-piel-red, etc.) */
+  --color-piel-blue: var(--color-piel-blue);
+  --color-piel-red: var(--color-piel-red);
+  --color-piel-navy: var(--color-piel-navy);
+  --color-piel-burgundy: var(--color-piel-burgundy);
+  --color-piel-blue-soft: var(--color-piel-blue-soft);
+  --color-piel-periwinkle: var(--color-piel-periwinkle);
+  --color-piel-cream: var(--color-piel-cream);
+  --color-piel-offwhite: var(--color-piel-offwhite);
+  --color-piel-ink: var(--color-piel-ink);
+
+  /* TODO(PIEL): la tipografía de marca es "Pliant" (no está en Google Fonts).
+     Falta el archivo de fuente; mientras tanto: Playfair Display (títulos serif del mockup) + Inter (cuerpo). */
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-playfair);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Solo el h1 usa la tipografía serif de marca; el resto de los títulos (h2, h3, h4)
+   usan la fuente de cuerpo (sans) para que no queden extraños dentro del cuerpo de página. */
+h1 {
+  font-family: var(--font-heading), Georgia, serif;
+}
+
+/* Degradados de marca (Recursos del brandbook: navy→azul y burdeos→claro). */
+@utility bg-piel-gradient-navy {
+  background-image: linear-gradient(160deg, var(--color-piel-navy) 0%, var(--color-piel-blue) 100%);
+}
+
+@utility bg-piel-gradient-burgundy {
+  background-image: linear-gradient(160deg, var(--color-piel-burgundy) 0%, var(--color-piel-offwhite) 100%);
+}
+
+/* Barra de acento vertical (degradado navy→azul suave) para nudge a los "Recursos" de marca. */
+@utility accent-bar {
+  background-image: linear-gradient(180deg, var(--color-piel-navy) 0%, var(--color-piel-blue-soft) 100%);
+}
+
+/* Variante horizontal de la barra de acento (franjas y subrayados de marca). */
+@utility accent-bar-h {
+  background-image: linear-gradient(90deg, var(--color-piel-navy) 0%, var(--color-piel-blue) 55%, var(--color-piel-blue-soft) 100%);
+}
+
+/* Halo radial sutil para fondos oscuros (hero): guiño a los degradados del brandbook. */
+@utility bg-piel-halo {
+  background-image:
+    radial-gradient(38rem 38rem at 12% 20%, rgb(143 180 227 / 0.16) 0%, transparent 60%),
+    radial-gradient(30rem 30rem at 88% 85%, rgb(138 31 62 / 0.12) 0%, transparent 65%);
+}
+
+/* TODO(PIEL): incorporar las texturas raster del brandbook (papel claro + tela navy)
+   como background-image una vez entregados los archivos. Por ahora se usan colores planos. */
