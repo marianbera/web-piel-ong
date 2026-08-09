@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
+import PageBody from "@/components/ui/PageBody";
 import ContactForm from "@/components/sections/ContactForm";
 import Card from "@/components/ui/Card";
 import Reveal from "@/components/ui/Reveal";
@@ -19,7 +20,7 @@ export default function ContactoPage() {
     <>
       <PageHeader {...header} />
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <PageBody>
         <div className="grid gap-12 lg:grid-cols-3">
           <Reveal className="lg:col-span-2">
             <p className="text-lg text-piel-text/80">
@@ -74,7 +75,7 @@ export default function ContactoPage() {
             </Reveal>
           </div>
         </div>
-      </section>
+      </PageBody>
     </>
   );
 }

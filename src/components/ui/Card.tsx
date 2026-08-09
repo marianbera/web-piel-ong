@@ -8,6 +8,12 @@ type CardOwnProps<T extends ElementType> = {
   /** Eleva y agranda la sombra al hover — usar SOLO si el card es clickeable. */
   hoverable?: boolean;
   padding?: "sm" | "md" | "lg";
+  /**
+   * Radio de esquina. "default" (rounded-3xl) es el estándar del sistema.
+   * "brand" usa el radio más generoso de las piezas gráficas — reservado para
+   * cards grandes y destacadas (paneles hero, cards de carousel), no para grillas.
+   */
+  radius?: "default" | "brand";
   /** "offwhite" es la única variante de superficie destacada (paneles hero-like, p. ej. bio de una persona). Todo lo demás es blanco. */
   tone?: "white" | "offwhite";
 };
@@ -26,6 +32,11 @@ const TONE = {
   offwhite: "bg-piel-offwhite",
 } as const;
 
+const RADIUS = {
+  default: "rounded-3xl",
+  brand: "rounded-[2rem] sm:rounded-[2.5rem]",
+} as const;
+
 /**
  * Card blanca estándar del sistema: rounded-3xl, ring sutil y sombra suave.
  * Es el único patrón de "tarjeta" del sitio — reemplaza los `rounded-2xl bg-accent`
@@ -37,6 +48,7 @@ export default function Card<T extends ElementType = "div">({
   className = "",
   hoverable = false,
   padding = "md",
+  radius = "default",
   tone = "white",
   ...rest
 }: CardProps<T>) {
@@ -44,7 +56,7 @@ export default function Card<T extends ElementType = "div">({
 
   return (
     <Tag
-      className={`rounded-3xl shadow-sm ring-1 ring-piel-navy/5 ${TONE[tone]} ${PADDING[padding]} ${
+      className={`${RADIUS[radius]} shadow-sm ring-1 ring-piel-navy/5 ${TONE[tone]} ${PADDING[padding]} ${
         hoverable ? "transition duration-300 hover:-translate-y-1 hover:shadow-xl" : ""
       } ${className}`}
       {...rest}

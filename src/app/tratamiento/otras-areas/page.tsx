@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
+import PageBody from "@/components/ui/PageBody";
 import NumberedCards from "@/components/sections/NumberedCards";
 import { otrasAreasContent } from "@/lib/content/tratamiento";
 
@@ -15,9 +16,9 @@ export default function OtrasAreasPage() {
     <>
       <PageHeader {...header} />
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <PageBody>
         <NumberedCards items={areas} />
-      </section>
+      </PageBody>
     </>
   );
 }

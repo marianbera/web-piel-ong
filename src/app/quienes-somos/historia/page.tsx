@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
+import PageBody from "@/components/ui/PageBody";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Timeline from "@/components/sections/Timeline";
 import Reveal from "@/components/ui/Reveal";
@@ -18,14 +19,14 @@ export default function HistoriaPage() {
     <>
       <PageHeader {...header} />
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <PageBody>
         <SectionHeading title={milestonesTitle} align="center" />
         <div className="mt-12">
           <Timeline events={milestones} />
         </div>
-      </section>
+      </PageBody>
 
-      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+      <PageBody tone="offwhite" intensity="subtle">
         <Reveal className="space-y-4 text-piel-text/80">
           {intro.map((paragraph) => (
             <p key={paragraph.slice(0, 40)}>
@@ -33,7 +34,7 @@ export default function HistoriaPage() {
             </p>
           ))}
         </Reveal>
-      </section>
+      </PageBody>
     </>
   );
 }

@@ -207,6 +207,77 @@ pasa limpio (41 rutas, sin errores de tipos).
 
 ---
 
+## 13. Recursos visuales de marca — `components/brand/`
+
+Capa de decoración inspirada en las piezas gráficas de PIEL (folletos e Instagram),
+para que los espacios en blanco tengan ritmo sin perder legibilidad.
+
+**Regla de oro:** todo recurso es una capa `absolute` + `aria-hidden` +
+`pointer-events-none` **detrás** del contenido, que viaja en un contenedor `relative`
+por encima. Nada tapa texto. Opacidades: ≤ 0.12 (líneas) y ≤ 0.18 (grilla) donde hay
+texto; hasta 0.6 solo en franjas separadoras sin lectura.
+
+| Componente | Recurso | Props clave |
+|---|---|---|
+| `brand/GradientBackground` | Degradés `navy`, `burgundy`, `sky`, `warm`, `whisper` | `variant`, `angle`, `opacity`, `fade` |
+| `brand/WarpGrid` | Malla de marca (SVG, onda senoidal determinista). `amplitude` alta = ondulada; `amplitude={0}` = grilla ortogonal | `cols`, `rows`, `amplitude`, `fade` |
+| `brand/BlobShape` | `cross`, `ovals`, `star`, `blob`, `pill`, `arc` | `variant`, `color`, `rotate`, `float` |
+| `brand/BlockLayers` | Las capas de identidad de cada bloque | `block`, `variant`, `intensity` |
+| `brand/BlockDecor` | Igual, pero deduciendo el bloque de la ruta (cliente) | `variant`, `intensity` |
+| `brand/BrandSection` | Sección con decoración de bloque + contenedor | `block`, `tone`, `intensity`, `padding` |
+| `brand/BrandDivider` | Franja separadora entre secciones | `block`, `size` |
+
+Los colores salen de `brand/tokens.ts`, que apunta a las variables de `globals.css`.
+**No se define ningún hex nuevo.**
+
+### Identidad por bloque de navegación
+
+| Bloque | Recurso dominante | Carácter |
+|---|---|---|
+| Centro Médico (`/quienes-somos/*`) | Grilla **ortogonal** (`WarpGrid amplitude={0}`) + píldora orgánica; fondo casi neutro | Plano técnico, institucional |
+| Tratamiento Integral (`/tratamiento/*`) | Degradé `sky` con disolución radial + arco orgánico | Cromático |
+| Pacientes y familias (`/pacientes/*`, `/labio-leporino`) | Degradé `warm`, grilla **ondulada** y cruz orgánica burdeos | Cálido, redondeado |
+
+> El patrón de líneas verticales ("código de barras") que tuvo Centro Médico en la
+> primera versión **se eliminó de todo el sitio**: no funcionaba visualmente. El
+> componente `LinePattern` ya no existe. La distinción entre los dos bloques con
+> grilla la hace la amplitud (ortogonal vs. ondulada), el color y la ubicación.
+
+La asignación es automática: `lib/brandBlock.ts` la deriva de la ruta. Las rutas fuera
+de esos tres prefijos (Home, Cómo acceder, Sé parte, Contacto) no llevan decoración de bloque.
+
+### Animación
+
+**Framer Motion** es el único sistema de animación del sitio (`ui/Reveal` lo usa).
+El flotado de las formas es CSS (`animate-piel-float`). Todo respeta
+`prefers-reduced-motion`.
+
+## 14. Primitivos agregados en el rediseño
+
+| Componente | Para qué |
+|---|---|
+| `ui/PageBody` | Cuerpo estándar de una página interna: contenedor `max-w-7xl` + decoración del bloque. **Reemplaza** el `<section className="mx-auto max-w-7xl px-4 py-16 ...">` repetido a mano. Props: `tone`, `intensity`, `padding`, `decor` |
+| `ui/ImageSlot` | Hueco de imagen de contenido: `next/image` si hay archivo, placeholder de marca si no |
+| `sections/TeamCarousel` | Carousel de profesionales con auto-scroll, pausa al hover y botón de pausa (WCAG 2.2.2) |
+| `sections/PendingSections` | Estructura anunciada de una página sin contenido todavía — mejor que un `EmptyState` genérico |
+| `sections/ArticleChapter` | Capítulo de una página de recorrido largo (`/labio-leporino`): encabezado + secciones con párrafos, sub-ítems e imágenes |
+| `sections/DonateBand` | Banda de donación (fuente 1.4) + lugar reservado para el pago online |
+| `layout/SearchDialog` | Buscador del sitio (índice en `lib/search/`) |
+
+### Ancho de lectura en páginas de artículo
+
+§10 pide texto "sangría a sangría". `/labio-leporino` es la excepción declarada: al ser
+un artículo de recorrido largo, el cuerpo va en una columna medida (`max-w-3xl`, ~70
+caracteres) y las imágenes se van más anchas. El contraste entre esos dos anchos es lo
+que le da ritmo al scroll. **Es una excepción funcional, como los formularios — no
+extenderla a páginas de contenido normales.**
+
+`ui/Card` sumó `radius="brand"` (2.5 rem, el radio de las piezas gráficas), **opt-in y
+reservado a cards grandes y destacadas** — las grillas siguen en `rounded-3xl`.
+
+---
+
 **Regla de oro para lo que sigue:** antes de escribir una card, un botón o un
 encabezado de sección a mano, revisar si `Card`, `SectionHeading`, `SectionLinkCard`,
-`StepsList`, `NumberedCards`, `EmptyState` o `ComoAccederSection` ya resuelven el caso.
+`StepsList`, `NumberedCards`, `EmptyState`, `PageBody`, `ImageSlot` o
+`ComoAccederSection` ya resuelven el caso.

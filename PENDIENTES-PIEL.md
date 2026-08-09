@@ -20,12 +20,17 @@ Consolidado de todos los `TODO(PIEL)` del código. Son decisiones o entregas que
 
 ## 3. Contenido faltante (SIN DOC entregado — no inventar)
 
-- **Prensa** (`/quienes-somos/prensa`): el doc 2.5 solo dice "agregar todas las notas en medios". Página con EmptyState hasta recibir las notas.
-- **Investigación y academia** (`/tratamiento/investigacion`): el diagrama pide Cátedra UBA · publicaciones · congresos, pero no hay texto. EmptyState.
-- **Info para médicos** (`/como-acceder/medicos`): el diagrama pide derivar un paciente · materiales · protocolos. EmptyState.
+- **Prensa** (`/quienes-somos/prensa`): el doc 2.5 solo dice "agregar todas las notas en medios". Página con EmptyState + CTA de contacto de prensa hasta recibir las notas.
+- **Investigación y academia** (`/tratamiento/investigacion`): el diagrama pide Cátedra UBA · publicaciones · congresos, pero no hay texto. La página ya publica **la estructura** de los tres bloques con `sections/PendingSections`; falta el texto de cada uno (`investigacionContent.sections` en `tratamiento.ts`).
+- **Info para médicos** (`/como-acceder/medicos`): el diagrama pide derivar un paciente · materiales · protocolos. Misma solución: estructura publicada, texto pendiente (`medicosContent.sections` en `como-acceder.ts`).
 - **Perfiles de cirujanos principales** (`/quienes-somos/equipo`): pendientes de PIEL (EmptyState en el bloque de dirección médica).
-- **Pacientes internacionales** (`/como-acceder/internacional`): el doc 5.2 corta en "Atención para familias del exterior…". Completar.
+- **Pacientes internacionales** (`/como-acceder/internacional`): el doc 5.2 corta en "Atención para familias del exterior…". **Todo lo demás del doc ya está migrado** — falta solo el final de ese párrafo.
 - **Premios**: completar con reconocimientos nuevos posteriores a 2018, si los hubiera.
+
+> Para completar cualquiera de estas páginas: cargar los ítems en el array `sections`
+> del content file correspondiente. En cuanto `sections.length > 0`, la página muestra
+> el contenido real y deja de mostrar la estructura "en preparación". No hay que tocar
+> el `page.tsx`.
 
 ## 4. Fotos e imágenes reales
 
@@ -35,6 +40,24 @@ Consolidado de todos los `TODO(PIEL)` del código. Son decisiones o entregas que
 
 **Todavía con BrandPanel (placeholder de marca), a la espera de fotos:**
 - Nosotros · Enfoque · Consultas · Especialidades (una por especialidad) · foto del fundador (Equipo).
+
+**Huecos de imagen nuevos, con brief escrito y placeholder elegante:**
+- `public/pacientes/` → **7 imágenes** (2 ilustraciones médicas en Qué es la fisura, 2 de apoyo
+  en Cuidados, 2 en Alimentación, 1 destacada panorámica en Acompañamiento).
+  Lista completa y formato en **`public/pacientes/LEEME.md`**.
+  Para activar una: dejar el archivo en la ruta y borrar `pending: true` en
+  `src/lib/content/pacientesImagenes.ts`.
+- `public/equipo/` → **22 retratos** de los profesionales del carousel de Equipo (4:5 vertical).
+  Lista nombre → archivo en **`public/equipo/LEEME.md`**.
+  Para activar uno: agregar `photo: "/equipo/<archivo>.jpg"` al profesional en `quienes-somos.ts`.
+  Mientras tanto la card muestra las iniciales sobre el degradé de marca.
+- `public/labio-leporino/` → **5 imágenes** de la página de recorrido largo. Cuatro ya están
+  conectadas (`tipos-de-fisura.jpg`, `reparacion-unilateral.jpg`, `reparacion-bilateral.jpg`,
+  `operacion-paladar.jpg`): **con dejar el archivo en la carpeta, aparecen** — hasta entonces
+  esos cuatro marcos quedan rotos. La quinta (`alimentacion.jpg`) está en `pending` y muestra
+  placeholder. Detalle en **`public/labio-leporino/LEEME.md`**.
+- **Consentimiento:** las fotos de pacientes, familias y profesionales necesitan autorización
+  de uso de imagen antes de publicarse.
 
 **Notas**
 - Las imágenes viejas de `public/brand/*.jpeg` **no son usables como foto**: son placas promocionales de Instagram con texto incrustado y cifras equivocadas.
@@ -51,6 +74,7 @@ Consolidado de todos los `TODO(PIEL)` del código. Son decisiones o entregas que
 
 - **WhatsApp institucional:** `site.ts` tiene el placeholder `+54 9 11 0000-0000`. **Todos los CTA "por WhatsApp" dependen de esto.** Confirmar el número.
 - **Mercado Pago:** configurar los links de pago en variables de entorno (`MP_DONATION_LINK_INDIVIDUAL` / `_APADRINAMIENTO` / `_EMPRESA`).
+  - El lugar del botón **"Donar online"** ya está reservado en `sections/DonateBand` (Home y Sé parte). Cuando la pasarela esté conectada, poner `ONLINE_PAYMENTS_ENABLED = true` en ese archivo y el botón aparece en su hueco, sin rediseñar nada. Se deja apagado a propósito: un botón de donación que no cobra es peor que no tenerlo.
 - **Historias:** confirmar que la sección externa `asociacion-piel.org.ar/web/historias/` siga vigente (CTA del bloque humano del Home).
 - **"Ver trayectoria completa"** del fundador (Equipo): falta el destino real (página/bio). Hoy apunta a `#`.
 - **Ubicación:** el mockup del footer dice "Atención en CABA", pero la sede registrada es **Avellaneda**. Confirmar.

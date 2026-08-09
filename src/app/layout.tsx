@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { buildSearchIndex } from "@/lib/search/searchIndex";
 import { siteName, siteTagline } from "@/lib/content/site";
 import "./globals.css";
 
@@ -48,13 +49,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // El índice se arma en el servidor a partir de los archivos de contenido y
+  // viaja ya reducido: el bundle del cliente no carga los módulos de contenido.
+  const searchIndex = buildSearchIndex();
+
   return (
     <html
       lang="es"
       className={`${inter.variable} ${playfair.variable} antialiased`}
     >
       <body className="flex min-h-screen flex-col">
-        <Navbar />
+        <Navbar searchIndex={searchIndex} />
         <main className="flex-1 pb-16 sm:pb-20">{children}</main>
         <Footer />
       </body>

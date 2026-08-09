@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import type { ReactNode } from "react";
 
 interface RevealProps {
   children: ReactNode;
@@ -11,9 +12,12 @@ interface RevealProps {
   direction?: "up" | "down" | "none";
 }
 
+const OFFSET = { up: 20, down: -20, none: 0 } as const;
+
 /**
  * Envoltorio genérico de "aparición al hacer scroll": fade + desplazamiento sutil
- * cuando el elemento entra en el viewport. Respeta prefers-reduced-motion.
+ * cuando el elemento entra en el viewport. Respeta prefers-reduced-motion (con
+ * movimiento reducido solo hace fade, sin desplazamiento).
  * Para animar varias cards de una grilla, envolver cada una con delay={index * 80}.
  *
  * Siempre renderiza un <div>. Si el elemento va dentro de un <ul>/<ol>, dejar el
@@ -25,42 +29,18 @@ export default function Reveal({
   className = "",
   direction = "up",
 }: RevealProps) {
-  const [visible, setVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setVisible(true);
-      return;
-    }
-
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  const translateClass =
-    direction === "up" ? "translate-y-5" : direction === "down" ? "-translate-y-5" : "";
+  const reduceMotion = useReducedMotion();
+  const y = reduceMotion ? 0 : OFFSET[direction];
 
   return (
-    <div
-      ref={ref}
-      className={`transition-all duration-700 ease-out ${
-        visible ? "translate-y-0 opacity-100" : `opacity-0 ${translateClass}`
-      } ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
+    <motion.div
+      className={className}
+      initial={{ opacity: 0, y }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15, margin: "0px 0px -40px 0px" }}
+      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: delay / 1000 }}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }

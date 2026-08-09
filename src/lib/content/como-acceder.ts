@@ -1,3 +1,4 @@
+import type { DraftPageContent } from "@/types/common";
 import type { ComoAccederHubContent, ComoAccederPageContent } from "@/types/comoAcceder";
 import { mailtoUrl, whatsappUrl } from "@/lib/content/site";
 
@@ -131,4 +132,32 @@ export const consultasContent: ComoAccederPageContent = {
   ],
   cta: { label: "Solicitar turno por WhatsApp", href: whatsappUrl },
   secondaryCta: { label: "Enviar consulta por correo", href: mailtoUrl },
+};
+
+// TODO(PIEL): sección SIN DOC entregado. Los tres bloques son los que pide el diagrama
+// del cliente (derivar un paciente · materiales · protocolos); el texto de cada uno está
+// pendiente de PIEL. Se publica la estructura, no contenido inventado.
+export const medicosContent: DraftPageContent = {
+  header: {
+    title: "Info para médicos",
+    subtitle: "Derivaciones, materiales y protocolos para profesionales de la salud.",
+  },
+  intro:
+    "Trabajamos junto a pediatras, neonatólogos y equipos de salud de todo el país en el seguimiento de pacientes con fisuras labio alvéolo palatinas. Estamos preparando esta sección con el material para profesionales.",
+  sections: [],
+  pending: [
+    {
+      title: "Derivar un paciente",
+      hint: "El circuito para derivar un paciente a PIEL y qué información conviene enviar junto con la derivación.",
+    },
+    {
+      title: "Materiales",
+      hint: "Material clínico y de referencia para profesionales que acompañan a un paciente con fisura.",
+    },
+    {
+      title: "Protocolos",
+      hint: "Los protocolos de tratamiento y de seguimiento interdisciplinario que aplica el equipo.",
+    },
+  ],
+  note: "Mientras tanto, si necesitás derivar un paciente o consultar un caso, **escribinos y te ponemos en contacto con el equipo**.",
 };

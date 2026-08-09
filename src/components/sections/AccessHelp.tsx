@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { accessHelp } from "@/lib/content/home";
+import BlobShape from "@/components/brand/BlobShape";
 import { HandshakeIcon, SupportIcon } from "@/components/ui/icons";
 import type { AccessHelpIcon } from "@/types/home";
 
@@ -28,8 +29,25 @@ const variantStyles: Record<
 
 export default function AccessHelp() {
   return (
-    <section className="bg-piel-offwhite py-16 lg:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden bg-piel-offwhite py-16 lg:py-24">
+      {/* Formas orgánicas del brandbook como acento de esquina, flotando muy lento. */}
+      <BlobShape
+        variant="cross"
+        color="blue"
+        opacity={0.07}
+        rotate={-14}
+        float="slow"
+        className="absolute -left-16 top-8 h-48 w-48 lg:h-72 lg:w-72"
+      />
+      <BlobShape
+        variant="star"
+        color="burgundy"
+        opacity={0.08}
+        float="slower"
+        className="absolute -right-10 bottom-6 h-40 w-40 lg:h-56 lg:w-56"
+      />
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="text-3xl font-bold text-piel-navy sm:text-4xl">{accessHelp.title}</h2>
           <span aria-hidden className="accent-bar-h mx-auto mt-6 block h-1 w-16 rounded-full" />

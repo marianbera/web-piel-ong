@@ -31,8 +31,23 @@ export interface PremiosPageContent {
 }
 
 export interface TeamMember {
-  role: string; // especialidad
-  name: string; // profesional(es)
+  /** Profesional. Un nombre por card. */
+  name: string;
+  /** Especialidad del profesional. */
+  role: string;
+  /**
+   * Foto real, servida desde `public/equipo/`. Sin ella la card muestra las
+   * iniciales sobre el degradé de marca.
+   * TODO(PIEL): faltan las fotos del equipo.
+   */
+  photo?: string;
+}
+
+/** Agrupación de profesionales por área, para el carousel de la página de Equipo. */
+export interface TeamGroup {
+  title: string;
+  description: string;
+  members: TeamMember[];
 }
 
 export interface EquipoFounder {
@@ -49,7 +64,8 @@ export interface EquipoPageContent {
   directionTitle: string;
   directionNote: string;
   rosterTitle: string;
-  members: TeamMember[];
+  rosterNote: string;
+  groups: TeamGroup[];
 }
 
 export interface PressItem {

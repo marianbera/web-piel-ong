@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
+import PageBody from "@/components/ui/PageBody";
 import ProseSections from "@/components/sections/ProseSections";
-import EmptyState from "@/components/ui/EmptyState";
+import PendingSections from "@/components/sections/PendingSections";
 import Reveal from "@/components/ui/Reveal";
 import RichText from "@/components/ui/RichText";
 import { investigacionContent } from "@/lib/content/tratamiento";
@@ -12,24 +13,31 @@ export const metadata: Metadata = {
 };
 
 export default function InvestigacionPage() {
-  const { header, intro, sections } = investigacionContent;
+  const { header, intro, sections, pending, note } = investigacionContent;
 
   return (
     <>
       <PageHeader {...header} />
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <PageBody>
         <Reveal>
           <p className="text-lg text-piel-text/80">
             <RichText text={intro} />
           </p>
         </Reveal>
-        {sections.length === 0 ? (
-          <EmptyState message="Estamos preparando esta sección con la información académica y de investigación de PIEL." />
-        ) : (
+
+        {sections.length > 0 ? (
           <ProseSections sections={sections} />
+        ) : (
+          // TODO(PIEL): falta el contenido de los tres bloques. Mientras tanto se
+          // publica la estructura que pide el diagrama, no texto inventado.
+          <PendingSections
+            blocks={pending}
+            note={note}
+            cta={{ label: "Escribir al equipo", href: "/contacto" }}
+          />
         )}
-      </section>
+      </PageBody>
     </>
   );
 }

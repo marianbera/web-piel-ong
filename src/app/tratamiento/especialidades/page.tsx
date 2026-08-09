@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
+import PageBody from "@/components/ui/PageBody";
 import BrandPanel from "@/components/ui/BrandPanel";
 import Reveal from "@/components/ui/Reveal";
 import RichText from "@/components/ui/RichText";
@@ -45,7 +46,7 @@ export default function EspecialidadesPage() {
     <>
       <PageHeader {...header} />
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+      <PageBody padding="lg">
         <div className="flex flex-col gap-16 lg:gap-24">
           {specialties.map((specialty, index) => {
             const Icon = iconMap[specialty.icon ?? "stethoscope"];
@@ -73,7 +74,7 @@ export default function EspecialidadesPage() {
             );
           })}
         </div>
-      </section>
+      </PageBody>
     </>
   );
 }

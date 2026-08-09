@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
+import PageBody from "@/components/ui/PageBody";
 import EmptyState from "@/components/ui/EmptyState";
 import Card from "@/components/ui/Card";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
 import RichText from "@/components/ui/RichText";
+import { TeamGroups } from "@/components/sections/TeamCarousel";
 import { equipoContent } from "@/lib/content/quienes-somos";
 
 export const metadata: Metadata = {
@@ -14,8 +16,16 @@ export const metadata: Metadata = {
 };
 
 export default function EquipoPage() {
-  const { header, intro, founder, directionTitle, directionNote, rosterTitle, members } =
-    equipoContent;
+  const {
+    header,
+    intro,
+    founder,
+    directionTitle,
+    directionNote,
+    rosterTitle,
+    rosterNote,
+    groups,
+  } = equipoContent;
 
   const initials = founder.name
     .replace(/^Dr\.?\s*/i, "")
@@ -28,7 +38,7 @@ export default function EquipoPage() {
     <>
       <PageHeader {...header} />
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+      <PageBody padding="lg">
         <Reveal>
           <p className="text-lg text-piel-text/80">
             <RichText text={intro} />
@@ -39,6 +49,7 @@ export default function EquipoPage() {
         <Reveal delay={100} className="mt-12">
           <Card
             tone="offwhite"
+            radius="brand"
             padding="lg"
             className="grid gap-8 lg:grid-cols-[auto_1fr] lg:items-center lg:gap-10"
           >
@@ -79,26 +90,13 @@ export default function EquipoPage() {
           </Reveal>
           <EmptyState message="Próximamente: los perfiles de los cirujanos principales del equipo." />
         </div>
+      </PageBody>
 
-        {/* Equipo médico (roster) */}
-        <div className="mt-16">
-          <SectionHeading title={rosterTitle} />
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {members.map((member, index) => (
-              <li key={`${member.role}-${member.name}`}>
-                <Reveal delay={index * 60}>
-                  <Card padding="sm" hoverable>
-                    <p className="text-xs font-semibold uppercase tracking-wide text-piel-burgundy">
-                      {member.role}
-                    </p>
-                    <p className="mt-1 font-semibold text-piel-navy">{member.name}</p>
-                  </Card>
-                </Reveal>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      {/* Equipo médico, agrupado por área */}
+      <PageBody tone="offwhite" intensity="subtle" padding="lg">
+        <SectionHeading eyebrow="Equipo interdisciplinario" title={rosterTitle} accent />
+        <TeamGroups groups={groups} note={rosterNote} />
+      </PageBody>
     </>
   );
 }

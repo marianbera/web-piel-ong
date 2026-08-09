@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
+import PageBody from "@/components/ui/PageBody";
 import EmptyState from "@/components/ui/EmptyState";
 import Card from "@/components/ui/Card";
 import SectionHeading from "@/components/ui/SectionHeading";
@@ -30,7 +31,7 @@ export default function NosotrosPage() {
     <>
       <PageHeader {...header} />
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+      <PageBody padding="lg">
         <TextImageSplit body={intro} reverse align="start" />
 
         <div className="mt-14 grid gap-10 lg:grid-cols-2">
@@ -51,37 +52,35 @@ export default function NosotrosPage() {
             </Card>
           </Reveal>
         </div>
-      </section>
+      </PageBody>
 
-      <section className="bg-piel-offwhite py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading title={valuesTitle} align="center" />
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {values.map((value, index) => {
-              const Icon = iconMap[value.icon];
-              return (
-                <Reveal key={value.title} delay={index * 80}>
-                  <Card className="flex flex-col items-start">
-                    <span className="flex h-12 w-12 items-center justify-center rounded-full bg-piel-blue-soft/30 text-piel-navy">
-                      <Icon className="h-6 w-6" />
-                    </span>
-                    <h3 className="mt-4 text-lg font-semibold text-piel-navy">{value.title}</h3>
-                    <p className="mt-2 text-sm text-piel-text/75">
-                      <RichText text={value.text} />
-                    </p>
-                  </Card>
-                </Reveal>
-              );
-            })}
-          </div>
+      <PageBody tone="offwhite" intensity="subtle">
+        <SectionHeading title={valuesTitle} align="center" />
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {values.map((value, index) => {
+            const Icon = iconMap[value.icon];
+            return (
+              <Reveal key={value.title} delay={index * 80}>
+                <Card className="flex flex-col items-start">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-piel-blue-soft/30 text-piel-navy">
+                    <Icon className="h-6 w-6" />
+                  </span>
+                  <h3 className="mt-4 text-lg font-semibold text-piel-navy">{value.title}</h3>
+                  <p className="mt-2 text-sm text-piel-text/75">
+                    <RichText text={value.text} />
+                  </p>
+                </Card>
+              </Reveal>
+            );
+          })}
         </div>
-      </section>
+      </PageBody>
 
-      <section className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
+      <PageBody padding="none" decor={false} className="pb-20 pt-16">
         <SectionHeading title="Colaboran con nosotros" align="center" />
         {/* TODO(PIEL): agregar los logos de las organizaciones que colaboran con PIEL (pendiente de entrega). */}
         <EmptyState message="Próximamente: las organizaciones que acompañan y colaboran con Asociación PIEL." />
-      </section>
+      </PageBody>
     </>
   );
 }

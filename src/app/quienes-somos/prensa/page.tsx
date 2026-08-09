@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
+import PageBody from "@/components/ui/PageBody";
 import EmptyState from "@/components/ui/EmptyState";
 import Card from "@/components/ui/Card";
 import Reveal from "@/components/ui/Reveal";
@@ -18,7 +20,7 @@ export default function PrensaPage() {
     <>
       <PageHeader {...header} />
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <PageBody>
         <Reveal>
           <p className="text-lg text-piel-text/80">
             <RichText text={intro} />
@@ -26,7 +28,25 @@ export default function PrensaPage() {
         </Reveal>
 
         {items.length === 0 ? (
-          <EmptyState message="Próximamente vamos a compartir las notas y menciones de PIEL en los medios." />
+          // TODO(PIEL): sin notas entregadas (doc 2.5). No inventar.
+          <>
+            <EmptyState message="Próximamente vamos a compartir las notas y menciones de PIEL en los medios." />
+            <Reveal>
+              <p className="mt-8 text-piel-text/75">
+                ¿Sos periodista y querés hacer una nota sobre PIEL? Escribinos y te ponemos en
+                contacto con el equipo.
+              </p>
+              <Link
+                href="/contacto"
+                className="group mt-4 inline-flex items-center gap-2 text-sm font-semibold text-piel-navy"
+              >
+                Contacto de prensa
+                <span aria-hidden className="transition-transform group-hover:translate-x-1">
+                  →
+                </span>
+              </Link>
+            </Reveal>
+          </>
         ) : (
           <div className="mt-10 flex flex-col gap-4">
             {items.map((item, index) => (
@@ -48,7 +68,7 @@ export default function PrensaPage() {
             ))}
           </div>
         )}
-      </section>
+      </PageBody>
     </>
   );
 }

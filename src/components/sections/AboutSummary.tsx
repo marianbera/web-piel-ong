@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { aboutSummary } from "@/lib/content/home";
+import GradientBackground from "@/components/brand/GradientBackground";
+import WarpGrid from "@/components/brand/WarpGrid";
 import RichText from "@/components/ui/RichText";
 import {
   ClipboardCheckIcon,
@@ -20,8 +22,19 @@ export default function AboutSummary() {
   const { eyebrow, title, text, cta, stats } = aboutSummary;
 
   return (
-    <section className="bg-white">
-      <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:py-24 lg:px-8">
+    <section className="relative overflow-hidden bg-white">
+      {/* Recursos de marca: degradé azul suave + grilla distorsionada, ambos
+          disueltos hacia el centro para no bajar el contraste del texto. */}
+      <GradientBackground variant="sky" angle={200} opacity={0.4} fade="top" />
+      <WarpGrid
+        color="periwinkle"
+        opacity={0.35}
+        amplitude={8}
+        fade="corner"
+        className="inset-y-0 right-0 w-2/3 lg:w-1/2"
+      />
+
+      <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:py-24 lg:px-8">
         <div className="flex gap-5">
           <span
             aria-hidden

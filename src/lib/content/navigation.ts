@@ -30,6 +30,11 @@ export const mainNav: NavSection[] = [
     label: "Información para pacientes y familias",
     href: "/pacientes",
     links: [
+      {
+        label: "Labio leporino",
+        href: "/labio-leporino",
+        description: "El recorrido completo, de punta a punta",
+      },
       { label: "Qué es la fisura", href: "/pacientes/que-es-fisura" },
       { label: "Cuidados", href: "/pacientes/cuidados" },
       { label: "Alimentación", href: "/pacientes/alimentacion" },

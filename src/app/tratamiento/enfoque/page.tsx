@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
+import PageBody from "@/components/ui/PageBody";
 import TextImageSplit from "@/components/sections/TextImageSplit";
 import Card from "@/components/ui/Card";
 import Reveal from "@/components/ui/Reveal";
@@ -19,27 +20,27 @@ export default function EnfoquePage() {
     <>
       <PageHeader {...header} />
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+      <PageBody padding="lg">
         <TextImageSplit body={intro} align="start" panelIcon={AllInOneIcon} />
-      </section>
+      </PageBody>
 
-      <section className="bg-piel-periwinkle/25 py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {highlights.map((highlight, index) => (
-              <Reveal key={highlight.title} delay={index * 80}>
-                <Card padding="lg">
-                  <span aria-hidden className="bg-piel-gradient-navy block h-1.5 w-12 rounded-full" />
-                  <h3 className="mt-5 text-xl font-semibold text-piel-navy">{highlight.title}</h3>
-                  <p className="mt-2 text-sm text-piel-text/70">
-                    <RichText text={highlight.text} />
-                  </p>
-                </Card>
-              </Reveal>
-            ))}
-          </div>
+      {/* El degradé de marca reemplaza el `bg-piel-periwinkle/25` que estaba a mano:
+          misma banda tintada, pero con el recurso del bloque Tratamiento. */}
+      <PageBody tone="offwhite" padding="lg">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {highlights.map((highlight, index) => (
+            <Reveal key={highlight.title} delay={index * 80}>
+              <Card padding="lg">
+                <span aria-hidden className="bg-piel-gradient-navy block h-1.5 w-12 rounded-full" />
+                <h3 className="mt-5 text-xl font-semibold text-piel-navy">{highlight.title}</h3>
+                <p className="mt-2 text-sm text-piel-text/70">
+                  <RichText text={highlight.text} />
+                </p>
+              </Card>
+            </Reveal>
+          ))}
         </div>
-      </section>
+      </PageBody>
     </>
   );
 }

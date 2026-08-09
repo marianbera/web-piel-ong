@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
+import PageBody from "@/components/ui/PageBody";
 import EmptyState from "@/components/ui/EmptyState";
 import Card from "@/components/ui/Card";
 import Reveal from "@/components/ui/Reveal";
@@ -18,7 +19,7 @@ export default function PremiosPage() {
     <>
       <PageHeader {...header} />
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <PageBody>
         {awards.length === 0 ? (
           <EmptyState message="Próximamente vamos a compartir los reconocimientos institucionales de PIEL." />
         ) : (
@@ -39,7 +40,7 @@ export default function PremiosPage() {
             ))}
           </ul>
         )}
-      </section>
+      </PageBody>
     </>
   );
 }

@@ -1,4 +1,4 @@
-import type { ProsePageContent } from "@/types/common";
+import type { DraftPageContent } from "@/types/common";
 import type {
   EnfoqueContent,
   OtrasAreasContent,
@@ -96,14 +96,30 @@ export const otrasAreasContent: OtrasAreasContent = {
   ],
 };
 
-// TODO(PIEL): sección SIN DOC entregado. El diagrama pide Cátedra UBA · publicaciones · congresos,
-// pero no hay texto real. Mantener EmptyState hasta que PIEL provea el contenido. No inventar.
-export const investigacionContent: ProsePageContent = {
+// TODO(PIEL): sección SIN DOC entregado. Los tres bloques de abajo son los que pide el
+// diagrama del cliente (Cátedra UBA · publicaciones · congresos); el texto de cada uno
+// está pendiente de PIEL. Se publica la estructura, no contenido inventado.
+export const investigacionContent: DraftPageContent = {
   header: {
     title: "Investigación y academia",
     subtitle: "Formación, publicaciones y participación en congresos.",
   },
   intro:
-    "Próximamente vamos a compartir el trabajo académico, de investigación y de formación que desarrolla PIEL.",
+    "Además de la asistencia, PIEL sostiene una línea de trabajo académico y de formación. Estamos preparando esta sección para reunirla en un solo lugar.",
   sections: [],
+  pending: [
+    {
+      title: "Cátedra UBA",
+      hint: "La actividad docente y de formación de grado y posgrado vinculada a la Universidad de Buenos Aires.",
+    },
+    {
+      title: "Publicaciones",
+      hint: "Los trabajos y artículos publicados por los profesionales del equipo.",
+    },
+    {
+      title: "Congresos y jornadas",
+      hint: "La participación de PIEL en congresos y encuentros científicos, nacionales e internacionales.",
+    },
+  ],
+  note: "Si sos profesional de la salud y buscás material académico o querés contactar al equipo, **escribinos** y te orientamos.",
 };

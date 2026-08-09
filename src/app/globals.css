@@ -83,5 +83,53 @@ h1 {
     radial-gradient(30rem 30rem at 88% 85%, rgb(138 31 62 / 0.12) 0%, transparent 65%);
 }
 
+/* Scroll suave para los links de ancla del índice de páginas largas. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Oculta la barra de scroll en carruseles horizontales (el desplazamiento se
+   señala con las flechas y el corte de la última card). */
+@utility scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Movimiento flotante muy lento para las formas orgánicas decorativas
+   (components/brand/BlobShape). Se apaga con prefers-reduced-motion. */
+@keyframes piel-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -14px, 0);
+  }
+}
+
+@utility animate-piel-float {
+  animation: piel-float 12s ease-in-out infinite;
+  will-change: transform;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@utility animate-piel-float-slow {
+  animation: piel-float 20s ease-in-out infinite;
+  will-change: transform;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
 /* TODO(PIEL): incorporar las texturas raster del brandbook (papel claro + tela navy)
    como background-image una vez entregados los archivos. Por ahora se usan colores planos. */

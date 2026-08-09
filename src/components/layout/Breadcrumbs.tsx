@@ -14,9 +14,12 @@ export default function Breadcrumbs() {
 
   const trail: { label: string; href: string }[] = [];
   for (const section of mainNav) {
-    if (pathname === section.href || pathname.startsWith(`${section.href}/`)) {
+    // Una página puede vivir fuera del prefijo de su sección (p. ej. /labio-leporino,
+    // que está en la raíz por SEO pero cuelga de "Pacientes y familias"), así que
+    // también se busca por coincidencia exacta con alguno de sus links.
+    const link = section.links.find((l) => l.href === pathname);
+    if (link || pathname === section.href || pathname.startsWith(`${section.href}/`)) {
       trail.push({ label: section.label, href: section.href });
-      const link = section.links.find((l) => l.href === pathname);
       if (link) trail.push({ label: link.label, href: link.href });
       break;
     }

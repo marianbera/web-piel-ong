@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
+import PageBody from "@/components/ui/PageBody";
 import DonationForm from "@/components/sections/DonationForm";
 import Reveal from "@/components/ui/Reveal";
 import RichText from "@/components/ui/RichText";
@@ -17,7 +18,7 @@ export default function DonarPage() {
     <>
       <PageHeader {...header} />
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <PageBody>
         <Reveal className="space-y-4">
           <p className="text-lg text-piel-text/80">
             <RichText text={intro} />
@@ -31,7 +32,7 @@ export default function DonarPage() {
         <Reveal delay={100} className="mt-10">
           <DonationForm amountOptions={amountOptions} type="individual" submitLabel="Donar ahora" />
         </Reveal>
-      </section>
+      </PageBody>
     </>
   );
 }

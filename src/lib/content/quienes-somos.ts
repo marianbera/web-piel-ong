@@ -186,22 +186,64 @@ export const equipoContent: EquipoPageContent = {
   directionNote:
     "El equipo de cirugía plástica da continuidad al modelo desarrollado por el Dr. Roberto Bennun, asegurando la **calidad técnica y la evolución del tratamiento**.",
   rosterTitle: "Equipo médico",
-  members: [
-    { role: "Odontólogo", name: "Giorgi Mariano" },
-    { role: "Odontopediatra", name: "Langsam Analía y Urban Rodríguez Carla" },
-    { role: "Pediatra", name: "Yannibelli Patricia y Henrichsen Julieta" },
-    { role: "Cirugía cráneo-maxilo-facial", name: "Dr. Roberto Bennun, Astrada Silvana y Camacho Roy" },
-    { role: "Anestesiología", name: "Moggi Luis, Ventorrutti Tatiana" },
-    { role: "Instrumentador quirúrgico", name: "Carrizo Ricardo" },
-    { role: "Cirugía traumatología", name: "Novoa Alejandro" },
-    { role: "Fonoaudiología", name: "Carmona Samanta y Miloro María" },
-    { role: "Psicología", name: "Basualdo Vanesa y Gantner Erica" },
-    { role: "Nutrición", name: "Carmona Noelia" },
-    { role: "Ortodoncista", name: "Ávila Claudia" },
-    { role: "Kinesiología", name: "Spizzirri Alejandra" },
-    { role: "Mecánica dental", name: "Romero Gilda" },
-    { role: "Otorrinolaringología", name: "Rivelli Ramiro" },
-    { role: "Dermatología", name: "Echague Vila Agustina" },
+  rosterNote:
+    "Estos son los profesionales que integran el equipo, agrupados por área. Cada paciente es acompañado por los que su tratamiento necesite, **en coordinación permanente entre especialidades**.",
+  // Los profesionales son exactamente los del roster del doc fuente (2.4): lo único
+  // que cambió es que los nombres que venían agrupados en una línea ("Langsam Analía
+  // y Urban Rodríguez Carla") ahora son una card cada uno, y las especialidades se
+  // ordenaron por área. No se agregó ni se quitó ninguna persona.
+  // TODO(PIEL): faltan las fotos de los profesionales (`public/equipo/<archivo>.jpg`).
+  groups: [
+    {
+      title: "Cirugía y anestesia",
+      description:
+        "El equipo quirúrgico que realiza las intervenciones de labio, paladar y estructuras craneofaciales.",
+      members: [
+        { name: "Dr. Roberto Bennun", role: "Cirugía cráneo-maxilo-facial" },
+        { name: "Astrada Silvana", role: "Cirugía cráneo-maxilo-facial" },
+        { name: "Camacho Roy", role: "Cirugía cráneo-maxilo-facial" },
+        { name: "Novoa Alejandro", role: "Cirugía traumatología" },
+        { name: "Moggi Luis", role: "Anestesiología" },
+        { name: "Ventorrutti Tatiana", role: "Anestesiología" },
+        { name: "Carrizo Ricardo", role: "Instrumentación quirúrgica" },
+      ],
+    },
+    {
+      title: "Especialidades médicas",
+      description:
+        "El seguimiento clínico del paciente a lo largo del tratamiento, desde los primeros controles.",
+      members: [
+        { name: "Yannibelli Patricia", role: "Pediatría" },
+        { name: "Henrichsen Julieta", role: "Pediatría" },
+        { name: "Rivelli Ramiro", role: "Otorrinolaringología" },
+        { name: "Echague Vila Agustina", role: "Dermatología" },
+      ],
+    },
+    {
+      title: "Salud bucal y ortodoncia",
+      description:
+        "El cuidado de la boca, los maxilares y las piezas dentarias en cada etapa del crecimiento.",
+      members: [
+        { name: "Giorgi Mariano", role: "Odontología" },
+        { name: "Langsam Analía", role: "Odontopediatría" },
+        { name: "Urban Rodríguez Carla", role: "Odontopediatría" },
+        { name: "Ávila Claudia", role: "Ortodoncia" },
+        { name: "Romero Gilda", role: "Mecánica dental" },
+      ],
+    },
+    {
+      title: "Rehabilitación y acompañamiento",
+      description:
+        "El trabajo sobre el habla, la alimentación, el movimiento y la contención de la familia.",
+      members: [
+        { name: "Carmona Samanta", role: "Fonoaudiología" },
+        { name: "Miloro María", role: "Fonoaudiología" },
+        { name: "Basualdo Vanesa", role: "Psicología" },
+        { name: "Gantner Erica", role: "Psicología" },
+        { name: "Carmona Noelia", role: "Nutrición" },
+        { name: "Spizzirri Alejandra", role: "Kinesiología" },
+      ],
+    },
   ],
 };
 

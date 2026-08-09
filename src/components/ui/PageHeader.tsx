@@ -1,5 +1,6 @@
 import type { PageHeaderContent } from "@/types/common";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import BlockDecor from "@/components/brand/BlockDecor";
 import ParallaxHeroImage from "@/components/ui/ParallaxHeroImage";
 import Reveal from "@/components/ui/Reveal";
 
@@ -25,6 +26,9 @@ export default function PageHeader({ title, subtitle, image }: PageHeaderContent
         />
         {/* Filtro oscuro para que el texto blanco siempre contraste con la foto. */}
         <div className="absolute inset-0 bg-piel-navy/70" />
+        {/* Identidad del bloque de navegación (líneas / degradé / formas), siempre
+            POR DEBAJO del contenido y por encima del filtro, nunca del texto. */}
+        <BlockDecor variant="hero" />
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">

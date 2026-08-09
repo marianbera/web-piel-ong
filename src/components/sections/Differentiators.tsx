@@ -1,4 +1,5 @@
 import { differentiators } from "@/lib/content/home";
+import BlobShape from "@/components/brand/BlobShape";
 import { HomeIcon, MedalIcon, SupportIcon, TeamIcon } from "@/components/ui/icons";
 import type { DifferentiatorIcon } from "@/types/home";
 
@@ -13,8 +14,26 @@ export default function Differentiators() {
   const { eyebrow, title, items } = differentiators;
 
   return (
-    <section className="bg-gradient-to-b from-piel-periwinkle/30 to-piel-offwhite py-16 lg:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden bg-gradient-to-b from-piel-periwinkle/30 to-piel-offwhite py-16 lg:py-24">
+      {/* Formas orgánicas del brandbook en las esquinas superiores, donde no hay
+          texto: dan volumen a la banda sin competir con las cards. */}
+      <BlobShape
+        variant="ovals"
+        color="blue"
+        opacity={0.07}
+        rotate={-8}
+        float="slower"
+        className="absolute -left-20 -top-16 h-64 w-64 lg:h-80 lg:w-80"
+      />
+      <BlobShape
+        variant="blob"
+        color="periwinkle"
+        opacity={0.25}
+        float="slow"
+        className="absolute -right-16 top-10 h-48 w-48 lg:h-64 lg:w-64"
+      />
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           {eyebrow && (
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-piel-burgundy">

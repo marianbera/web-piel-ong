@@ -1,30 +1,43 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
-import EmptyState from "@/components/ui/EmptyState";
+import PageBody from "@/components/ui/PageBody";
+import ProseSections from "@/components/sections/ProseSections";
+import PendingSections from "@/components/sections/PendingSections";
 import Reveal from "@/components/ui/Reveal";
+import RichText from "@/components/ui/RichText";
+import { medicosContent } from "@/lib/content/como-acceder";
 
 export const metadata: Metadata = {
-  title: "Info para médicos",
-  description: "Derivaciones, materiales y protocolos para profesionales.",
+  title: medicosContent.header.title,
+  description: medicosContent.header.subtitle,
 };
 
 export default function MedicosPage() {
+  const { header, intro, sections, pending, note } = medicosContent;
+
   return (
     <>
-      <PageHeader
-        title="Info para médicos"
-        subtitle="Derivaciones, materiales y protocolos para profesionales."
-      />
+      <PageHeader {...header} />
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <PageBody>
         <Reveal>
           <p className="text-lg text-piel-text/80">
-            Estamos preparando esta sección para profesionales de la salud.
+            <RichText text={intro} />
           </p>
         </Reveal>
-        {/* TODO(PIEL): sección SIN DOC. El diagrama pide: derivar un paciente · materiales · protocolos. No inventar. */}
-        <EmptyState message="Próximamente vamos a publicar información para derivar pacientes, materiales y protocolos." />
-      </section>
+
+        {sections.length > 0 ? (
+          <ProseSections sections={sections} />
+        ) : (
+          // TODO(PIEL): falta el contenido de los tres bloques (derivar un paciente ·
+          // materiales · protocolos). Se publica la estructura, no texto inventado.
+          <PendingSections
+            blocks={pending}
+            note={note}
+            cta={{ label: "Contactar al equipo", href: "/contacto" }}
+          />
+        )}
+      </PageBody>
     </>
   );
 }
