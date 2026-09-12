@@ -3,6 +3,11 @@ import { SCHEMAS } from "@/lib/admin/schemas";
 
 const SECTIONS = [
   {
+    href: "/panel/donaciones",
+    title: "Donaciones",
+    description: "El registro de todas las donaciones recibidas, con totales y exportación.",
+  },
+  {
     href: "/panel/equipo",
     title: "Equipo médico",
     description: "Agregar, editar o dar de baja profesionales y sus fotos.",

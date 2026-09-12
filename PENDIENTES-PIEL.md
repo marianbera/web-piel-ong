@@ -73,8 +73,19 @@ Consolidado de todos los `TODO(PIEL)` del código. Son decisiones o entregas que
 ## 6. Contacto, pagos y links
 
 - **WhatsApp institucional:** `site.ts` tiene el placeholder `+54 9 11 0000-0000`. **Todos los CTA "por WhatsApp" dependen de esto.** Confirmar el número.
-- **Mercado Pago — postergado por decisión del equipo.** Los links siguen en variables de entorno (`MP_DONATION_LINK_INDIVIDUAL` / `_APADRINAMIENTO` / `_EMPRESA`); sin ellos el formulario de Donar avisa que el pago no está configurado.
-  - El lugar del botón **"Donar online"** está reservado en `sections/DonateBand`: poner `ONLINE_PAYMENTS_ENABLED = true` cuando la pasarela esté conectada.
+- **Mercado Pago — integración escrita y probada, faltan las credenciales.** Checkout Pro
+  (donación por única vez) + registro de cada donación en `/panel/donaciones`.
+  Paso a paso completo en **`MERCADOPAGO-PIEL.md`**. Falta:
+  1. Crear la base **Neon Postgres** (Vercel → Storage) — inyecta `DATABASE_URL` sola.
+  2. Sacar el **Access Token** de la cuenta de MP de la asociación.
+  3. Configurar el **webhook** en MP y copiar su clave secreta (`MP_WEBHOOK_SECRET`).
+  4. Probar con credenciales de TEST antes de pasar a producción.
+  - Mientras tanto la página de Donar no muestra el formulario: avisa que falta habilitarlo.
+  - **Queda afuera la donación mensual recurrente** (usa Suscripciones de MP, otro producto).
+    La columna `frecuencia` ya está en la base para cuando se sume.
+  - El botón **"Donar online"** de `sections/DonateBand` sigue detrás de `ONLINE_PAYMENTS_ENABLED`.
+  - **A resolver con PIEL:** comisiones de MP (hay condiciones para ONGs), comprobantes
+    fiscales de donación y política de privacidad (se guardan nombre y email de donantes).
 - **Datos bancarios para transferencia (Donar):** faltan **CBU, alias, CUIT y banco**. Cargarlos en `datosBancarios`, en `lib/content/donar.ts`. Mientras estén vacíos, el bloque de transferencia no se muestra.
 - **Baja del aporte mensual:** falta definir a qué correo se escribe. Cargarlo en `bajaAporteMensualEmail` (mismo archivo) y el aviso aparece bajo los montos.
 - ~~Historias externas~~ → el CTA del Home ahora apunta a `/historias`, una página propia del sitio nuevo. Se carga desde `/panel` → Historias reales.

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 import PageBody from "@/components/ui/PageBody";
 import Card from "@/components/ui/Card";
@@ -7,14 +8,19 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
 import RichText from "@/components/ui/RichText";
 import { bajaAporteMensualEmail, datosBancarios, donarContent } from "@/lib/content/donar";
+import { isMercadoPagoConfigured } from "@/lib/donaciones/mercadopago";
 
 export const metadata: Metadata = {
   title: donarContent.header.title,
   description: donarContent.header.subtitle,
 };
 
+// Lee si Mercado Pago está habilitado, así que se arma en cada visita.
+export const dynamic = "force-dynamic";
+
 export default function DonarPage() {
   const { header, intro, paragraphs, amountOptions } = donarContent;
+  const pagoOnlineActivo = isMercadoPagoConfigured();
 
   // Solo se muestran los datos bancarios que ya estén cargados.
   const bankRows = [
@@ -37,11 +43,40 @@ export default function DonarPage() {
           </p>
         </Reveal>
 
-        <Reveal delay={100} className="mt-8">
-          <DonationForm amountOptions={amountOptions} type="individual" submitLabel="Donar ahora" />
-        </Reveal>
+        {pagoOnlineActivo ? (
+          <Reveal delay={100} className="mt-8">
+            <DonationForm
+              amountOptions={amountOptions}
+              type="individual"
+              submitLabel="Donar ahora"
+            />
+          </Reveal>
+        ) : (
+          /* TODO(PIEL): faltan las credenciales de Mercado Pago. Mientras tanto no se
+             muestra un formulario que no puede cobrar — ver MERCADOPAGO-PIEL.md. */
+          <Reveal delay={100} className="mt-8">
+            <Card radius="brand" padding="lg" className="max-w-2xl">
+              <p className="text-lg font-semibold text-piel-navy">
+                Estamos terminando de habilitar la donación online.
+              </p>
+              <p className="mt-3 text-piel-text/75">
+                Mientras tanto podés colaborar por transferencia bancaria, o escribirnos y
+                te ayudamos a hacerlo.
+              </p>
+              <Link
+                href="/contacto"
+                className="group mt-6 inline-flex items-center gap-2 text-sm font-semibold text-piel-navy"
+              >
+                Escribinos
+                <span aria-hidden className="transition-transform group-hover:translate-x-1">
+                  →
+                </span>
+              </Link>
+            </Card>
+          </Reveal>
+        )}
 
-        {bajaAporteMensualEmail ? (
+        {pagoOnlineActivo && bajaAporteMensualEmail ? (
           <Reveal>
             <p className="mt-6 max-w-xl text-sm text-piel-text/65">
               El aporte mensual se puede dar de baja en cualquier momento escribiendo a{" "}
