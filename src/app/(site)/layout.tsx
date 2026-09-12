@@ -5,7 +5,7 @@ import Footer from "@/components/layout/Footer";
 import WhatsAppFab from "@/components/layout/WhatsAppFab";
 import { buildSearchIndex } from "@/lib/search/searchIndex";
 import { siteName, siteTagline } from "@/lib/content/site";
-import "./globals.css";
+import "../globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -45,7 +45,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+/**
+ * Layout raíz del sitio público. El panel de administración vive en el grupo de
+ * rutas `(panel)`, con su propio layout raíz: así no arrastra el navbar, el
+ * footer ni el botón flotante de WhatsApp, que no pintan nada en un backoffice.
+ */
+export default function SiteLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
