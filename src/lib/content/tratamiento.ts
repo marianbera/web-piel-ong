@@ -47,8 +47,7 @@ export const enfoqueContent: EnfoqueContent = {
     "En PIEL trabajamos con un **enfoque interdisciplinario** que permite evaluar y acompañar cada caso de manera integral, adaptando el tratamiento a cada etapa del crecimiento del paciente.",
     "**El mismo día y en un mismo lugar**, niños y familias pueden acceder a distintas especialidades, evitando la fragmentación habitual del sistema de salud y favoreciendo una mirada coordinada del tratamiento.",
     "Creemos en la importancia de la contención. Por eso, cada consulta se desarrolla en un **entorno cercano, humano y pensado para los niños** y sus familias.",
-    // TODO(PIEL): actualizar años de experiencia a 2026 (los docs dicen "más de 35 años").
-    "**Más de 35 años de experiencia** y miles de pacientes tratados nos permitieron consolidar un **modelo de atención propio** para el abordaje integral de fisuras labio alvéolo palatinas.",
+    "**Más de 38 años de experiencia** y miles de pacientes tratados nos permitieron consolidar un **modelo de atención propio** para el abordaje integral de fisuras labio alvéolo palatinas.",
   ],
   highlights: [
     {

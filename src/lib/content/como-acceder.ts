@@ -1,5 +1,6 @@
 import type { DraftPageContent } from "@/types/common";
 import type { ComoAccederHubContent, ComoAccederPageContent } from "@/types/comoAcceder";
+import type { FaqItem } from "@/types/pacientes";
 import { mailtoUrl, whatsappUrl } from "@/lib/content/site";
 
 export const comoAccederHub: ComoAccederHubContent = {
@@ -11,6 +12,21 @@ export const comoAccederHub: ComoAccederHubContent = {
     "El proceso para acceder al tratamiento **varía según si la familia reside en Argentina o en el exterior**, y según la cobertura de salud con la que cuente. Elegí la opción que corresponda a tu caso.",
   sections: [
     {
+      title: "Obras sociales y cobertura",
+      description: "Coberturas con las que trabajamos y orientación para tu caso.",
+      href: "/como-acceder/obras-sociales",
+    },
+    {
+      title: "Consultas y turnos",
+      description: "Cómo solicitar una consulta y coordinar tu primer turno.",
+      href: "/como-acceder/consultas",
+    },
+    {
+      title: "Acceso al tratamiento (becas)",
+      description: "Programas de becas y acompañamiento.",
+      href: "/como-acceder/acceso",
+    },
+    {
       title: "Pacientes de Argentina",
       description: "Atención especializada para familias de todo el país.",
       href: "/como-acceder/argentina",
@@ -21,26 +37,12 @@ export const comoAccederHub: ComoAccederHubContent = {
       href: "/como-acceder/internacional",
     },
     {
-      title: "Obras sociales y cobertura",
-      description: "Coberturas con las que trabajamos y orientación para tu caso.",
-      href: "/como-acceder/obras-sociales",
-    },
-    {
-      title: "Acceso al tratamiento (becas)",
-      description: "Programas de becas y acompañamiento.",
-      href: "/como-acceder/acceso",
-    },
-    {
-      title: "Consultas y turnos",
-      description: "Cómo solicitar una consulta y coordinar tu primer turno.",
-      href: "/como-acceder/consultas",
-    },
-    {
       title: "Info para médicos",
       description: "Derivaciones, materiales y protocolos para profesionales.",
       href: "/como-acceder/medicos",
     },
   ],
+
 };
 
 export const argentinaContent: ComoAccederPageContent = {
@@ -66,17 +68,15 @@ export const internacionalContent: ComoAccederPageContent = {
   intro:
     "PIEL recibe pacientes de **distintos países** que buscan atención especializada en fisuras labio alvéolo palatinas y cirugía plástica infantil.",
   paragraphs: [
-    // TODO(PIEL): actualizar años de experiencia a 2026 (los docs dicen "más de 35 años").
-    "Nuestra experiencia interdisciplinaria, desarrollada durante **más de 35 años**, nos ha permitido acompañar a miles de pacientes y consolidarnos como **centro de referencia regional**.",
+    "Nuestra experiencia interdisciplinaria, desarrollada durante **más de 38 años**, nos ha permitido acompañar a miles de pacientes y consolidarnos como **centro de referencia regional**.",
     "**Un abordaje integral en un único lugar**: las distintas especialidades trabajan de manera coordinada dentro de una misma institución (cirugía plástica infantil, odontología, ortodoncia, fonoaudiología, psicología, pediatría y otras), abordando cada caso de forma integral.",
     // TODO(PIEL): el doc 5.2 corta acá ("Atención para familias del exterior..."). Completar cuando PIEL lo provea.
     "Atención para familias del exterior: viajar para recibir atención médica implica una **planificación especial** para las familias.",
   ],
   bulletsTitle: "¿Por qué elegir PIEL?",
   bullets: [
-    "**Más de 35 años** de experiencia.",
-    // TODO(PIEL): cifra de pacientes a unificar (Home/Internacionales dicen 5.000; Nosotros 6.500).
-    "**Más de 5.000 pacientes** tratados.",
+    "**Más de 38 años** de experiencia.",
+    "**Más de 6.000 pacientes** tratados.",
     "Equipo interdisciplinario especializado.",
     "Centro referente en fisuras labio alvéolo palatinas.",
     "Atención integral centrada en el paciente y su familia.",
@@ -161,3 +161,73 @@ export const medicosContent: DraftPageContent = {
   ],
   note: "Mientras tanto, si necesitás derivar un paciente o consultar un caso, **escribinos y te ponemos en contacto con el equipo**.",
 };
+
+/**
+ * "Antes de tu primera consulta" — página de Pacientes de Argentina.
+ * TODO(PIEL): las respuestas definitivas están pendientes de envío. Las de acá
+ * son provisorias y remiten al equipo en vez de afirmar un requisito concreto.
+ */
+export const primeraConsultaFaqs: FaqItem[] = [
+  {
+    question: "¿Necesito derivación médica?",
+    answer:
+      "Escribinos y te confirmamos según tu cobertura: **algunas obras sociales y prepagas la piden y otras no**. Si ya tenés una orden de derivación, traela a la consulta.",
+  },
+  {
+    question: "¿Qué estudios tengo que llevar?",
+    answer:
+      "Lo que tengas del paciente: **ecografías (si el diagnóstico fue prenatal), estudios previos, resúmenes de historia clínica e informes de otros profesionales**. Si no tenés nada todavía, no es un impedimento para la primera consulta.",
+  },
+  {
+    question: "¿Atienden obras sociales o prepagas?",
+    answer:
+      "Sí. Podés ver el listado actualizado en **Obras sociales y cobertura**. Si la tuya no figura, escribinos igual y te orientamos según tu caso.",
+  },
+  {
+    question: "¿Cuánto dura la primera visita?",
+    answer:
+      "Depende de cuántas especialidades participen de la evaluación inicial. **Al coordinar el turno te decimos cuánto tiempo reservar**, para que puedas organizar el viaje.",
+  },
+];
+
+/**
+ * Proceso de admisión para pacientes del exterior.
+ *
+ * ⚠️ TODO(PIEL): el documento de observaciones lo marca como "a confirmar antes de
+ * publicar". Por eso NO se renderiza todavía: poner `PROCESO_INTERNACIONAL_CONFIRMADO`
+ * en `true` (abajo) cuando PIEL lo apruebe y el bloque aparece solo.
+ */
+export const PROCESO_INTERNACIONAL_CONFIRMADO = false;
+
+export const procesoInternacional = {
+  title: "Cómo es el proceso si venís del exterior",
+  steps: [
+    {
+      title: "Contacto inicial",
+      description: "Nos escribís por WhatsApp o mail contándonos el caso.",
+    },
+    {
+      title: "Evaluación a distancia",
+      description:
+        "Nos compartís estudios y diagnóstico (prenatal o posnatal) para que el equipo pueda dar una primera orientación antes del viaje.",
+    },
+    {
+      title: "Planificación de la visita",
+      description:
+        "Coordinamos con vos los tiempos de estadía según el tratamiento que corresponda.",
+    },
+    {
+      title: "Atención en PIEL",
+      description:
+        "Durante tu estadía, las consultas con las distintas especialidades se organizan de manera coordinada para optimizar cada visita.",
+    },
+  ],
+};
+
+/**
+ * ⚠️ TODO(PIEL): "Protocolo de tratamiento desarrollado junto a la Universidad de
+ * Oulu (Finlandia)" — a confirmar con el Dr. Bennun antes de publicar. Queda acá
+ * para no perderlo, pero fuera del array `bullets` que sí se renderiza.
+ */
+export const BULLET_OULU_PENDIENTE =
+  "Protocolo de tratamiento desarrollado junto a la **Universidad de Oulu** (Finlandia).";

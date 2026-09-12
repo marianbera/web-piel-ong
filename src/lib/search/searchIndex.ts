@@ -7,14 +7,12 @@ import { labioLeporinoContent } from "@/lib/content/labio-leporino";
 import { nosotrosContent } from "@/lib/content/nosotros";
 import {
   acompanamientoContent,
-  alimentacionContent,
-  cuidadosContent,
   desarrolloContent,
   faqContent,
-  guiasContent,
   pacientesHub,
-  queEsFisuraContent,
 } from "@/lib/content/pacientes";
+import { cuidadosYAlimentacionContent } from "@/lib/content/cuidados-y-alimentacion";
+import { historiasContent } from "@/lib/content/historias";
 import {
   equipoContent,
   historiaContent,
@@ -91,7 +89,6 @@ export function buildSearchIndex(): SearchEntry[] {
       "valores",
     ]),
     entry(BLOCK.centro, "/quienes-somos/historia", historiaContent.header, [
-      ...historiaContent.milestones.map((m) => m.title),
       "fundación",
       "Avellaneda",
       "personería jurídica",
@@ -160,30 +157,26 @@ export function buildSearchIndex(): SearchEntry[] {
       ...pacientesHub.sections.map((s) => s.title),
       "familias",
     ]),
-    entry(BLOCK.pacientes, "/pacientes/que-es-fisura", queEsFisuraContent.header, [
-      ...queEsFisuraContent.sections.map((s) => s.title),
-      "labio leporino",
-      "fisura de paladar",
-      "causas",
-      "genética",
-    ]),
-    entry(BLOCK.pacientes, "/pacientes/cuidados", cuidadosContent.header, [
-      ...cuidadosContent.tips.map((t) => t.title),
-      "estimulación temprana",
-      "placa obturatriz",
-      "higiene",
-    ]),
-    entry(BLOCK.pacientes, "/pacientes/alimentacion", alimentacionContent.header, [
-      ...alimentacionContent.tips.map((t) => t.title),
+    entry(BLOCK.pacientes, "/pacientes/cuidados-y-alimentacion", cuidadosYAlimentacionContent.header, [
+      ...cuidadosYAlimentacionContent.tips.map((t) => t.title),
       "lactancia",
       "mamadera",
       "biberón",
       "papillas",
+      "estimulación temprana",
+      "placa obturatriz",
+      "higiene",
     ]),
+    entry(
+      BLOCK.pacientes,
+      "/historias",
+      historiasContent.header,
+      ["testimonios", "familias", "historias reales"]
+    ),
     entry(BLOCK.pacientes, "/pacientes/acompanamiento", acompanamientoContent.header, [
       ...acompanamientoContent.sections.map((s) => s.title),
       "psicología",
-      "club de padres",
+      "club de familias",
       "contención",
     ]),
     entry(BLOCK.pacientes, "/pacientes/desarrollo", desarrolloContent.header, [
@@ -198,12 +191,6 @@ export function buildSearchIndex(): SearchEntry[] {
       "postoperatorio",
       "puntos",
       "audición",
-    ]),
-    entry(BLOCK.pacientes, "/pacientes/guias", guiasContent.header, [
-      ...guiasContent.resources.map((r) => r.title),
-      "materiales",
-      "descargas",
-      "PDF",
     ]),
 
     // ── Cómo acceder ───────────────────────────────────────────────────────

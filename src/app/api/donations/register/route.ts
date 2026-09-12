@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { appendDonationRow } from "@/lib/googleSheets";
-import type { DonationType } from "@/types/donation";
+import type { DonationFrequency, DonationType } from "@/types/donation";
 
 // TODO(PIEL): configurar los links de pago de Mercado Pago en variables de entorno
 // (MP_DONATION_LINK_INDIVIDUAL / _APADRINAMIENTO / _EMPRESA) antes de publicar.
@@ -12,10 +12,11 @@ const mpLinks: Record<DonationType, string | undefined> = {
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
-  const { name, email, amount, type, origin } = body as {
+  const { name, email, amount, frequency, type, origin } = body as {
     name?: string;
     email?: string;
     amount?: number;
+    frequency?: DonationFrequency;
     type?: DonationType;
     origin?: string;
   };
@@ -37,6 +38,7 @@ export async function POST(request: NextRequest) {
       name,
       email,
       String(amount),
+      frequency === "mensual" ? "mensual" : "única vez",
       type,
       new Date().toISOString(),
       origin ?? "",

@@ -6,7 +6,6 @@ import type {
   HeroSlide,
   HumanBlockContent,
 } from "@/types/home";
-import { siteExternalLinks } from "@/lib/content/site";
 
 export const heroSlides: HeroSlide[] = [
   {
@@ -17,9 +16,9 @@ export const heroSlides: HeroSlide[] = [
       position: "object-[center_35%]",
     },
     align: "left",
-    title: "¿Qué es Asociación PIEL?",
+    title: "¿Qué es Asociación P.I.E.L.?",
     subtitle:
-      "PIEL es un centro de cirugía plástica infantil de referencia en el tratamiento integral de fisuras labio-álveolo-palatinas. Un equipo interdisciplinario que acompaña a cada paciente desde el diagnóstico hasta la finalización del tratamiento.",
+      "P.I.E.L. significa Plástica Infantil con Excelencia en el Logro: un centro de cirugía plástica infantil de referencia en el tratamiento integral de fisuras labio-álveolo-palatinas. Un equipo interdisciplinario que acompaña a cada paciente desde el diagnóstico hasta la finalización del tratamiento.",
     cta: { label: "Conocenos", href: "/quienes-somos/nosotros" },
   },
   {
@@ -35,15 +34,13 @@ export const heroSlides: HeroSlide[] = [
 
 export const aboutSummary: AboutSummaryContent = {
   eyebrow: "Quiénes somos",
-  title: "Más de 35 años de experiencia y miles de historias que nos eligen.",
+  title: "Más de 38 años de experiencia y miles de historias que nos eligen.",
   // Las palabras entre **dobles asteriscos** se renderizan en negrita (ver RichText).
-  text: "PIEL es un **centro de cirugía plástica infantil de referencia** en el **tratamiento integral** de fisuras labio-álveolo-palatinas. Un **equipo interdisciplinario** que acompaña a cada paciente desde el diagnóstico hasta la finalización del tratamiento.",
+  text: "**P.I.E.L.** significa **Plástica Infantil con Excelencia en el Logro**. Somos un **centro de cirugía plástica infantil de referencia** en el **tratamiento integral** de fisuras labio-álveolo-palatinas. Un **equipo interdisciplinario** que acompaña a cada paciente desde el diagnóstico hasta la finalización del tratamiento.",
   cta: { label: "Conocer más sobre PIEL", href: "/quienes-somos" },
   stats: [
-    // TODO(PIEL): actualizar años de experiencia a 2026 (los docs dicen "más de 35 años").
-    { icon: "hospital", value: "+35", label: "años de trayectoria" },
-    // TODO(PIEL): cifra de pacientes a unificar — Home dice "5.000" y Nosotros "6.500".
-    { icon: "patients", value: "+5.000", label: "pacientes tratados" },
+    { icon: "hospital", value: "+38", label: "años de trayectoria" },
+    { icon: "patients", value: "+6.000", label: "pacientes tratados" },
     { icon: "team", label: "Equipo interdisciplinario completo" },
     { icon: "integral", label: "Tratamiento integral en un solo lugar" },
   ],
@@ -65,8 +62,7 @@ export const differentiators: DifferentiatorsContent = {
     },
     {
       icon: "experience",
-      // TODO(PIEL): actualizar años de experiencia a 2026 (los docs dicen "más de 35 años").
-      title: "Más de 35 años de experiencia",
+      title: "Más de 38 años de experiencia",
       text: "Un modelo desarrollado y perfeccionado a lo largo del tiempo.",
     },
     {
@@ -81,7 +77,7 @@ export const humanBlock: HumanBlockContent = {
   title: "Cada tratamiento es una historia",
   // Las palabras entre **dobles asteriscos** se renderizan en negrita (ver RichText).
   text: "Detrás de cada diagnóstico hay **una familia, un proceso y un futuro por construir**. En PIEL acompañamos a cada paciente **en todo el camino**, con el **mismo compromiso en cada caso**.",
-  cta: { label: "Conocé historias reales", href: siteExternalLinks.historias },
+  cta: { label: "Conocé historias reales", href: "/historias" },
   images: [
     {
       src: "/brand/historias/cada-tratamiento-es-una-historia.jpg",

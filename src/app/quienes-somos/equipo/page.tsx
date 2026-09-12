@@ -2,30 +2,25 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 import PageBody from "@/components/ui/PageBody";
-import EmptyState from "@/components/ui/EmptyState";
 import Card from "@/components/ui/Card";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
 import RichText from "@/components/ui/RichText";
-import { TeamGroups } from "@/components/sections/TeamCarousel";
+import TeamGroups from "@/components/sections/TeamGrid";
 import { equipoContent } from "@/lib/content/quienes-somos";
+import { getTeamGroups } from "@/lib/admin/store";
 
 export const metadata: Metadata = {
   title: equipoContent.header.title,
   description: equipoContent.header.subtitle,
 };
 
-export default function EquipoPage() {
-  const {
-    header,
-    intro,
-    founder,
-    directionTitle,
-    directionNote,
-    rosterTitle,
-    rosterNote,
-    groups,
-  } = equipoContent;
+// El equipo se edita desde /panel: la página se arma en cada visita.
+export const dynamic = "force-dynamic";
+
+export default async function EquipoPage() {
+  const { header, intro, founder, rosterTitle, rosterNote } = equipoContent;
+  const groups = await getTeamGroups();
 
   const initials = founder.name
     .replace(/^Dr\.?\s*/i, "")
@@ -40,7 +35,7 @@ export default function EquipoPage() {
 
       <PageBody padding="lg">
         <Reveal>
-          <p className="text-lg text-piel-text/80">
+          <p className="max-w-3xl text-lg text-piel-text/80">
             <RichText text={intro} />
           </p>
         </Reveal>
@@ -79,20 +74,10 @@ export default function EquipoPage() {
             </div>
           </Card>
         </Reveal>
-
-        {/* Dirección médica y cirujanos principales */}
-        <div className="mt-16">
-          <SectionHeading title={directionTitle} />
-          <Reveal>
-            <p className="mt-4 text-piel-text/75">
-              <RichText text={directionNote} />
-            </p>
-          </Reveal>
-          <EmptyState message="Próximamente: los perfiles de los cirujanos principales del equipo." />
-        </div>
       </PageBody>
 
-      {/* Equipo médico, agrupado por área */}
+      {/* Staff, directo después de la bio del fundador: el primer grupo son los
+          cirujanos, así no se repite la información de dirección médica. */}
       <PageBody tone="offwhite" intensity="subtle" padding="lg">
         <SectionHeading eyebrow="Equipo interdisciplinario" title={rosterTitle} accent />
         <TeamGroups groups={groups} note={rosterNote} />

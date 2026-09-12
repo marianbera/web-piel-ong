@@ -83,6 +83,29 @@ h1 {
     radial-gradient(30rem 30rem at 88% 85%, rgb(138 31 62 / 0.12) 0%, transparent 65%);
 }
 
+/* Textos justificados (pedido de PIEL: "alineados en bloque").
+   Solo el cuerpo de texto dentro de <main>, y solo desde 640px: en pantallas
+   angostas el justificado abre "ríos" de espacio entre palabras y se lee peor.
+   `hyphens: auto` + `lang="es"` en el <html> permiten cortar palabras y los evitan. */
+@media (min-width: 640px) {
+  main p {
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+  }
+
+  /* Lo que NO se justifica: epígrafes, etiquetas y textos centrados, donde el
+     justificado se pelea con la alineación propia del elemento. */
+  main figcaption,
+  main .text-center p,
+  main p.text-center,
+  main .no-justify,
+  main .no-justify p {
+    text-align: inherit;
+    hyphens: manual;
+  }
+}
+
 /* Scroll suave para los links de ancla del índice de páginas largas. */
 @media (prefers-reduced-motion: no-preference) {
   html {
@@ -98,6 +121,26 @@ h1 {
 
   &::-webkit-scrollbar {
     display: none;
+  }
+}
+
+/* Marquesina continua para el carrusel de logos: la pista contiene la lista
+   duplicada, así que desplazarla un 50% la deja exactamente donde empezó. */
+@keyframes piel-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@utility animate-piel-marquee {
+  animation: piel-marquee 40s linear infinite;
+  will-change: transform;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
   }
 }
 

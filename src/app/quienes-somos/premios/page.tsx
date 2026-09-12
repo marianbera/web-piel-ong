@@ -6,28 +6,34 @@ import Card from "@/components/ui/Card";
 import Reveal from "@/components/ui/Reveal";
 import RichText from "@/components/ui/RichText";
 import { premiosContent } from "@/lib/content/quienes-somos";
+import { getAwards } from "@/lib/admin/store";
 
 export const metadata: Metadata = {
   title: premiosContent.header.title,
   description: premiosContent.header.subtitle,
 };
 
-export default function PremiosPage() {
-  const { header, awards } = premiosContent;
+// Los premios se editan desde /panel.
+export const dynamic = "force-dynamic";
+
+export default async function PremiosPage() {
+  const awards = await getAwards();
 
   return (
     <>
-      <PageHeader {...header} />
+      <PageHeader {...premiosContent.header} />
 
       <PageBody>
         {awards.length === 0 ? (
           <EmptyState message="Próximamente vamos a compartir los reconocimientos institucionales de PIEL." />
         ) : (
-          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          /* items-stretch + h-full: todas las cajas quedan del mismo alto, sin importar
+             cuánto texto tenga cada premio (pedido de PIEL). */
+          <ul className="grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {awards.map((award, index) => (
-              <li key={`${award.year}::${award.text}`}>
-                <Reveal delay={(index % 3) * 80}>
-                  <Card>
+              <li key={award.id} className="flex">
+                <Reveal delay={(index % 3) * 80} className="flex w-full">
+                  <Card className="flex h-full w-full flex-col">
                     <span className="text-sm font-bold uppercase tracking-wide text-piel-burgundy">
                       {award.year}
                     </span>

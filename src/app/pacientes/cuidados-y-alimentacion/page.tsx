@@ -5,16 +5,17 @@ import StepsList from "@/components/sections/StepsList";
 import ImageSlot from "@/components/ui/ImageSlot";
 import Reveal from "@/components/ui/Reveal";
 import RichText from "@/components/ui/RichText";
-import { cuidadosContent } from "@/lib/content/pacientes";
+import { cuidadosYAlimentacionContent } from "@/lib/content/cuidados-y-alimentacion";
 import { cuidadosImages, imageSrc } from "@/lib/content/pacientesImagenes";
 
 export const metadata: Metadata = {
-  title: "Cuidados a tener en cuenta",
-  description: cuidadosContent.header.subtitle,
+  title: "Cuidados y alimentación del bebé con labio leporino",
+  description:
+    "Pautas de alimentación, estimulación temprana y cuidados para bebés con fisura labio-alvéolo-palatina.",
 };
 
-export default function CuidadosPage() {
-  const { header, intro, tips } = cuidadosContent;
+export default function CuidadosYAlimentacionPage() {
+  const { header, intro, tips } = cuidadosYAlimentacionContent;
 
   return (
     <>
@@ -22,14 +23,13 @@ export default function CuidadosPage() {
 
       <PageBody>
         <Reveal>
-          <p className="text-lg text-piel-text/80">
+          <p className="max-w-3xl text-lg leading-relaxed text-piel-text/80">
             <RichText text={intro} />
           </p>
         </Reveal>
 
-        {/* Dos imágenes de apoyo entre la intro y la lista de pautas, para que la
-            página no arranque con siete cards de texto. TODO(PIEL): faltan. */}
-        <div className="mt-12 grid gap-6 lg:grid-cols-2">
+        {/* TODO(PIEL): faltan las imágenes de apoyo (ver public/pacientes/LEEME.md). */}
+        <div className="mt-10 grid gap-6 lg:grid-cols-2">
           {cuidadosImages.map((image, index) => (
             <ImageSlot
               key={image.src}
@@ -37,6 +37,7 @@ export default function CuidadosPage() {
               alt={image.alt}
               caption={image.caption}
               aspect="3/2"
+              frameless
               sizes="(min-width: 1024px) 40vw, 100vw"
               delay={index * 100}
             />

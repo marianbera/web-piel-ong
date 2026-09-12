@@ -3,6 +3,9 @@ import Reveal from "@/components/ui/Reveal";
 import RichText from "@/components/ui/RichText";
 import type { FaqItem } from "@/types/pacientes";
 
+/** Las respuestas largas separan párrafos con una línea en blanco. */
+const PARAGRAPH_BREAK = "\n\n";
+
 /**
  * Acordeón de preguntas frecuentes: cada pregunta es un Card (as="details")
  * con el badge de ícono estándar del sistema como toggle (+).
@@ -24,9 +27,13 @@ export default function FaqAccordion({ faqs }: { faqs: FaqItem[] }) {
                 </span>
               </span>
             </summary>
-            <p className="mt-3 text-sm text-piel-text/80">
-              <RichText text={faq.answer} />
-            </p>
+            <div className="mt-3 flex flex-col gap-3 text-sm text-piel-text/80">
+              {faq.answer.split(PARAGRAPH_BREAK).map((paragraph) => (
+                <p key={paragraph.slice(0, 40)}>
+                  <RichText text={paragraph} />
+                </p>
+              ))}
+            </div>
           </Card>
         </Reveal>
       ))}

@@ -6,12 +6,11 @@ Consolidado de todos los `TODO(PIEL)` del código. Son decisiones o entregas que
 
 ---
 
-## 1. Cifras a confirmar / actualizar a 2026
+## 1. Cifras (RESUELTO — observaciones 2026)
 
-- **Años de experiencia:** en todo el sitio dice "más de 35 años" (según los docs). Confirmar el número exacto para 2026.
-  - `navigation.ts` (descripción de Historia) · `home.ts` (hero de stats + diferencial) · `nosotros.ts` (intro) · `tratamiento.ts` (enfoque) · `como-acceder.ts` (internacionales) · `donar.ts` · `Footer.tsx`.
-- **Cantidad de pacientes tratados — INCONSISTENCIA:** el Home e Internacionales dicen **"5.000"**; Nosotros dice **"6.500"**. Definir la cifra oficial y unificar.
-  - `home.ts` (stat +5.000) · `nosotros.ts` (intro, 6.500) · `como-acceder.ts` (internacionales, 5.000).
+- **38 años de trayectoria** y **más de 6.000 pacientes tratados**, unificado en todo el sitio.
+- **Dirección:** Av. Palaá 536, Avellaneda, Provincia de Buenos Aires.
+- **Nombre del fundador:** Dr. **Ricardo** Bennun (antes figuraba "Roberto").
 
 ## 2. Especialidades (14 vs 11)
 
@@ -23,7 +22,7 @@ Consolidado de todos los `TODO(PIEL)` del código. Son decisiones o entregas que
 - **Prensa** (`/quienes-somos/prensa`): el doc 2.5 solo dice "agregar todas las notas en medios". Página con EmptyState + CTA de contacto de prensa hasta recibir las notas.
 - **Investigación y academia** (`/tratamiento/investigacion`): el diagrama pide Cátedra UBA · publicaciones · congresos, pero no hay texto. La página ya publica **la estructura** de los tres bloques con `sections/PendingSections`; falta el texto de cada uno (`investigacionContent.sections` en `tratamiento.ts`).
 - **Info para médicos** (`/como-acceder/medicos`): el diagrama pide derivar un paciente · materiales · protocolos. Misma solución: estructura publicada, texto pendiente (`medicosContent.sections` en `como-acceder.ts`).
-- **Perfiles de cirujanos principales** (`/quienes-somos/equipo`): pendientes de PIEL (EmptyState en el bloque de dirección médica).
+- ~~Perfiles de cirujanos principales~~ → el bloque "Dirección médica" se eliminó a pedido de PIEL: el staff arranca directo después de la bio del Dr. Bennun, con los cirujanos primero.
 - **Pacientes internacionales** (`/como-acceder/internacional`): el doc 5.2 corta en "Atención para familias del exterior…". **Todo lo demás del doc ya está migrado** — falta solo el final de ese párrafo.
 - **Premios**: completar con reconocimientos nuevos posteriores a 2018, si los hubiera.
 
@@ -64,24 +63,27 @@ Consolidado de todos los `TODO(PIEL)` del código. Son decisiones o entregas que
 - **Peso de los originales:** `slide-1-que-es-piel.jpg` pesa ~12,5 MB (6000×4000) y `cada-tratamiento-es-una-historia.jpg` ~5 MB (3744×5616). Next.js las optimiza al servirlas, pero conviene reducirlas a ~2560 px de lado mayor para aligerar el repo y los builds.
 - **Imágenes que el doc menciona pero no fueron entregadas:** `tratamiento-1.png`, `tratamiento-2.png`.
 
-## 5. Guías, PDFs y logos
+## 5. Logos
 
-- **Guías y materiales** (`/pacientes/guias`): los 4 PDFs quedan con `href="#"` ("Disponible próximamente") hasta recibir los archivos reales.
-- **Logos "Colaboran con nosotros"** (Nosotros): EmptyState hasta recibir los logos.
-- **Logos "Empresas que nos acompañan"** (Empresas): EmptyState hasta recibir los logos.
+- ~~Guías y materiales~~ → la sección se eliminó a pedido de PIEL. `/pacientes/guias` redirige a Preguntas frecuentes.
+- **Logos "Colaboran con nosotros"** (Nosotros) y **"Empresas que nos acompañan"** (Empresas):
+  se cargan desde **`/panel` → Logos**, con los mismos logos de la página actual. Hasta
+  entonces cada sección muestra un EmptyState.
 
 ## 6. Contacto, pagos y links
 
 - **WhatsApp institucional:** `site.ts` tiene el placeholder `+54 9 11 0000-0000`. **Todos los CTA "por WhatsApp" dependen de esto.** Confirmar el número.
-- **Mercado Pago:** configurar los links de pago en variables de entorno (`MP_DONATION_LINK_INDIVIDUAL` / `_APADRINAMIENTO` / `_EMPRESA`).
-  - El lugar del botón **"Donar online"** ya está reservado en `sections/DonateBand` (Home y Sé parte). Cuando la pasarela esté conectada, poner `ONLINE_PAYMENTS_ENABLED = true` en ese archivo y el botón aparece en su hueco, sin rediseñar nada. Se deja apagado a propósito: un botón de donación que no cobra es peor que no tenerlo.
-- **Historias:** confirmar que la sección externa `asociacion-piel.org.ar/web/historias/` siga vigente (CTA del bloque humano del Home).
+- **Mercado Pago — postergado por decisión del equipo.** Los links siguen en variables de entorno (`MP_DONATION_LINK_INDIVIDUAL` / `_APADRINAMIENTO` / `_EMPRESA`); sin ellos el formulario de Donar avisa que el pago no está configurado.
+  - El lugar del botón **"Donar online"** está reservado en `sections/DonateBand`: poner `ONLINE_PAYMENTS_ENABLED = true` cuando la pasarela esté conectada.
+- **Datos bancarios para transferencia (Donar):** faltan **CBU, alias, CUIT y banco**. Cargarlos en `datosBancarios`, en `lib/content/donar.ts`. Mientras estén vacíos, el bloque de transferencia no se muestra.
+- **Baja del aporte mensual:** falta definir a qué correo se escribe. Cargarlo en `bajaAporteMensualEmail` (mismo archivo) y el aviso aparece bajo los montos.
+- ~~Historias externas~~ → el CTA del Home ahora apunta a `/historias`, una página propia del sitio nuevo. Se carga desde `/panel` → Historias reales.
 - **"Ver trayectoria completa"** del fundador (Equipo): falta el destino real (página/bio). Hoy apunta a `#`.
-- **Ubicación:** el mockup del footer dice "Atención en CABA", pero la sede registrada es **Avellaneda**. Confirmar.
+- ~~Ubicación~~ → resuelto: Av. Palaá 536, Avellaneda, Provincia de Buenos Aires, con mapa embebido en Pacientes de Argentina e Internacionales.
 
 ## 7. Nombre del fundador (RESUELTO)
 
-- Unificado a **"Dr. Roberto Bennun"** en todo el sitio (decisión del cliente). El doc traía variantes: "Ricardo D. Bennun" (Premios), "Bennun Ricardo" (roster). Confirmar con PIEL si corresponde.
+- **Dr. Ricardo Bennun** en todo el sitio (corregido en las observaciones 2026; antes figuraba "Roberto").
 
 ## 8. Marca y diseño
 
@@ -91,3 +93,48 @@ Consolidado de todos los `TODO(PIEL)` del código. Son decisiones o entregas que
 - **Íconos:** el brandbook pide Material Symbols + Health Icons; hoy usamos SVGs inline propios.
 - **Tarjetas "Acceso / Ayudar"** (Home): el mockup usa verde/rosa; se mapearon a la paleta de marca (azul/burdeos). Confirmar si se quiere el verde/rosa exactos.
 - **Nota "porqué del nombre PIEL"** (footer): el cliente quiere una nota que explique el porqué del nombre (logo retocado). Falta el texto.
+
+---
+
+## 9. Pendientes de las observaciones 2026
+
+### Contenido que PIEL tiene que enviar
+- **Respuestas de "Antes de tu primera consulta"** (Pacientes de Argentina): las cuatro
+  que están publicadas son provisorias y remiten al equipo. Reemplazar en
+  `primeraConsultaFaqs`, en `lib/content/como-acceder.ts`.
+- **Investigación y academia:** completar las 3 cards (Cátedra UBA · publicaciones · congresos).
+- **Alimentación y acompañamiento** en `/labio-leporino`: falta el contenido real de
+  Nutrición y Fonoaudiología para ampliar ese bloque.
+- **Fotos de especialidades:** hay una carpeta de Drive en el documento de observaciones.
+  Antes de subirlas hay que consultar con PIEL cuál corresponde a cada sección.
+
+### Bloques escritos pero SIN PUBLICAR (esperan aprobación)
+Los dos están en `lib/content/como-acceder.ts` y no se renderizan hasta que se aprueben:
+- **Proceso de admisión para pacientes del exterior** (4 pasos) → poner
+  `PROCESO_INTERNACIONAL_CONFIRMADO = true`.
+- **Protocolo junto a la Universidad de Oulu (Finlandia)** → a confirmar con el Dr. Bennun.
+  El texto está guardado en `BULLET_OULU_PENDIENTE`; para publicarlo, sumarlo al array
+  `bullets` de `internacionalContent`.
+
+### Fotos del equipo
+Están en retoque, se envían aparte. **Ya no hace falta tocar código**: se suben desde
+`/panel` → Equipo médico. Ver `PANEL-PIEL.md`.
+
+### ⚙️ Panel — pasos pendientes de infraestructura (Vercel)
+1. **Crear el Blob Store**: proyecto web-piel → pestaña *Storage* → *Create Database* →
+   *Blob* → conectar al proyecto. Vercel inyecta sola `BLOB_READ_WRITE_TOKEN`.
+2. **Definir credenciales**: `ADMIN_USER`, `ADMIN_PASSWORD` y `ADMIN_SESSION_SECRET`
+   en *Settings → Environment Variables* (Production).
+3. **Redeploy**.
+
+Hasta que eso esté, el sitio se ve perfecto pero el panel no puede guardar: avisa con un
+mensaje explicando qué falta.
+
+### Decisiones de implementación a revisar con PIEL
+- **Textos justificados:** se aplican al cuerpo de texto desde 640 px de ancho. En
+  celulares se dejan alineados a la izquierda a propósito: en columnas angostas el
+  justificado abre "ríos" de espacio y se lee peor.
+- **`/historias`:** la página existe y el CTA del Home ya apunta ahí, pero está vacía
+  hasta que se carguen historias desde el panel.
+- **Línea de tiempo del desarrollo:** se hizo una versión con íconos propios (chupete →
+  juego → habla → libro). Queda para revisar con Juani, como pedía el documento.

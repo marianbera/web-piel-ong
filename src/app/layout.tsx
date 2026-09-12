@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import WhatsAppFab from "@/components/layout/WhatsAppFab";
 import { buildSearchIndex } from "@/lib/search/searchIndex";
 import { siteName, siteTagline } from "@/lib/content/site";
 import "./globals.css";
@@ -62,6 +63,7 @@ export default function RootLayout({
         <Navbar searchIndex={searchIndex} />
         <main className="flex-1 pb-16 sm:pb-20">{children}</main>
         <Footer />
+        <WhatsAppFab />
       </body>
     </html>
   );

@@ -7,14 +7,19 @@ import Card from "@/components/ui/Card";
 import Reveal from "@/components/ui/Reveal";
 import RichText from "@/components/ui/RichText";
 import { prensaContent } from "@/lib/content/quienes-somos";
+import { getPressItems } from "@/lib/admin/store";
 
 export const metadata: Metadata = {
   title: "Prensa",
   description: prensaContent.header.subtitle,
 };
 
-export default function PrensaPage() {
-  const { header, intro, items } = prensaContent;
+// Las notas y videos se cargan desde /panel.
+export const dynamic = "force-dynamic";
+
+export default async function PrensaPage() {
+  const { header, intro } = prensaContent;
+  const items = await getPressItems();
 
   return (
     <>
@@ -22,17 +27,17 @@ export default function PrensaPage() {
 
       <PageBody>
         <Reveal>
-          <p className="text-lg text-piel-text/80">
+          <p className="max-w-3xl text-lg text-piel-text/80">
             <RichText text={intro} />
           </p>
         </Reveal>
 
         {items.length === 0 ? (
-          // TODO(PIEL): sin notas entregadas (doc 2.5). No inventar.
           <>
+            {/* TODO(PIEL): cargar las notas y videos desde /panel → Prensa. */}
             <EmptyState message="Próximamente vamos a compartir las notas y menciones de PIEL en los medios." />
             <Reveal>
-              <p className="mt-8 text-piel-text/75">
+              <p className="mt-8 max-w-3xl text-piel-text/75">
                 ¿Sos periodista y querés hacer una nota sobre PIEL? Escribinos y te ponemos en
                 contacto con el equipo.
               </p>
@@ -48,25 +53,33 @@ export default function PrensaPage() {
             </Reveal>
           </>
         ) : (
-          <div className="mt-10 flex flex-col gap-4">
+          <ul className="mt-10 grid gap-4 sm:grid-cols-2">
             {items.map((item, index) => (
-              <Reveal key={item.title} delay={index * 80}>
-                <Card
-                  as="a"
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  hoverable
-                  className="block"
-                >
-                  <span className="text-sm font-medium text-piel-text/70">
-                    {item.outlet} · {item.date}
-                  </span>
-                  <h3 className="mt-1 text-lg font-semibold text-piel-navy">{item.title}</h3>
-                </Card>
-              </Reveal>
+              <li key={item.id} className="flex">
+                <Reveal delay={(index % 2) * 80} className="flex w-full">
+                  <Card
+                    as="a"
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    hoverable
+                    className="flex h-full w-full flex-col"
+                  >
+                    <span className="flex flex-wrap items-center gap-2 text-sm text-piel-text/70">
+                      {item.kind === "video" && (
+                        <span className="rounded-full bg-piel-burgundy px-2.5 py-0.5 text-[0.68rem] font-semibold uppercase tracking-wide text-white">
+                          Video
+                        </span>
+                      )}
+                      {item.outlet}
+                      {item.date && ` · ${item.date}`}
+                    </span>
+                    <h2 className="mt-2 text-lg font-semibold text-piel-navy">{item.title}</h2>
+                  </Card>
+                </Reveal>
+              </li>
             ))}
-          </div>
+          </ul>
         )}
       </PageBody>
     </>
