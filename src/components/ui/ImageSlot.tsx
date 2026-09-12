@@ -31,6 +31,12 @@ interface ImageSlotProps {
    * para ilustraciones médicas: recortarlas les cambiaría el significado.
    */
   fit?: "cover" | "contain";
+  /**
+   * Sin marco: la imagen se apoya directo sobre el fondo de la página, sin panel
+   * ni sombra. Es lo que pidió PIEL para las ilustraciones médicas —"que no estén
+   * en un recuadro"—, y además deja el epígrafe pegado a la imagen.
+   */
+  frameless?: boolean;
   /** Valor de `sizes` para `next/image`. Ajustar al ancho real del hueco. */
   sizes?: string;
   priority?: boolean;
@@ -53,27 +59,32 @@ export default function ImageSlot({
   caption,
   aspect = "4/3",
   fit = "cover",
+  frameless = false,
   sizes = "(min-width: 1024px) 50vw, 100vw",
   priority = false,
   icon: Icon = ExperienceIcon,
   className = "",
   delay = 0,
 }: ImageSlotProps) {
-  // Con `contain` la imagen no llena el marco, así que el marco tiene que leerse
-  // como un panel (superficie clara + ring) y no como una foto recortada.
+  // Con `contain` la imagen no llena el marco. Por defecto ese vacío se resuelve
+  // con un panel claro; con `frameless` la imagen queda suelta sobre la página.
   // El aire lo pone el padding del <Image>: con `fill`, el padding del contenedor
   // no desplaza a un hijo absoluto, pero sí reduce su caja de contenido.
-  const frame = src
-    ? fit === "contain"
-      ? "bg-piel-offwhite ring-1 ring-piel-navy/5"
-      : "shadow-lg"
-    : "border border-dashed border-piel-navy/15 bg-piel-offwhite";
+  const frame = !src
+    ? "border border-dashed border-piel-navy/15 bg-piel-offwhite"
+    : frameless
+      ? ""
+      : fit === "contain"
+        ? "bg-piel-offwhite ring-1 ring-piel-navy/5"
+        : "shadow-lg";
+
+  const radius = frameless && src ? "rounded-2xl" : "rounded-[2rem] sm:rounded-[2.5rem]";
 
   return (
     <Reveal delay={delay} className={className}>
       <figure className="m-0">
         <div
-          className={`relative w-full overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] ${ASPECT[aspect]} ${frame}`}
+          className={`relative w-full overflow-hidden ${radius} ${ASPECT[aspect]} ${frame}`}
         >
           {src ? (
             <Image
@@ -82,7 +93,13 @@ export default function ImageSlot({
               fill
               sizes={sizes}
               priority={priority}
-              className={fit === "contain" ? "object-contain p-4 sm:p-8" : "object-cover"}
+              className={
+                fit === "contain"
+                  ? frameless
+                    ? "object-contain"
+                    : "object-contain p-4 sm:p-8"
+                  : "object-cover"
+              }
             />
           ) : (
             <>
@@ -109,7 +126,7 @@ export default function ImageSlot({
           )}
         </div>
         {caption && (
-          <figcaption className="mt-3 text-sm leading-snug text-piel-text/65">{caption}</figcaption>
+          <figcaption className="mt-2 text-sm leading-snug text-piel-text/65">{caption}</figcaption>
         )}
       </figure>
     </Reveal>

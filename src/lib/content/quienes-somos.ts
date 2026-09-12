@@ -9,10 +9,10 @@ import type {
 export const quienesSomosHub: QuienesSomosHubContent = {
   header: {
     title: "Quiénes somos",
-    subtitle: "Un centro de referencia con más de 37 años de trayectoria.",
+    subtitle: "Un centro de referencia con más de 38 años de trayectoria.",
   },
   intro:
-    "PIEL es un centro de cirugía plástica infantil especializado en el **tratamiento integral** de fisuras labio-álveolo-palatinas, con **más de 5.000 pacientes tratados** desde su fundación en 1988.",
+    "PIEL es un centro de cirugía plástica infantil especializado en el **tratamiento integral** de fisuras labio-álveolo-palatinas, con **más de 6.000 pacientes tratados** desde su fundación en 1988.",
   sections: [
     {
       title: "Nosotros",
@@ -21,7 +21,7 @@ export const quienesSomosHub: QuienesSomosHubContent = {
     },
     {
       title: "Historia",
-      description: "Más de 37 años de trayectoria acompañando a familias.",
+      description: "Más de 38 años de trayectoria acompañando a familias.",
       href: "/quienes-somos/historia",
     },
     {
@@ -55,27 +55,6 @@ export const historiaContent: HistoriaPageContent = {
     "Ese mismo espíritu dio origen a iniciativas como el **Fondo Cooperativo de Reserva**, creado para facilitar el acceso al tratamiento mediante préstamos adaptados a las posibilidades de cada familia.",
     "Hoy, PIEL cuenta con una sede donde se brinda **asistencia y rehabilitación interdisciplinaria** a través de consultorios externos, integrando especialidades como cirugía plástica infantil y cráneo-maxilofacial, neonatología, pediatría, genética, odontopediatría, ortodoncia, fonoaudiología, otorrinolaringología, psicología y asistencia social.",
   ],
-  milestonesTitle: "Hitos",
-  // Solo hitos reales datados del doc fuente (2.2). El timeline anterior (Cátedra UBA, hitos genéricos) era inventado y se descartó.
-  milestones: [
-    {
-      year: "25 de octubre de 1988",
-      title: "Fundación de Asociación PIEL",
-      description:
-        "Se crea PIEL para apoyar la investigación, prevención, docencia y asistencia en el ámbito de la cirugía plástica y craneofacial infantil.",
-    },
-    {
-      year: "31 de julio de 1989",
-      title: "Personería jurídica",
-      description: "PIEL obtiene su personería jurídica (I.G.J. N° 581).",
-    },
-    {
-      year: "1994",
-      title: "Sede propia en Avellaneda",
-      description:
-        "PIEL concreta la adquisición de su sede propia en Avellaneda, Provincia de Buenos Aires.",
-    },
-  ],
 };
 
 export const premiosContent: PremiosPageContent = {
@@ -85,11 +64,11 @@ export const premiosContent: PremiosPageContent = {
       "La trayectoria de PIEL ha sido reconocida a nivel nacional e internacional por su trabajo en el tratamiento de fisuras labio-alvéolo-palatinas y su modelo de atención interdisciplinario.",
   },
   // TODO(PIEL): completar con reconocimientos nuevos posteriores a 2018, si los hubiera.
-  // Nombre del fundador unificado a "Dr. Roberto Bennun" por decisión del cliente (el doc traía "Ricardo D. Bennun").
+  // Nombre del fundador: "Dr. Ricardo Bennun" (corregido por PIEL en las observaciones 2026).
   awards: [
     {
       year: "2018",
-      text: "Premio **“Abanderados de la Argentina Solidaria 2018”**, otorgado al Dr. Roberto Bennun por Canal 13, grupo Clarín.",
+      text: "Premio **“Abanderados de la Argentina Solidaria 2018”**, otorgado al Dr. Ricardo Bennun por Canal 13, grupo Clarín.",
     },
     {
       year: "2017",
@@ -101,15 +80,11 @@ export const premiosContent: PremiosPageContent = {
     },
     {
       year: "2015",
-      text: "Premio al Dr. Roberto Bennun, **Fundación World of Children** (EE.UU.), en reconocimiento a quienes colaboran con la salud de los niños desamparados en el mundo.",
+      text: "Premio al Dr. Ricardo Bennun, **Fundación World of Children** (EE.UU.), en reconocimiento a quienes colaboran con la salud de los niños desamparados en el mundo.",
     },
     {
       year: "2011",
       text: "Entidad seleccionada por **FARMACITY S.A.** para su campaña solidaria a través de sus empleados.",
-    },
-    {
-      year: "2002 – actualidad",
-      text: "Subsidio de la **Fundación Smile Train** (EE.UU.), Miembro Asociado en Argentina, para el Programa en Conjunto de Cirugías Gratuitas para niños de escasos recursos con fisuras labio palatinas.",
     },
     {
       year: "2008 – actualidad",
@@ -148,6 +123,10 @@ export const premiosContent: PremiosPageContent = {
       text: "Premio **Mejor Emprendimiento Solidario en Salud**, categoría ONG, Foro Ecuménico Social.",
     },
     {
+      year: "2002 – actualidad",
+      text: "Subsidio de la **Fundación Smile Train** (EE.UU.), Miembro Asociado en Argentina, para el Programa en Conjunto de Cirugías Gratuitas para niños de escasos recursos con fisuras labio palatinas.",
+    },
+    {
       year: "1999",
       text: "Declarada **Organización de Acción Comunitaria** (Dir. Gral. de Relaciones con la Comunidad, GCBA).",
     },
@@ -174,17 +153,13 @@ export const equipoContent: EquipoPageContent = {
   intro:
     "En PIEL, el tratamiento es el resultado del trabajo de un **equipo interdisciplinario**. Cada paciente es acompañado por profesionales de distintas especialidades que trabajan de manera coordinada, lo que permite abordar el tratamiento **de forma integral y sostenida en el tiempo**.",
   founder: {
-    // Nombre del fundador unificado a "Dr. Roberto Bennun" en todo el sitio (decisión del cliente).
-    name: "Dr. Roberto Bennun",
+    // Nombre del fundador: "Dr. Ricardo Bennun" (corregido por PIEL en las observaciones 2026).
+    name: "Dr. Ricardo Bennun",
     role: "Fundador y Director Médico",
     bio: "Es **una de las figuras más reconocidas** de la cirugía plástica infantil en Argentina. Exdirector del Servicio de Cirugía Plástica del **Hospital de Pediatría Juan P. Garrahan**, dedicó su carrera al tratamiento de fisuras labio alvéolo palatinas y al desarrollo de un modelo de atención integral que hoy define a PIEL.",
     // TODO(PIEL): falta el destino real de "Ver trayectoria completa" (página/bio del fundador).
     cta: { label: "Ver trayectoria completa", href: "#" },
   },
-  directionTitle: "Dirección médica y cirujanos principales",
-  // TODO(PIEL): los perfiles individuales de los cirujanos principales están pendientes de PIEL.
-  directionNote:
-    "El equipo de cirugía plástica da continuidad al modelo desarrollado por el Dr. Roberto Bennun, asegurando la **calidad técnica y la evolución del tratamiento**.",
   rosterTitle: "Equipo médico",
   rosterNote:
     "Estos son los profesionales que integran el equipo, agrupados por área. Cada paciente es acompañado por los que su tratamiento necesite, **en coordinación permanente entre especialidades**.",
@@ -199,7 +174,7 @@ export const equipoContent: EquipoPageContent = {
       description:
         "El equipo quirúrgico que realiza las intervenciones de labio, paladar y estructuras craneofaciales.",
       members: [
-        { name: "Dr. Roberto Bennun", role: "Cirugía cráneo-maxilo-facial" },
+        { name: "Dr. Ricardo Bennun", role: "Cirugía cráneo-maxilo-facial" },
         { name: "Astrada Silvana", role: "Cirugía cráneo-maxilo-facial" },
         { name: "Camacho Roy", role: "Cirugía cráneo-maxilo-facial" },
         { name: "Novoa Alejandro", role: "Cirugía traumatología" },

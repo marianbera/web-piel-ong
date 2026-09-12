@@ -8,6 +8,8 @@ import Reveal from "@/components/ui/Reveal";
 import RichText from "@/components/ui/RichText";
 import TextImageSplit from "@/components/sections/TextImageSplit";
 import { ScaleIcon, ShieldIcon, StarIcon, SupportIcon, TeamIcon } from "@/components/ui/icons";
+import LogoCarousel from "@/components/sections/LogoCarousel";
+import { getLogos } from "@/lib/admin/store";
 import { nosotrosContent } from "@/lib/content/nosotros";
 import type { ValueIcon } from "@/types/about";
 
@@ -24,8 +26,12 @@ const iconMap: Record<ValueIcon, typeof ShieldIcon> = {
   scale: ScaleIcon,
 };
 
-export default function NosotrosPage() {
+// Los logos de colaboradores se cargan desde /panel.
+export const dynamic = "force-dynamic";
+
+export default async function NosotrosPage() {
   const { header, intro, vision, mission, valuesTitle, values } = nosotrosContent;
+  const logos = (await getLogos()).filter((logo) => logo.scope === "colaboradores");
 
   return (
     <>
@@ -78,8 +84,12 @@ export default function NosotrosPage() {
 
       <PageBody padding="none" decor={false} className="pb-20 pt-16">
         <SectionHeading title="Colaboran con nosotros" align="center" />
-        {/* TODO(PIEL): agregar los logos de las organizaciones que colaboran con PIEL (pendiente de entrega). */}
-        <EmptyState message="Próximamente: las organizaciones que acompañan y colaboran con Asociación PIEL." />
+        {logos.length === 0 ? (
+          /* TODO(PIEL): cargar los logos desde /panel → Logos. */
+          <EmptyState message="Próximamente: las organizaciones que acompañan y colaboran con Asociación PIEL." />
+        ) : (
+          <LogoCarousel logos={logos} />
+        )}
       </PageBody>
     </>
   );

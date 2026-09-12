@@ -1,26 +1,38 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
+import PageBody from "@/components/ui/PageBody";
 import ComoAccederSection from "@/components/sections/ComoAccederSection";
+import LogoCarousel from "@/components/sections/LogoCarousel";
 import EmptyState from "@/components/ui/EmptyState";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { empresasContent } from "@/lib/content/se-parte";
+import { getLogos } from "@/lib/admin/store";
 
 export const metadata: Metadata = {
   title: empresasContent.header.title,
   description: empresasContent.header.subtitle,
 };
 
-export default function EmpresasPage() {
+// Los logos de empresas se cargan desde /panel.
+export const dynamic = "force-dynamic";
+
+export default async function EmpresasPage() {
+  const logos = (await getLogos()).filter((logo) => logo.scope === "empresas");
+
   return (
     <>
       <PageHeader {...empresasContent.header} />
       <ComoAccederSection content={empresasContent} />
 
-      <section className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
+      <PageBody padding="none" decor={false} className="pb-20 pt-4">
         <SectionHeading title="Empresas que nos acompañan" />
-        {/* TODO(PIEL): espacio para logos de empresas que colaboran (pendiente de entrega). */}
-        <EmptyState message="Próximamente: las empresas que acompañan a Asociación PIEL." />
-      </section>
+        {logos.length === 0 ? (
+          /* TODO(PIEL): cargar los logos desde /panel → Logos. */
+          <EmptyState message="Próximamente: las empresas que acompañan a Asociación PIEL." />
+        ) : (
+          <LogoCarousel logos={logos} />
+        )}
+      </PageBody>
     </>
   );
 }

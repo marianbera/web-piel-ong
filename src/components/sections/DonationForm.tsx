@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import AmountSelector from "@/components/sections/AmountSelector";
-import type { AmountOption, DonationType } from "@/types/donation";
+import type { AmountOption, DonationFrequency, DonationType } from "@/types/donation";
 
 type Status = "idle" | "loading" | "error";
 
@@ -17,6 +17,7 @@ export default function DonationForm({ amountOptions, type, submitLabel }: Donat
   const [email, setEmail] = useState("");
   const [selectedAmount, setSelectedAmount] = useState<number | null>(amountOptions[0]?.value ?? null);
   const [customAmount, setCustomAmount] = useState("");
+  const [frequency, setFrequency] = useState<DonationFrequency>("mensual");
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -51,6 +52,7 @@ export default function DonationForm({ amountOptions, type, submitLabel }: Donat
           name,
           email,
           amount,
+          frequency,
           type,
           origin: typeof window !== "undefined" ? window.location.pathname : "",
         }),
@@ -78,6 +80,8 @@ export default function DonationForm({ amountOptions, type, submitLabel }: Donat
         customAmount={customAmount}
         onSelect={handleSelectPreset}
         onCustomAmountChange={handleCustomAmountChange}
+        frequency={frequency}
+        onFrequencyChange={setFrequency}
       />
 
       <div>

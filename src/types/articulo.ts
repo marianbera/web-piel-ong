@@ -16,6 +16,8 @@ export interface ArticleSection {
   items?: ArticleItem[];
   /** Imágenes que van después de la sección. */
   images?: ContentImage[];
+  /** Link de "ver más" al pie de la sección. */
+  cta?: CtaLink;
 }
 
 /**

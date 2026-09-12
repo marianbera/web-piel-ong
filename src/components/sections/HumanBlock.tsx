@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { humanBlock } from "@/lib/content/home";
 import BrandPanel from "@/components/ui/BrandPanel";
 import HistoriasStack from "@/components/sections/HistoriasStack";
@@ -17,17 +18,15 @@ export default function HumanBlock() {
             <p className="mt-5 max-w-xl leading-relaxed text-piel-text/75">
               <RichText text={humanBlock.text} />
             </p>
-            <a
+            <Link
               href={humanBlock.cta.href}
-              target="_blank"
-              rel="noopener noreferrer"
               className="group mt-7 inline-flex items-center gap-2 text-sm font-semibold text-piel-navy"
             >
               {humanBlock.cta.label}
               <span aria-hidden className="transition-transform group-hover:translate-x-1">
                 →
               </span>
-            </a>
+            </Link>
           </div>
         </div>
 

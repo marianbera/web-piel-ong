@@ -6,17 +6,9 @@ export interface QuienesSomosHubContent {
   sections: SectionLink[];
 }
 
-export interface TimelineEvent {
-  year: string;
-  title: string;
-  description: string;
-}
-
 export interface HistoriaPageContent {
   header: PageHeaderContent;
   intro: string[];
-  milestonesTitle: string;
-  milestones: TimelineEvent[];
 }
 
 export interface AwardItem {
@@ -61,8 +53,6 @@ export interface EquipoPageContent {
   header: PageHeaderContent;
   intro: string;
   founder: EquipoFounder;
-  directionTitle: string;
-  directionNote: string;
   rosterTitle: string;
   rosterNote: string;
   groups: TeamGroup[];

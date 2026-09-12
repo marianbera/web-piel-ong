@@ -6,7 +6,7 @@ export const siteContact: SiteContact = {
   // Todos los CTA "por WhatsApp" del sitio se construyen a partir de este valor.
   whatsapp: "+54 9 11 0000-0000",
   email: "info@asociacion-piel.org.ar",
-  address: "Juan B. Palaá 536, Avellaneda, Buenos Aires, Argentina",
+  address: "Av. Palaá 536, Avellaneda, Provincia de Buenos Aires",
   instagram: "https://instagram.com/asociacionpiel",
   facebook: "https://facebook.com/asociacionpiel",
 };
@@ -25,11 +25,6 @@ export const siteLegal = {
     "Colabora con Smile Train para que familias de bajos recursos puedan acceder a cirugías y tratamientos.",
 };
 
-export const siteExternalLinks = {
-  // URL real provista por el cliente (fuente 1.5 · Historias).
-  // TODO(PIEL): confirmar que la sección de historias siga vigente en el sitio actual.
-  historias: "https://www.asociacion-piel.org.ar/web/historias/",
-};
 
 export const siteName = "Asociación PIEL";
 export const siteTagline =
