@@ -45,7 +45,7 @@ export default function DonationForm({ amountOptions, type, submitLabel }: Donat
     setErrorMessage("");
 
     try {
-      const res = await fetch("/api/donations/register", {
+      const res = await fetch("/api/donations/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -59,11 +59,13 @@ export default function DonationForm({ amountOptions, type, submitLabel }: Donat
       });
 
       const data = await res.json();
-      if (!res.ok || !data.redirectUrl) {
+      if (!res.ok || !data.checkoutUrl) {
         throw new Error(data.error ?? "No se pudo procesar la donación.");
       }
 
-      window.location.href = data.redirectUrl;
+      // A partir de acá el pago sigue en Mercado Pago. El estado final lo
+      // confirma el webhook, no este redirect.
+      window.location.href = data.checkoutUrl;
     } catch (err) {
       setErrorMessage(
         err instanceof Error ? err.message : "Ocurrió un error. Intentá de nuevo."

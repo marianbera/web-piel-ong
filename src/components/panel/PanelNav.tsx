@@ -7,6 +7,7 @@ import { SCHEMAS } from "@/lib/admin/schemas";
 const LINKS = [
   { href: "/panel", label: "Inicio" },
   { href: "/panel/equipo", label: "Equipo médico" },
+  { href: "/panel/donaciones", label: "Donaciones" },
   ...Object.entries(SCHEMAS).map(([key, schema]) => ({
     href: `/panel/${key}`,
     label: schema.title,
