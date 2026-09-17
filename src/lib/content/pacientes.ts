@@ -22,7 +22,7 @@ export const pacientesHub: PacientesHubContent = {
     {
       title: "Cuidados y alimentación",
       description: "Alimentación, estimulación temprana y cuidados de los primeros meses.",
-      href: "/pacientes/cuidados-y-alimentacion",
+      href: "/cuidados-y-alimentacion",
     },
     {
       title: "Acompañamiento emocional y social",

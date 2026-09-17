@@ -34,7 +34,6 @@ export default function AcompanamientoPage() {
 
         <ProseSections sections={sections.slice(0, cut)} />
 
-        {/* TODO(PIEL): falta la foto destacada (un niño o una familia). */}
         <ImageSlot
           src={imageSrc(acompanamientoImage)}
           alt={acompanamientoImage.alt}

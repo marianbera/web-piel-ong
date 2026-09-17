@@ -11,9 +11,12 @@ import BrandSection from "@/components/brand/BrandSection";
 import BlobShape from "@/components/brand/BlobShape";
 import { labioLeporinoContent } from "@/lib/content/labio-leporino";
 
+// Meta title y description del documento de observaciones. El título pasa por la
+// plantilla del layout, que le agrega "| Asociación PIEL".
 export const metadata: Metadata = {
-  title: "Labio leporino",
-  description: labioLeporinoContent.header.subtitle,
+  title: "Labio leporino: qué es, causas y tratamiento",
+  description:
+    "Qué es el labio leporino (fisura labio-alvéolo-palatina), por qué ocurre y cómo se trata. Información clara para familias, por el equipo interdisciplinario de PIEL.",
 };
 
 export default function LabioLeporinoPage() {

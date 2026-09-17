@@ -13,6 +13,12 @@ export const nosotrosContent: NosotrosContent = {
     "Lo que diferencia a PIEL no es solo su experiencia, sino su forma de trabajar: **un equipo completo de especialistas** que evalúa y trata a cada paciente de manera coordinada, evitando la fragmentación habitual del sistema de salud y asegurando un **abordaje integral en cada etapa**.",
     "Atendemos pacientes privados, con cobertura médica y también desarrollamos **programas de acceso** para quienes no pueden afrontar el tratamiento.",
   ],
+  // Foto vertical en un marco 4:3: el encuadre se centra en el cartel de la fachada.
+  image: {
+    src: "/nosotros/sede.jpg",
+    alt: "Fachada de la sede de Asociación PIEL en Avellaneda, con el cartel de la asociación",
+    position: "object-[center_40%]",
+  },
   vision: {
     title: "Visión",
     text: "Ser el **centro de referencia** en cirugía plástica infantil en Argentina y la región, reconocido por la calidad de sus resultados y su **modelo de atención integral**.",

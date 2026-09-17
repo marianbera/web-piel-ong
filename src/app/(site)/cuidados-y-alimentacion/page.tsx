@@ -8,8 +8,10 @@ import RichText from "@/components/ui/RichText";
 import { cuidadosYAlimentacionContent } from "@/lib/content/cuidados-y-alimentacion";
 import { cuidadosImages, imageSrc } from "@/lib/content/pacientesImagenes";
 
+// Meta title exacto del documento de observaciones: termina en "| PIEL", no en
+// "| Asociación PIEL", así que no pasa por la plantilla del layout.
 export const metadata: Metadata = {
-  title: "Cuidados y alimentación del bebé con labio leporino",
+  title: { absolute: "Cuidados y alimentación del bebé con labio leporino | PIEL" },
   description:
     "Pautas de alimentación, estimulación temprana y cuidados para bebés con fisura labio-alvéolo-palatina.",
 };
@@ -28,7 +30,7 @@ export default function CuidadosYAlimentacionPage() {
           </p>
         </Reveal>
 
-        {/* TODO(PIEL): faltan las imágenes de apoyo (ver public/pacientes/LEEME.md). */}
+        {/* TODO(PIEL): falta la foto de la postura para alimentar (ver public/pacientes/LEEME.md). */}
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
           {cuidadosImages.map((image, index) => (
             <ImageSlot
@@ -37,6 +39,7 @@ export default function CuidadosYAlimentacionPage() {
               alt={image.alt}
               caption={image.caption}
               aspect="3/2"
+              position={image.position}
               frameless
               sizes="(min-width: 1024px) 40vw, 100vw"
               delay={index * 100}

@@ -54,7 +54,8 @@ Después **Redeploy**.
 ### Mientras no esté configurado
 
 El sitio **funciona igual**: cada sección muestra el contenido que ya está en el código
-(los 22 profesionales, los premios, las obras sociales). El panel abre y se puede
+(los 22 profesionales, los premios, las obras sociales, las notas y videos de prensa y
+los logos de colaboradores del sitio actual). El panel abre y se puede
 navegar, pero al intentar guardar avisa que falta crear el Blob Store.
 
 ---

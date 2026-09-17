@@ -4,11 +4,54 @@ import PageHeader from "@/components/ui/PageHeader";
 import PageBody from "@/components/ui/PageBody";
 import Card from "@/components/ui/Card";
 import Reveal from "@/components/ui/Reveal";
+import {
+  isMercadoPagoConfigured,
+  mapearEstadoSuscripcion,
+  obtenerSuscripcion,
+} from "@/lib/donaciones/mercadopago";
 
 export const metadata: Metadata = {
   title: "Gracias por tu donación",
   robots: { index: false, follow: false },
 };
+
+/** Mensajes del aporte mensual, según el estado real de la suscripción. */
+const RESULTADOS_MENSUAL = {
+  aprobada: {
+    title: "¡Gracias por sumarte!",
+    subtitle: "Tu aporte mensual quedó activo.",
+    body: "Todos los meses tu aporte va a ayudar a que más niños accedan al tratamiento que necesitan. Mercado Pago te va a mandar el comprobante de cada cobro a tu correo, y podés cancelar la suscripción cuando quieras desde tu cuenta.",
+  },
+  pendiente: {
+    title: "Tu aporte mensual está en proceso",
+    subtitle: "Todavía falta la confirmación.",
+    body: "Mercado Pago te va a avisar por correo en cuanto se confirme la suscripción. Si no llegaste a autorizarla, podés volver a intentarlo.",
+  },
+  rechazada: {
+    title: "La suscripción no se completó",
+    subtitle: "No se te cobró nada.",
+    body: "El aporte mensual no quedó activo. Podés intentar de nuevo, o escribirnos y lo resolvemos juntos.",
+  },
+} as const;
+
+/**
+ * Estado de la suscripción con la que volvió la persona. Mercado Pago agrega
+ * `preapproval_id` a la URL de retorno; si no está o la consulta falla, se
+ * muestra "en proceso", que es lo único que no puede ser falso.
+ */
+async function estadoMensual(preapprovalId?: string): Promise<keyof typeof RESULTADOS_MENSUAL> {
+  if (!preapprovalId || !isMercadoPagoConfigured()) return "pendiente";
+  try {
+    const suscripcion = await obtenerSuscripcion(preapprovalId);
+    const estado = mapearEstadoSuscripcion(suscripcion.status ?? "");
+    if (estado === "activa") return "aprobada";
+    if (estado === "cancelada") return "rechazada";
+    return "pendiente";
+  } catch (error) {
+    console.error("[donaciones] no se pudo consultar la suscripción", error);
+    return "pendiente";
+  }
+}
 
 /** Mensajes según cómo volvió la persona de Mercado Pago. */
 const RESULTADOS = {
@@ -34,11 +77,16 @@ type Estado = keyof typeof RESULTADOS;
 export default async function GraciasPage({
   searchParams,
 }: {
-  searchParams: Promise<{ estado?: string }>;
+  searchParams: Promise<{ estado?: string; modalidad?: string; preapproval_id?: string }>;
 }) {
-  const { estado } = await searchParams;
-  const clave: Estado = estado === "pendiente" || estado === "rechazada" ? estado : "aprobada";
-  const resultado = RESULTADOS[clave];
+  const { estado, modalidad, preapproval_id } = await searchParams;
+  const mensual = modalidad === "mensual";
+  const clave: Estado = mensual
+    ? await estadoMensual(preapproval_id)
+    : estado === "pendiente" || estado === "rechazada"
+      ? estado
+      : "aprobada";
+  const resultado = (mensual ? RESULTADOS_MENSUAL : RESULTADOS)[clave];
 
   return (
     <>

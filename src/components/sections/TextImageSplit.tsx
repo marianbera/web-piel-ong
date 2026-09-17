@@ -11,7 +11,7 @@ interface TextImageSplitProps {
   body: string | string[];
   cta?: { label: string; href: string; external?: boolean };
   /** Foto real. Si se omite, se muestra un BrandPanel (placeholder de marca). */
-  image?: { src: string; alt: string };
+  image?: { src: string; alt: string; position?: string };
   /** Ícono del BrandPanel cuando no hay foto. */
   panelIcon?: ComponentType<SVGProps<SVGSVGElement>>;
   /** Coloca la imagen a la izquierda (por defecto va a la derecha). */
@@ -86,7 +86,13 @@ export default function TextImageSplit({
       <Reveal className={reverse ? "lg:order-1" : undefined} delay={150} direction="up">
         {image ? (
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl shadow-lg">
-            <Image src={image.src} alt={image.alt} fill className="object-cover" />
+            <Image
+              src={image.src}
+              alt={image.alt}
+              fill
+              sizes="(min-width: 1024px) 36rem, 100vw"
+              className={`object-cover ${image.position ?? ""}`}
+            />
           </div>
         ) : (
           <BrandPanel icon={panelIcon} />

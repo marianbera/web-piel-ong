@@ -86,6 +86,12 @@ export const premiosContent: PremiosPageContent = {
       year: "2011",
       text: "Entidad seleccionada por **FARMACITY S.A.** para su campaña solidaria a través de sus empleados.",
     },
+    // Orden cronológico descendente por año de inicio (pedido de PIEL: el 2002
+    // estaba fuera de lugar; el 2009 también).
+    {
+      year: "2009",
+      text: "Nominación del **Honorable Senado de la Nación**, por una nueva técnica para el tratamiento de pacientes con fisuras.",
+    },
     {
       year: "2008 – actualidad",
       text: "Subsidio de la **Fundación Herrod** (Suiza) para la provisión de instrumental médico para la atención interdisciplinaria de niños con fisuras labio palatinas.",
@@ -93,10 +99,6 @@ export const premiosContent: PremiosPageContent = {
     {
       year: "2008 – 2010",
       text: "Entidad seleccionada por **Colgate-Palmolive** para su campaña anual “Todos por una Sonrisa”.",
-    },
-    {
-      year: "2009",
-      text: "Nominación del **Honorable Senado de la Nación**, por una nueva técnica para el tratamiento de pacientes con fisuras.",
     },
     {
       year: "2007",
@@ -156,6 +158,10 @@ export const equipoContent: EquipoPageContent = {
     // Nombre del fundador: "Dr. Ricardo Bennun" (corregido por PIEL en las observaciones 2026).
     name: "Dr. Ricardo Bennun",
     role: "Fundador y Director Médico",
+    photo: {
+      src: "/equipo/ricardo-bennun.jpg",
+      alt: "Retrato del Dr. Ricardo Bennun, fundador y director médico de Asociación PIEL",
+    },
     bio: "Es **una de las figuras más reconocidas** de la cirugía plástica infantil en Argentina. Exdirector del Servicio de Cirugía Plástica del **Hospital de Pediatría Juan P. Garrahan**, dedicó su carrera al tratamiento de fisuras labio alvéolo palatinas y al desarrollo de un modelo de atención integral que hoy define a PIEL.",
     // TODO(PIEL): falta el destino real de "Ver trayectoria completa" (página/bio del fundador).
     cta: { label: "Ver trayectoria completa", href: "#" },
@@ -174,7 +180,11 @@ export const equipoContent: EquipoPageContent = {
       description:
         "El equipo quirúrgico que realiza las intervenciones de labio, paladar y estructuras craneofaciales.",
       members: [
-        { name: "Dr. Ricardo Bennun", role: "Cirugía cráneo-maxilo-facial" },
+        {
+          name: "Dr. Ricardo Bennun",
+          role: "Cirugía cráneo-maxilo-facial",
+          photo: "/equipo/ricardo-bennun.jpg",
+        },
         { name: "Astrada Silvana", role: "Cirugía cráneo-maxilo-facial" },
         { name: "Camacho Roy", role: "Cirugía cráneo-maxilo-facial" },
         { name: "Novoa Alejandro", role: "Cirugía traumatología" },
@@ -222,12 +232,86 @@ export const equipoContent: EquipoPageContent = {
   ],
 };
 
-// TODO(PIEL): sin notas entregadas — el doc 2.5 solo dice "agregar todas las notas en medios". Completar cuando PIEL las provea. No inventar.
+/**
+ * Notas y videos migrados del sitio actual (asociacion-piel.org.ar/web/noticias y
+ * los videos de su home), como pidió PIEL en las observaciones 2026.
+ *
+ * Las notas apuntan a la publicación original del medio, no a la copia del sitio
+ * viejo, que va a dejar de existir. Las fechas son las de publicación original.
+ * Quedó afuera "Puentes de esperanza": el video ya no está disponible en YouTube.
+ *
+ * Es la carga inicial: desde /panel → Prensa se pueden sumar, editar o quitar.
+ */
 export const prensaContent: PrensaPageContent = {
   header: {
     title: "Prensa",
     subtitle: "Notas y menciones en medios de comunicación.",
   },
   intro: "Reunimos acá las notas y menciones de PIEL en distintos medios de comunicación.",
-  items: [],
+  items: [
+    {
+      title: "Labio leporino",
+      outlet: "Desde la Vida",
+      date: "Octubre 2016",
+      href: "https://www.youtube.com/watch?v=8U30GIVdmcs",
+      kind: "video",
+    },
+    {
+      title:
+        "La Asociación PIEL, una entidad que da respuesta a las necesidades de chicos con distintas patologías",
+      outlet: "La Ciudad Avellaneda",
+      date: "Agosto 2016",
+      href: "https://laciudadavellaneda.com.ar/la-asociacion-piel-una-entidad-que-da-respuesta-a-las-necesidades-de-chicos-con-distintas-patologias/",
+      kind: "nota",
+    },
+    {
+      title: "A Visit to Asociación Piel",
+      outlet: "World of Children",
+      date: "2016",
+      href: "https://worldofchildren.org/a-visit-to-asociacion-piel/",
+      kind: "nota",
+    },
+    {
+      title: "Una fundación que asiste a bebes con malformaciones",
+      outlet: "La Nación",
+      date: "Noviembre 2015",
+      href: "https://www.lanacion.com.ar/sociedad/una-fundacion-que-asiste-a-bebes-con-malformaciones-nid1849939/",
+      kind: "nota",
+    },
+    {
+      title: "Labio leporino: cirugías",
+      outlet: "Telefe Noticias",
+      date: "Julio 2014",
+      href: "https://www.youtube.com/watch?v=iP9uLjv3IG0",
+      kind: "video",
+    },
+    {
+      title: "Paula Torres en Asociación PIEL",
+      outlet: "Banda 3.0 · TV Pública",
+      date: "Junio 2014",
+      href: "https://www.youtube.com/watch?v=8XlGLBYRABw",
+      kind: "video",
+    },
+    {
+      title: "La historia de Laura y Mirko",
+      outlet: "Smile Train",
+      date: "Mayo 2014",
+      href: "https://www.youtube.com/watch?v=9yX8HdSlCvA",
+      kind: "video",
+    },
+    {
+      title: "Entrevista al Dr. Ricardo Bennun",
+      outlet: "Diagnóstico y Debate",
+      date: "Octubre 2013",
+      href: "https://www.youtube.com/watch?v=9JHMrctvRE8",
+      kind: "video",
+    },
+    {
+      title: "PIEL – Premio UNICEF",
+      outlet: "Asociación PIEL",
+      date: "Agosto 2010",
+      href: "https://www.youtube.com/watch?v=z0oP-cOkMOY",
+      kind: "video",
+    },
+  ],
 };

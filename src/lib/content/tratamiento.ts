@@ -36,7 +36,8 @@ export const tratamientoHub: TratamientoHubContent = {
   ],
 };
 
-// TODO(PIEL): el doc 3.1 tiene 2 imágenes (tratamiento-1.png, tratamiento-2.png) aún no entregadas → por ahora BrandPanel.
+// El doc 3.1 mencionaba 2 imágenes (tratamiento-1.png, tratamiento-2.png) que nunca
+// llegaron; se usa una foto real de la sala de juegos de la sede.
 export const enfoqueContent: EnfoqueContent = {
   header: {
     title: "Nuestro enfoque",
@@ -49,6 +50,12 @@ export const enfoqueContent: EnfoqueContent = {
     "Creemos en la importancia de la contención. Por eso, cada consulta se desarrolla en un **entorno cercano, humano y pensado para los niños** y sus familias.",
     "**Más de 38 años de experiencia** y miles de pacientes tratados nos permitieron consolidar un **modelo de atención propio** para el abordaje integral de fisuras labio alvéolo palatinas.",
   ],
+  // Foto vertical en un marco 4:3: se baja el encuadre para que la nena quede entera.
+  image: {
+    src: "/tratamiento/enfoque-sala-de-juegos.jpg",
+    alt: "Niña en la sala de juegos de Asociación PIEL, rodeada de juguetes",
+    position: "object-[center_55%]",
+  },
   highlights: [
     {
       title: "Mismo día y mismo lugar",
@@ -95,17 +102,34 @@ export const otrasAreasContent: OtrasAreasContent = {
   ],
 };
 
-// TODO(PIEL): sección SIN DOC entregado. Los tres bloques de abajo son los que pide el
-// diagrama del cliente (Cátedra UBA · publicaciones · congresos); el texto de cada uno
-// está pendiente de PIEL. Se publica la estructura, no contenido inventado.
+// Los tres bloques son los que pide el diagrama del cliente (Cátedra UBA ·
+// publicaciones · congresos). `pending` es la estructura "en preparación" que se
+// muestra solo si `sections` queda vacío.
 export const investigacionContent: DraftPageContent = {
   header: {
     title: "Investigación y academia",
     subtitle: "Formación, publicaciones y participación en congresos.",
   },
   intro:
-    "Además de la asistencia, PIEL sostiene una línea de trabajo académico y de formación. Estamos preparando esta sección para reunirla en un solo lugar.",
-  sections: [],
+    "Además de la asistencia, PIEL sostiene una **línea de trabajo académico y de formación**, encabezada por su fundador y director médico, el **Dr. Ricardo Bennun**.",
+  // Contenido armado con el CV del Dr. Bennun publicado en el sitio actual
+  // (asociacion-piel.org.ar/web/dr-ricardo-bennun), que llega hasta 2017.
+  // TODO(PIEL): revisar y actualizar con la actividad posterior a 2017 (cargos
+  // vigentes, publicaciones y congresos recientes).
+  sections: [
+    {
+      title: "Cátedra UBA",
+      body: "El Dr. Bennun es **Doctor en Medicina por la Universidad de Buenos Aires** y docente autorizado de su Facultad de Medicina. Desde 2012 dirige el **Posgrado en Cirugía Plástica Pediátrica y Craneofacial** del Hospital de Clínicas José de San Martín (UBA). Antes fue vicedirector del posgrado en Cirugía Plástica del Hospital Garrahan (UBA), y es profesor del posgrado en Ortodoncia de la Universidad Maimónides.",
+    },
+    {
+      title: "Publicaciones",
+      body: "Es editor del libro **Cleft Lip and Palate Management: A Comprehensive Atlas** (Wiley-Blackwell, 2015) y autor de capítulos en “Clinical Cases in Early Orthodontic Treatment” (Springer, 2017) y “Tratamiento interdisciplinario de las fisuras labio palatinas” (2007). Integra el consejo editorial de **The Journal of Craniofacial Surgery**. Participó además en investigaciones genéticas junto al Johns Hopkins Hospital y al Children’s Hospital de Boston.",
+    },
+    {
+      title: "Congresos y jornadas",
+      body: "El equipo lleva su experiencia a encuentros científicos de todo el mundo. El Dr. Bennun fue **profesor invitado del International Cleft Congress** (Chennai, India, 2017), **presidente del comité científico internacional** del VIII Congreso Brasileño de Fisuras Labio Palatinas (2016) y **presidente de honor** del VI Congreso Brasileño (2012). También fue tesorero de la Latin American CranioFacial Association (LATICFA).",
+    },
+  ],
   pending: [
     {
       title: "Cátedra UBA",

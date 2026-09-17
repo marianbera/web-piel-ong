@@ -11,6 +11,8 @@ export interface ValueItem {
 export interface NosotrosContent {
   header: PageHeaderContent;
   intro: string[];
+  /** Foto del bloque de introducción. Sin ella se muestra el panel de marca. */
+  image?: { src: string; alt: string; position?: string };
   vision: { title: string; text: string };
   mission: { title: string; text: string };
   valuesTitle: string;

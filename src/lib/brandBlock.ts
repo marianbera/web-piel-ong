@@ -9,8 +9,9 @@ const BLOCK_ROUTES: { prefix: string; block: BrandBlock }[] = [
   { prefix: "/quienes-somos", block: "centro" },
   { prefix: "/tratamiento", block: "tratamiento" },
   { prefix: "/pacientes", block: "pacientes" },
-  // Vive en la raíz por SEO, pero pertenece al mundo de pacientes y familias.
+  // Viven en la raíz por SEO, pero pertenecen al mundo de pacientes y familias.
   { prefix: "/labio-leporino", block: "pacientes" },
+  { prefix: "/cuidados-y-alimentacion", block: "pacientes" },
 ];
 
 export function blockFromPathname(pathname: string): BrandBlock | null {

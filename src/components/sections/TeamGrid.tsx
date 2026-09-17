@@ -50,7 +50,9 @@ export default function TeamGroups({ groups, note }: { groups: AdminTeamGroup[];
                           alt={`${member.name}, ${member.role} en Asociación PIEL`}
                           fill
                           sizes="(min-width: 1024px) 16rem, (min-width: 640px) 45vw, 90vw"
-                          className="object-cover"
+                          // Anclada arriba: en retratos más altos que 4:5, el recorte
+                          // se come los pies y no la cabeza.
+                          className="object-cover object-top"
                         />
                       ) : (
                         /* TODO(PIEL): las fotos se cargan desde /panel → Equipo médico. */

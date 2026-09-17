@@ -1,6 +1,7 @@
 import { head, put } from "@vercel/blob";
-import { equipoContent, premiosContent } from "@/lib/content/quienes-somos";
+import { equipoContent, premiosContent, prensaContent } from "@/lib/content/quienes-somos";
 import { obrasSocialesContent } from "@/lib/content/como-acceder";
+import { colaboradores } from "@/lib/content/colaboradores";
 import type {
   AdminAward,
   AdminCoverage,
@@ -100,6 +101,18 @@ const seedPremios: AdminAward[] = premiosContent.awards.map((award, i) => ({
   text: award.text,
 }));
 
+const seedPrensa: AdminPressItem[] = prensaContent.items.map((item, i) => ({
+  id: idFrom(item.title, i),
+  ...item,
+}));
+
+const seedLogos: AdminLogo[] = colaboradores.map((logo, i) => ({
+  id: idFrom(logo.name, i),
+  name: logo.name,
+  image: logo.image,
+  scope: "colaboradores",
+}));
+
 const seedCoberturas: AdminCoverage[] = (obrasSocialesContent.coverages ?? []).map((name, i) => ({
   id: idFrom(name, i),
   name,
@@ -108,9 +121,9 @@ const seedCoberturas: AdminCoverage[] = (obrasSocialesContent.coverages ?? []).m
 /* ── Lectores usados por las páginas públicas ─────────────────────────────── */
 
 export const getTeamGroups = () => read<AdminTeamGroup[]>("equipo", seedEquipo);
-export const getPressItems = () => read<AdminPressItem[]>("prensa", []);
+export const getPressItems = () => read<AdminPressItem[]>("prensa", seedPrensa);
 export const getStories = () => read<AdminStory[]>("historias", []);
-export const getLogos = () => read<AdminLogo[]>("logos", []);
+export const getLogos = () => read<AdminLogo[]>("logos", seedLogos);
 export const getAwards = () => read<AdminAward[]>("premios", seedPremios);
 export const getCoverages = () => read<AdminCoverage[]>("obras-sociales", seedCoberturas);
 

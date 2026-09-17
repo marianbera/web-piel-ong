@@ -14,6 +14,8 @@ import type { ArticleChapter as Chapter } from "@/types/articulo";
  *
  * **Imágenes:** van sueltas, sin recuadro, con el mismo ancho que la columna de
  * texto y pegadas al párrafo que ilustran (pedido de PIEL: se notaba el corte).
+ * Las ilustraciones son muy apaisadas (~5:1): por eso se declaran con sus medidas
+ * reales, porque dentro de un marco 16:9 les quedaba un hueco grande arriba y abajo.
  */
 export default function ArticleChapter({ chapter }: { chapter: Chapter }) {
   return (
@@ -46,7 +48,7 @@ export default function ArticleChapter({ chapter }: { chapter: Chapter }) {
             </Reveal>
 
             {section.images && (
-              <div className="mt-6 flex flex-col gap-6">
+              <div className="mt-5 flex flex-col gap-5">
                 {section.images.map((image, index) => (
                   <ImageSlot
                     key={image.src}
@@ -54,6 +56,13 @@ export default function ArticleChapter({ chapter }: { chapter: Chapter }) {
                     alt={image.alt}
                     caption={image.caption}
                     aspect="16/9"
+                    // Con medidas reales, todas ocupan el ancho de la columna con su
+                    // propio alto (como las de la operación del labio), sin franjas vacías.
+                    intrinsic={
+                      image.width && image.height
+                        ? { width: image.width, height: image.height }
+                        : undefined
+                    }
                     // Las ilustraciones médicas no se recortan: se muestran enteras.
                     fit="contain"
                     frameless

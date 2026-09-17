@@ -26,11 +26,19 @@ interface ImageSlotProps {
   caption?: string;
   aspect?: keyof typeof ASPECT;
   /**
+   * Medidas reales del archivo. Con ellas la imagen se muestra con su proporción
+   * propia en vez de dentro de `aspect`: es lo que corresponde a las ilustraciones
+   * muy apaisadas, que en un marco 16:9 quedaban con franjas vacías arriba y abajo.
+   */
+  intrinsic?: { width: number; height: number };
+  /**
    * `cover` recorta para llenar el marco (fotos).
    * `contain` muestra la imagen entera sobre una superficie clara — obligatorio
    * para ilustraciones médicas: recortarlas les cambiaría el significado.
    */
   fit?: "cover" | "contain";
+  /** Utilidad de object-position para elegir qué parte de la foto queda en el recorte. */
+  position?: string;
   /**
    * Sin marco: la imagen se apoya directo sobre el fondo de la página, sin panel
    * ni sombra. Es lo que pidió PIEL para las ilustraciones médicas —"que no estén
@@ -58,7 +66,9 @@ export default function ImageSlot({
   alt,
   caption,
   aspect = "4/3",
+  intrinsic,
   fit = "cover",
+  position = "",
   frameless = false,
   sizes = "(min-width: 1024px) 50vw, 100vw",
   priority = false,
@@ -80,6 +90,32 @@ export default function ImageSlot({
 
   const radius = frameless && src ? "rounded-2xl" : "rounded-[2rem] sm:rounded-[2.5rem]";
 
+  // Con medidas reales no hay marco: la imagen ocupa el ancho y su propio alto.
+  // Sin marco, `mix-blend-multiply` funde el fondo blanco del archivo con el de la
+  // página: si no, sobre las superficies tintadas se seguía viendo un recuadro.
+  // Va en el contenedor animado y no en la imagen: mientras anima, ese contenedor
+  // aísla a sus hijos del fondo y la mezcla no tendría con qué hacerse.
+  if (src && intrinsic) {
+    return (
+      <Reveal delay={delay} className={`${className} ${frameless ? "mix-blend-multiply" : ""}`}>
+        <figure className="m-0">
+          <Image
+            src={src}
+            alt={alt}
+            width={intrinsic.width}
+            height={intrinsic.height}
+            sizes={sizes}
+            priority={priority}
+            className={`h-auto w-full ${radius} ${frameless ? "" : "shadow-lg"}`}
+          />
+          {caption && (
+            <figcaption className="mt-2 text-sm leading-snug text-piel-text/65">{caption}</figcaption>
+          )}
+        </figure>
+      </Reveal>
+    );
+  }
+
   return (
     <Reveal delay={delay} className={className}>
       <figure className="m-0">
@@ -98,7 +134,7 @@ export default function ImageSlot({
                   ? frameless
                     ? "object-contain"
                     : "object-contain p-4 sm:p-8"
-                  : "object-cover"
+                  : `object-cover ${position}`
               }
             />
           ) : (

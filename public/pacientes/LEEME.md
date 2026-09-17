@@ -15,13 +15,16 @@ Eso es todo — no hay que tocar el código de las páginas.
 
 | Ruta | Página | Qué tiene que mostrar | Formato |
 |---|---|---|---|
-| `fisura/tipos-de-fisura.jpg` | Qué es la fisura | Ilustración médica de los distintos tipos de fisura de labio y paladar | horizontal 4:3 |
-| `fisura/reparacion-quirurgica.jpg` | Qué es la fisura | Ilustración médica de las etapas de la reparación quirúrgica | horizontal 4:3 |
-| `cuidados/postura-alimentacion.jpg` | Cuidados | Bebé alimentándose semisentado, sin flexión de la cabeza | horizontal 3:2 |
-| `cuidados/estimulacion-temprana.jpg` | Cuidados | Momento de estimulación temprana (contacto, juego, masajes) | horizontal 3:2 |
-| `alimentacion/lactancia.jpg` | Alimentación | Alimentación a pecho | horizontal 3:2 |
-| `alimentacion/alimentos-solidos.jpg` | Alimentación | Bebé comiendo papilla con cuchara | horizontal 3:2 |
-| `acompanamiento/familia.jpg` | Acompañamiento | **Destacada**: un niño o una familia en la sede de PIEL. Es la única imagen a todo el ancho, tiene que tener calidez y aire alrededor del sujeto | panorámica 21:9 |
+| `/brand/hero/slide-2-sumate.jpg` | Cuidados y alimentación | ✅ Postura semisentada para alimentar: se reusa la foto del Home, no hay archivo en esta carpeta | horizontal 3:2 |
+| `cuidados/estimulacion-temprana.jpg` | Cuidados y alimentación | ✅ Cargada: mamá con su bebé en brazos | horizontal 3:2 |
+| `acompanamiento/sala-de-juegos.jpg` | Acompañamiento | ✅ Cargada: chicos en la sala de juegos de la sede (el archivo ya está recortado en 21:9) | panorámica 21:9 |
+
+> Las entradas `fisuraImages` y `alimentacionImages` de `pacientesImagenes.ts` quedaron de
+> las páginas que se unificaron y hoy no se muestran en ningún lado. Las ilustraciones
+> médicas viven en `public/labio-leporino/`.
+
+Si una foto es vertical y va en un marco horizontal, se puede elegir qué parte queda
+visible con `position` en `pacientesImagenes.ts` (por ejemplo `object-[center_35%]`).
 
 ## Recomendaciones técnicas
 
