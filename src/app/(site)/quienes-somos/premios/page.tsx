@@ -27,9 +27,10 @@ export default async function PremiosPage() {
         {awards.length === 0 ? (
           <EmptyState message="Próximamente vamos a compartir los reconocimientos institucionales de PIEL." />
         ) : (
-          /* items-stretch + h-full: todas las cajas quedan del mismo alto, sin importar
-             cuánto texto tenga cada premio (pedido de PIEL). */
-          <ul className="grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          /* auto-rows-fr + h-full: todas las cajas quedan del mismo tamaño en toda la
+             grilla —no solo dentro de cada fila—, sin importar cuánto texto tenga
+             cada premio (pedido de PIEL). */
+          <ul className="grid auto-rows-fr items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {awards.map((award, index) => (
               <li key={award.id} className="flex">
                 <Reveal delay={(index % 3) * 80} className="flex w-full">

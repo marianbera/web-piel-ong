@@ -45,10 +45,14 @@ export default function DonarPage() {
 
         {pagoOnlineActivo ? (
           <Reveal delay={100} className="mt-8">
+            {/* TODO(PIEL): falta definir el correo para dar de baja el aporte mensual
+                (`bajaAporteMensualEmail` en lib/content/donar.ts). Mientras tanto el
+                aviso solo menciona la baja desde la cuenta de Mercado Pago. */}
             <DonationForm
               amountOptions={amountOptions}
               type="individual"
               submitLabel="Donar ahora"
+              bajaMensualEmail={bajaAporteMensualEmail || undefined}
             />
           </Reveal>
         ) : (
@@ -74,25 +78,6 @@ export default function DonarPage() {
               </Link>
             </Card>
           </Reveal>
-        )}
-
-        {pagoOnlineActivo && bajaAporteMensualEmail ? (
-          <Reveal>
-            <p className="mt-6 max-w-xl text-sm text-piel-text/65">
-              El aporte mensual se puede dar de baja en cualquier momento escribiendo a{" "}
-              <a
-                href={`mailto:${bajaAporteMensualEmail}`}
-                className="font-semibold text-piel-navy underline underline-offset-2"
-              >
-                {bajaAporteMensualEmail}
-              </a>
-              .
-            </p>
-          </Reveal>
-        ) : (
-          /* TODO(PIEL): falta definir el correo para dar de baja el aporte mensual
-             (ver `bajaAporteMensualEmail` en lib/content/donar.ts). */
-          null
         )}
       </PageBody>
 

@@ -30,7 +30,7 @@ const iconMap: Record<ValueIcon, typeof ShieldIcon> = {
 export const dynamic = "force-dynamic";
 
 export default async function NosotrosPage() {
-  const { header, intro, vision, mission, valuesTitle, values } = nosotrosContent;
+  const { header, intro, image, vision, mission, valuesTitle, values } = nosotrosContent;
   const logos = (await getLogos()).filter((logo) => logo.scope === "colaboradores");
 
   return (
@@ -38,7 +38,7 @@ export default async function NosotrosPage() {
       <PageHeader {...header} />
 
       <PageBody padding="lg">
-        <TextImageSplit body={intro} reverse align="start" />
+        <TextImageSplit body={intro} image={image} reverse align="start" />
 
         <div className="mt-14 grid gap-10 lg:grid-cols-2">
           <Reveal>

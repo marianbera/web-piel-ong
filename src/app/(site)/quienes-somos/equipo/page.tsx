@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 import PageBody from "@/components/ui/PageBody";
@@ -42,15 +43,33 @@ export default async function EquipoPage() {
 
         {/* Fundador */}
         <Reveal delay={100} className="mt-12">
+          {/* Retrato vertical grande a la izquierda y la bio al costado (en celular,
+              la foto arriba). La foto es de cuerpo entero: se ancla arriba para que
+              el recorte 4:5 conserve la cara. */}
           <Card
             tone="offwhite"
             radius="brand"
             padding="lg"
-            className="grid gap-8 lg:grid-cols-[auto_1fr] lg:items-center lg:gap-10"
+            className="grid gap-8 sm:grid-cols-[minmax(0,15rem)_1fr] sm:items-center lg:grid-cols-[20rem_1fr] lg:gap-12"
           >
-            {/* TODO(PIEL): reemplazar por la foto real del fundador cuando esté disponible. */}
-            <div className="bg-piel-gradient-navy mx-auto flex h-32 w-32 items-center justify-center rounded-full text-4xl font-semibold text-white shadow-md lg:h-40 lg:w-40">
-              {initials}
+            <div className="relative mx-auto aspect-[4/5] w-full max-w-xs overflow-hidden rounded-[1.75rem] shadow-lg sm:max-w-none">
+              {founder.photo ? (
+                <Image
+                  src={founder.photo.src}
+                  alt={founder.photo.alt}
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 20rem, (min-width: 640px) 15rem, 20rem"
+                  className="object-cover object-top"
+                />
+              ) : (
+                <div
+                  aria-hidden
+                  className="bg-piel-gradient-navy flex h-full w-full items-center justify-center text-5xl font-semibold text-white"
+                >
+                  {initials}
+                </div>
+              )}
             </div>
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-piel-burgundy">

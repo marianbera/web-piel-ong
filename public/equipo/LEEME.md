@@ -21,7 +21,7 @@ y con aire arriba.
 ### Cirugía y anestesia
 | Profesional | Archivo |
 |---|---|
-| Dr. Roberto Bennun | `roberto-bennun.jpg` |
+| Dr. Ricardo Bennun | `ricardo-bennun.jpg` ✅ cargada |
 | Astrada Silvana | `silvana-astrada.jpg` |
 | Camacho Roy | `roy-camacho.jpg` |
 | Novoa Alejandro | `alejandro-novoa.jpg` |

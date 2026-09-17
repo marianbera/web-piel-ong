@@ -157,7 +157,7 @@ export function buildSearchIndex(): SearchEntry[] {
       ...pacientesHub.sections.map((s) => s.title),
       "familias",
     ]),
-    entry(BLOCK.pacientes, "/pacientes/cuidados-y-alimentacion", cuidadosYAlimentacionContent.header, [
+    entry(BLOCK.pacientes, "/cuidados-y-alimentacion", cuidadosYAlimentacionContent.header, [
       ...cuidadosYAlimentacionContent.tips.map((t) => t.title),
       "lactancia",
       "mamadera",

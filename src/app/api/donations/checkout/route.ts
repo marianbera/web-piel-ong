@@ -1,6 +1,14 @@
 import { NextResponse } from "next/server";
-import { crearDonacionPendiente, isDonationsDbConfigured } from "@/lib/donaciones/db";
-import { crearPreferencia, isMercadoPagoConfigured } from "@/lib/donaciones/mercadopago";
+import {
+  crearDonacionPendiente,
+  crearSuscripcionPendiente,
+  isDonationsDbConfigured,
+} from "@/lib/donaciones/db";
+import {
+  crearPreferencia,
+  crearSuscripcion,
+  isMercadoPagoConfigured,
+} from "@/lib/donaciones/mercadopago";
 
 /** Monto mínimo razonable, para filtrar pruebas y errores de tipeo. */
 const MONTO_MINIMO = 100;
@@ -14,8 +22,10 @@ function siteUrl(request: Request) {
 }
 
 /**
- * Arranca una donación: registra la intención y devuelve la URL del checkout
- * de Mercado Pago.
+ * Arranca una donación: registra la intención y devuelve la URL de Mercado Pago.
+ *
+ * - Aporte único → preferencia de Checkout Pro.
+ * - Aporte mensual → suscripción, que la persona autoriza con su cuenta de MP.
  *
  * El registro se hace ANTES de redirigir, para que quede rastro aunque la
  * persona abandone el pago a mitad de camino. El estado definitivo lo confirma
@@ -34,6 +44,7 @@ export async function POST(request: Request) {
   const email = String(body?.email ?? "").trim();
   const monto = Number(body?.amount);
   const tipo = String(body?.type ?? "individual");
+  const frecuencia = body?.frequency === "mensual" ? "mensual" : "unica";
   const origen = String(body?.origin ?? "");
 
   if (!nombre || !email) {
@@ -52,15 +63,19 @@ export async function POST(request: Request) {
   // donación que perder su registro. Queda avisado en los logs.
   if (isDonationsDbConfigured()) {
     try {
-      await crearDonacionPendiente({
-        nombre,
-        email,
-        monto,
-        frecuencia: "unica",
-        tipo,
-        referencia,
-        origen,
-      });
+      if (frecuencia === "mensual") {
+        await crearSuscripcionPendiente({ nombre, email, monto, referencia, origen });
+      } else {
+        await crearDonacionPendiente({
+          nombre,
+          email,
+          monto,
+          frecuencia,
+          tipo,
+          referencia,
+          origen,
+        });
+      }
     } catch (error) {
       console.error("[donaciones] no se pudo registrar la intención", error);
     }
@@ -69,16 +84,13 @@ export async function POST(request: Request) {
   }
 
   try {
-    const checkoutUrl = await crearPreferencia({
-      nombre,
-      email,
-      monto,
-      referencia,
-      siteUrl: siteUrl(request),
-    });
+    const checkoutUrl =
+      frecuencia === "mensual"
+        ? await crearSuscripcion({ email, monto, referencia, siteUrl: siteUrl(request) })
+        : await crearPreferencia({ nombre, email, monto, referencia, siteUrl: siteUrl(request) });
     return NextResponse.json({ checkoutUrl });
   } catch (error) {
-    console.error("[donaciones] error creando la preferencia de Mercado Pago", error);
+    console.error(`[donaciones] error creando el pago (${frecuencia}) en Mercado Pago`, error);
     return NextResponse.json(
       { error: "No pudimos abrir el pago. Probá de nuevo en unos minutos." },
       { status: 502 }

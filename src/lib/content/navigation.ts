@@ -31,7 +31,7 @@ export const mainNav: NavSection[] = [
     links: [
       { label: "Preguntas frecuentes", href: "/pacientes/faq", description: "Las consultas más habituales" },
       { label: "Labio leporino", href: "/labio-leporino", description: "Qué es, causas y tratamiento" },
-      { label: "Cuidados y alimentación", href: "/pacientes/cuidados-y-alimentacion" },
+      { label: "Cuidados y alimentación", href: "/cuidados-y-alimentacion" },
       { label: "Acompañamiento", href: "/pacientes/acompanamiento" },
       { label: "Desarrollo", href: "/pacientes/desarrollo" },
     ],

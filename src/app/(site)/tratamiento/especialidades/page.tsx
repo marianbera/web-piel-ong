@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import PageHeader from "@/components/ui/PageHeader";
 import PageBody from "@/components/ui/PageBody";
 import BrandPanel from "@/components/ui/BrandPanel";
@@ -57,7 +58,19 @@ export default function EspecialidadesPage() {
                 className="grid items-center gap-8 lg:grid-cols-2 lg:gap-14"
               >
                 <div className={reverse ? "lg:order-2" : undefined}>
-                  <BrandPanel icon={Icon} className="aspect-[16/10]" />
+                  {specialty.image ? (
+                    <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[2rem] shadow-lg sm:rounded-[2.5rem]">
+                      <Image
+                        src={specialty.image.src}
+                        alt={specialty.image.alt}
+                        fill
+                        sizes="(min-width: 1024px) 38rem, 100vw"
+                        className={`object-cover ${specialty.image.position ?? ""}`}
+                      />
+                    </div>
+                  ) : (
+                    <BrandPanel icon={Icon} className="aspect-[16/10]" />
+                  )}
                 </div>
                 <div className={reverse ? "lg:order-1" : undefined}>
                   <div className="flex items-center gap-3">

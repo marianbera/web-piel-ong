@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 import PageBody from "@/components/ui/PageBody";
-import ProseSections from "@/components/sections/ProseSections";
+import Card from "@/components/ui/Card";
 import PendingSections from "@/components/sections/PendingSections";
 import Reveal from "@/components/ui/Reveal";
 import RichText from "@/components/ui/RichText";
@@ -27,10 +28,45 @@ export default function InvestigacionPage() {
         </Reveal>
 
         {sections.length > 0 ? (
-          <ProseSections sections={sections} />
+          <>
+            {/* Las mismas tres cards que anunciaba la estructura, ahora con contenido. */}
+            <ul className="mt-10 grid gap-6 lg:grid-cols-3">
+              {sections.map((section, index) => (
+                <li key={section.title} className="flex">
+                  <Reveal delay={index * 80} className="flex w-full">
+                    <Card className="flex h-full w-full flex-col">
+                      <h2 className="text-xl font-bold text-piel-navy sm:text-2xl">
+                        {section.title}
+                      </h2>
+                      <span aria-hidden className="accent-bar-h mt-3 block h-1 w-12 rounded-full" />
+                      <p className="mt-4 text-piel-text/80">
+                        <RichText text={section.body} />
+                      </p>
+                    </Card>
+                  </Reveal>
+                </li>
+              ))}
+            </ul>
+
+            {note && (
+              <Reveal>
+                <p className="mt-10 text-piel-text/75">
+                  <RichText text={note} />
+                </p>
+                <Link
+                  href="/contacto"
+                  className="group mt-4 inline-flex items-center gap-2 text-sm font-semibold text-piel-navy"
+                >
+                  Escribir al equipo
+                  <span aria-hidden className="transition-transform group-hover:translate-x-1">
+                    →
+                  </span>
+                </Link>
+              </Reveal>
+            )}
+          </>
         ) : (
-          // TODO(PIEL): falta el contenido de los tres bloques. Mientras tanto se
-          // publica la estructura que pide el diagrama, no texto inventado.
+          // Sin contenido se publica la estructura que pide el diagrama, no texto inventado.
           <PendingSections
             blocks={pending}
             note={note}

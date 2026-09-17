@@ -52,8 +52,20 @@ export default function Navbar({ searchIndex }: { searchIndex: SearchEntry[] }) 
 
   return (
     <header className="sticky top-0 z-50 border-b border-piel-cream bg-white">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-2">
+      {/* En mobile es una grilla de tres columnas (Donar · logo · buscador y menú):
+          las dos laterales miden lo mismo, así el logo queda centrado de verdad.
+          Desde lg vuelve a ser la fila de siempre. */}
+      <nav className="mx-auto grid max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-4 py-3 sm:px-6 lg:flex lg:justify-between lg:px-8">
+        {/* Mobile: Donar a la izquierda */}
+        <Link
+          href="/se-parte/donar"
+          onClick={() => setMobileOpen(false)}
+          className="justify-self-start rounded-full bg-secondary px-4 py-2 text-sm font-semibold text-white transition hover:opacity-90 lg:hidden"
+        >
+          Donar
+        </Link>
+
+        <Link href="/" className="flex items-center gap-2 justify-self-center">
           <Image
             src="/brand/logo-piel.png"
             alt="Asociación PIEL"
@@ -143,7 +155,7 @@ export default function Navbar({ searchIndex }: { searchIndex: SearchEntry[] }) 
         </div>
 
         {/* Mobile: buscador + toggle de menú */}
-        <div className="flex items-center gap-1 lg:hidden">
+        <div className="flex items-center gap-1 justify-self-end lg:hidden">
           <button
             type="button"
             className="inline-flex items-center justify-center rounded-md p-2 text-piel-navy"

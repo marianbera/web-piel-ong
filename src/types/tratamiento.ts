@@ -13,10 +13,19 @@ export type SpecialtyIcon =
   | "clipboard"
   | "hand-heart";
 
+/** Foto real de una sección. `position`: utilidad de object-position para el recorte. */
+export interface SectionPhoto {
+  src: string;
+  alt: string;
+  position?: string;
+}
+
 export interface SpecialtyItem {
   title: string;
   description: string;
   icon?: SpecialtyIcon;
+  /** Sin foto se muestra el panel de marca con el ícono. */
+  image?: SectionPhoto;
 }
 
 export interface EspecialidadesContent {
@@ -39,6 +48,7 @@ export interface EnfoqueHighlight {
 export interface EnfoqueContent {
   header: PageHeaderContent;
   intro: string[];
+  image?: SectionPhoto;
   highlights: EnfoqueHighlight[];
 }
 

@@ -12,6 +12,14 @@ export interface ContentImage {
   alt: string;
   /** Epígrafe visible. También es el brief de qué imagen hace falta. */
   caption: string;
+  /**
+   * Medidas reales del archivo, en px. Si están, la imagen se muestra con su
+   * proporción propia en vez de dentro de un marco de aspecto fijo.
+   */
+  width?: number;
+  height?: number;
+  /** Utilidad de object-position para el recorte (p. ej. `object-[center_35%]`). */
+  position?: string;
   /** Mientras esté en `true` se muestra el placeholder en vez de la imagen. */
   pending?: boolean;
 }

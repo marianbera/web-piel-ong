@@ -14,14 +14,14 @@ export const metadata: Metadata = {
 };
 
 export default function EnfoquePage() {
-  const { header, intro, highlights } = enfoqueContent;
+  const { header, intro, image, highlights } = enfoqueContent;
 
   return (
     <>
       <PageHeader {...header} />
 
       <PageBody padding="lg">
-        <TextImageSplit body={intro} align="start" panelIcon={AllInOneIcon} />
+        <TextImageSplit body={intro} image={image} align="start" panelIcon={AllInOneIcon} />
       </PageBody>
 
       {/* El degradé de marca reemplaza el `bg-piel-periwinkle/25` que estaba a mano:

@@ -10,9 +10,15 @@ interface DonationFormProps {
   amountOptions: AmountOption[];
   type: DonationType;
   submitLabel: string;
+  bajaMensualEmail?: string;
 }
 
-export default function DonationForm({ amountOptions, type, submitLabel }: DonationFormProps) {
+export default function DonationForm({
+  amountOptions,
+  type,
+  submitLabel,
+  bajaMensualEmail,
+}: DonationFormProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [selectedAmount, setSelectedAmount] = useState<number | null>(amountOptions[0]?.value ?? null);
@@ -84,6 +90,7 @@ export default function DonationForm({ amountOptions, type, submitLabel }: Donat
         onCustomAmountChange={handleCustomAmountChange}
         frequency={frequency}
         onFrequencyChange={setFrequency}
+        bajaMensualEmail={bajaMensualEmail}
       />
 
       <div>

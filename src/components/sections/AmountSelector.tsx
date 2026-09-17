@@ -8,6 +8,8 @@ interface AmountSelectorProps {
   onCustomAmountChange: (value: string) => void;
   frequency: DonationFrequency;
   onFrequencyChange: (value: DonationFrequency) => void;
+  /** Correo para dar de baja el aporte mensual. Vacío = solo se menciona Mercado Pago. */
+  bajaMensualEmail?: string;
 }
 
 const FREQUENCIES: { value: DonationFrequency; label: string; suffix: string }[] = [
@@ -23,6 +25,7 @@ export default function AmountSelector({
   onCustomAmountChange,
   frequency,
   onFrequencyChange,
+  bajaMensualEmail,
 }: AmountSelectorProps) {
   const suffix = FREQUENCIES.find((item) => item.value === frequency)!.suffix;
 
@@ -49,6 +52,27 @@ export default function AmountSelector({
           );
         })}
       </div>
+
+      {/* El aporte mensual es una suscripción de Mercado Pago: se autoriza y se
+          cancela desde la cuenta de MP de quien dona. */}
+      {frequency === "mensual" && (
+        <p className="no-justify mt-3 max-w-xl text-xs leading-relaxed text-piel-text/65">
+          Para el aporte mensual vas a ingresar con tu cuenta de Mercado Pago. Podés darlo de
+          baja cuando quieras desde esa cuenta
+          {bajaMensualEmail ? (
+            <>
+              {" "}o escribiendo a{" "}
+              <a
+                href={`mailto:${bajaMensualEmail}`}
+                className="font-semibold text-piel-navy underline underline-offset-2"
+              >
+                {bajaMensualEmail}
+              </a>
+            </>
+          ) : null}
+          .
+        </p>
+      )}
 
       <span className="mt-6 block text-sm font-semibold text-piel-text">Elegí un monto</span>
       <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">

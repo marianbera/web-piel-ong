@@ -18,7 +18,7 @@ const routes = [
   "/labio-leporino",
   "/historias",
   "/pacientes",
-  "/pacientes/cuidados-y-alimentacion",
+  "/cuidados-y-alimentacion",
   "/pacientes/acompanamiento",
   "/pacientes/desarrollo",
   "/pacientes/faq",

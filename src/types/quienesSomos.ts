@@ -46,6 +46,8 @@ export interface EquipoFounder {
   name: string;
   role: string;
   bio: string;
+  /** Retrato vertical en `public/equipo/`. Sin foto, se muestran las iniciales. */
+  photo?: { src: string; alt: string };
   cta?: { label: string; href: string };
 }
 
@@ -63,6 +65,7 @@ export interface PressItem {
   outlet: string;
   date: string;
   href: string;
+  kind: "nota" | "video";
 }
 
 export interface PrensaPageContent {

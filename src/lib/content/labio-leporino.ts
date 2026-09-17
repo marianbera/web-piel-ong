@@ -33,6 +33,8 @@ export const labioLeporinoContent: ArticlePageContent = {
           images: [
             {
               src: "/labio-leporino/tipos-de-fisura.jpg",
+              width: 787,
+              height: 175,
               alt: "Ilustración médica que compara los distintos tipos de fisura del paladar y del labio, desde la fisura incompleta hasta la fisura bilateral completa",
               caption: "Los distintos tipos de fisura de labio y paladar.",
             },
@@ -83,7 +85,7 @@ export const labioLeporinoContent: ArticlePageContent = {
             "Los primeros días generan muchas dudas, sobre todo respecto a la alimentación del bebé. El equipo de PIEL acompaña a cada familia con **pautas específicas según cada caso**.",
           ],
           // TODO(PIEL): pendiente el contenido real de Nutrición y Fonoaudiología para ampliar este bloque.
-          cta: { label: "Ver cuidados y alimentación", href: "/pacientes/cuidados-y-alimentacion" },
+          cta: { label: "Ver cuidados y alimentación", href: "/cuidados-y-alimentacion" },
         },
       ],
     },
@@ -102,16 +104,22 @@ export const labioLeporinoContent: ArticlePageContent = {
           images: [
             {
               src: "/labio-leporino/reparacion-unilateral.jpg",
+              width: 763,
+              height: 147,
               alt: "Secuencia médica de la reparación quirúrgica de una fisura labial unilateral, del preoperatorio al resultado reconstruido",
               caption: "Reparación quirúrgica de una fisura unilateral de labio.",
             },
             {
               src: "/labio-leporino/reparacion-bilateral.jpg",
+              width: 760,
+              height: 140,
               alt: "Secuencia médica de la reparación quirúrgica de una fisura labial bilateral, del preoperatorio al resultado reconstruido",
               caption: "Reparación quirúrgica de una fisura bilateral de labio.",
             },
             {
               src: "/labio-leporino/operacion-paladar.jpg",
+              width: 763,
+              height: 222,
               alt: "Ilustración médica del cierre quirúrgico del paladar duro y blando",
               caption: "El cierre quirúrgico del paladar duro y blando.",
             },
