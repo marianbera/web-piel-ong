@@ -19,7 +19,10 @@ export default async function ObrasSocialesPage() {
     <>
       <PageHeader {...obrasSocialesContent.header} />
       <ComoAccederSection
-        content={{ ...obrasSocialesContent, coverages: coverages.map((c) => c.name) }}
+        content={{
+          ...obrasSocialesContent,
+          coverages: coverages.map((c) => ({ name: c.name, logo: c.logo || undefined })),
+        }}
       />
     </>
   );

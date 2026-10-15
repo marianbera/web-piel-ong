@@ -6,6 +6,15 @@ export const sePartHub: SePartHubContent = {
   header: {
     title: "Sé parte",
     subtitle: "Hay muchas formas de acompañar a PIEL.",
+    // Sé parte es la sección que muestra la parte de Fundación: el header lleva una
+    // foto de chicos en vez de la fachada. TODO(PIEL): el link "HEADER" de las
+    // observaciones apuntaba a un comunicado de prensa; mientras llega la foto
+    // correcta se usa la de Donar.
+    image: {
+      src: "/se-parte/donar.jpg",
+      alt: "Un nene sonriendo con un globo en la sala de espera de Asociación PIEL",
+      position: "object-[center_35%]",
+    },
   },
   intro:
     "**Tu ayuda hace posible que más niños accedan a su tratamiento.** Elegí la forma de colaborar que mejor se adapte a vos o a tu empresa.",
@@ -35,6 +44,10 @@ export const empresasContent: ComoAccederPageContent = {
   },
   intro:
     "Las empresas pueden convertirse en **aliadas estratégicas** para ampliar el alcance de nuestra misión y ayudar a que más niños y familias accedan a tratamientos especializados.",
+  image: {
+    src: "/se-parte/empresas.jpg",
+    alt: "Una nena jugando con un panel de juegos en la sala de Asociación PIEL",
+  },
   listTitle: "Formas de participar",
   list: [
     {

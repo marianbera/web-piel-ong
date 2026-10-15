@@ -42,16 +42,17 @@ export default function TeamGroups({ groups, note }: { groups: AdminTeamGroup[];
             {group.members.map((member, index) => (
               <li key={member.id} className="flex">
                 <Reveal delay={index * 60} className="flex w-full">
-                  <Card radius="brand" padding="sm" className="flex w-full flex-col">
-                    <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[1.5rem]">
+                  <Card radius="brand" padding="sm" className="flex w-full flex-col items-center text-center">
+                    {/* Retrato circular: las fotos que mandó PIEL ya vienen recortadas
+                        en círculo sobre blanco, y las iniciales usan el mismo formato
+                        para que la grilla quede pareja. */}
+                    <div className="relative mt-2 aspect-square w-full max-w-[11rem] overflow-hidden rounded-full bg-white ring-1 ring-piel-navy/10">
                       {member.photo ? (
                         <Image
                           src={member.photo}
                           alt={`${member.name}, ${member.role} en Asociación PIEL`}
                           fill
-                          sizes="(min-width: 1024px) 16rem, (min-width: 640px) 45vw, 90vw"
-                          // Anclada arriba: en retratos más altos que 4:5, el recorte
-                          // se come los pies y no la cabeza.
+                          sizes="11rem"
                           className="object-cover object-top"
                         />
                       ) : (
@@ -69,7 +70,7 @@ export default function TeamGroups({ groups, note }: { groups: AdminTeamGroup[];
                     <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-piel-burgundy">
                       {member.role}
                     </p>
-                    <p className="mt-1 font-semibold leading-snug text-piel-navy">{member.name}</p>
+                    <p className="mt-1 mb-2 font-semibold leading-snug text-piel-navy">{member.name}</p>
                   </Card>
                 </Reveal>
               </li>

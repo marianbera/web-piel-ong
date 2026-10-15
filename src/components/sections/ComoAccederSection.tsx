@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import Card from "@/components/ui/Card";
 import SectionHeading from "@/components/ui/SectionHeading";
@@ -25,30 +26,77 @@ function CtaButton({ cta, variant }: { cta: CtaLink; variant: "primary" | "secon
 }
 
 export default function ComoAccederSection({ content }: { content: ComoAccederPageContent }) {
-  const { intro, paragraphs, coverages, bullets, bulletsTitle, list, listTitle, note, cta, secondaryCta } =
-    content;
+  const {
+    intro,
+    image,
+    paragraphs,
+    coverages,
+    bullets,
+    bulletsTitle,
+    list,
+    listTitle,
+    note,
+    cta,
+    secondaryCta,
+  } = content;
+
+  const introText = (
+    <Reveal className="space-y-4">
+      <p className="text-lg text-piel-text/80">
+        <RichText text={intro} />
+      </p>
+      {paragraphs?.map((paragraph) => (
+        <p key={paragraph.slice(0, 40)} className="text-piel-text/75">
+          <RichText text={paragraph} />
+        </p>
+      ))}
+    </Reveal>
+  );
 
   return (
     <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-      <Reveal className="space-y-4">
-        <p className="text-lg text-piel-text/80">
-          <RichText text={intro} />
-        </p>
-        {paragraphs?.map((paragraph) => (
-          <p key={paragraph.slice(0, 40)} className="text-piel-text/75">
-            <RichText text={paragraph} />
-          </p>
-        ))}
-      </Reveal>
+      {image ? (
+        <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
+          {introText}
+          <Reveal delay={150}>
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl shadow-lg">
+              <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                sizes="(min-width: 1024px) 36rem, 100vw"
+                className={`object-cover ${image.position ?? ""}`}
+              />
+            </div>
+          </Reveal>
+        </div>
+      ) : (
+        introText
+      )}
 
+      {/* Coberturas: tarjetas del mismo tamaño, con el logo o, si no hay, el nombre. */}
       {coverages && coverages.length > 0 && (
-        <ul className="mt-8 flex flex-wrap gap-3">
+        <ul className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
           {coverages.map((coverage, index) => (
-            <li key={coverage}>
+            <li key={coverage.name}>
               <Reveal delay={index * 60}>
-                <span className="rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-piel-navy shadow-sm ring-1 ring-piel-navy/5">
-                  {coverage}
-                </span>
+                <div className="flex h-24 items-center justify-center rounded-2xl bg-white px-5 py-4 shadow-sm ring-1 ring-piel-navy/5">
+                  {coverage.logo ? (
+                    <div className="relative h-full w-full">
+                      <Image
+                        src={coverage.logo}
+                        alt={coverage.name}
+                        fill
+                        sizes="12rem"
+                        className="object-contain"
+                      />
+                    </div>
+                  ) : (
+                    <span className="text-center font-semibold text-piel-navy">
+                      {coverage.name}
+                    </span>
+                  )}
+                </div>
               </Reveal>
             </li>
           ))}

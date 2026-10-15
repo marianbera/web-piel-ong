@@ -56,9 +56,11 @@ export const alimentacionImages: ContentImage[] = [
   },
 ];
 
-// El archivo ya viene recortado en franja 21:9, que es el marco donde se muestra.
+// PIEL pidió una foto que "dé más centro médico" que la de la sala de juegos: es la
+// escena de consultorio de Psicología. El archivo ya viene recortado en franja 21:9,
+// que es el marco donde se muestra.
 export const acompanamientoImage: ContentImage = {
-  src: "/pacientes/acompanamiento/sala-de-juegos.jpg",
-  alt: "Chicos jugando en la sala de juegos de la sede de Asociación PIEL",
+  src: "/pacientes/acompanamiento/consultorio.jpg",
+  alt: "Profesional de Asociación PIEL conversando con dos chicos en un consultorio",
   caption: "Ninguna familia atraviesa este proceso sola.",
 };

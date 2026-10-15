@@ -263,3 +263,66 @@ export function SyringeIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function HeartIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" {...props}>
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M12 20s-7.5-4.6-7.5-10.1A4.2 4.2 0 0 1 12 7.4a4.2 4.2 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20Z"
+      />
+    </svg>
+  );
+}
+
+export function AppleIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" {...props}>
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M12 7.5c-1.6-1-5.5-1.2-6.5 2.5-.9 3.4 1.2 8.3 3.6 9.6 1.1.6 2 .1 2.9-.3.9.4 1.8.9 2.9.3 2.4-1.3 4.5-6.2 3.6-9.6-1-3.7-4.9-3.5-6.5-2.5Z"
+      />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 7.5c0-2 .8-3.5 2.5-4.5" />
+    </svg>
+  );
+}
+
+export function MovementIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" {...props}>
+      <circle cx="13" cy="4.5" r="1.8" />
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="m9 21 2.5-6 2.5 2.5V21M6.5 11.5l3-3.5h4l2.5 3.5 2.5 1M11.5 15l1.5-7"
+      />
+    </svg>
+  );
+}
+
+export function BoneIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" {...props}>
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="m8.5 15.5 7-7m-7 7a2.5 2.5 0 1 1-3.5 3.5 2.5 2.5 0 1 1-1.5-3.5 2.5 2.5 0 1 1 5-0Zm7-7a2.5 2.5 0 1 1 3.5-3.5 2.5 2.5 0 1 1 1.5 3.5 2.5 2.5 0 1 1-5 0Z"
+      />
+    </svg>
+  );
+}
+
+export function DropIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" {...props}>
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M12 3.5s-6 6.6-6 10.9a6 6 0 0 0 12 0C18 10.1 12 3.5 12 3.5Z"
+      />
+      <path strokeLinecap="round" d="M9 14.5a3 3 0 0 0 3 3" />
+    </svg>
+  );
+}

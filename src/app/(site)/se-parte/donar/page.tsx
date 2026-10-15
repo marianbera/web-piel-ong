@@ -4,6 +4,7 @@ import PageHeader from "@/components/ui/PageHeader";
 import PageBody from "@/components/ui/PageBody";
 import Card from "@/components/ui/Card";
 import DonationForm from "@/components/sections/DonationForm";
+import TextImageSplit from "@/components/sections/TextImageSplit";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
 import RichText from "@/components/ui/RichText";
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 export default function DonarPage() {
-  const { header, intro, paragraphs, amountOptions } = donarContent;
+  const { header, intro, paragraphs, image, amountOptions } = donarContent;
   const pagoOnlineActivo = isMercadoPagoConfigured();
 
   // Solo se muestran los datos bancarios que ya estén cargados.
@@ -109,14 +110,11 @@ export default function DonarPage() {
 
       {/* El texto largo va al pie: informa a quien quiera leerlo, sin tapar los montos. */}
       <PageBody tone={bankRows.length > 1 ? "white" : "offwhite"} intensity="subtle">
-        <SectionHeading title="Por qué tu aporte importa" />
-        <Reveal className="mt-6 max-w-3xl space-y-4 text-piel-text/75">
-          {paragraphs?.map((paragraph) => (
-            <p key={paragraph.slice(0, 40)}>
-              <RichText text={paragraph} />
-            </p>
-          ))}
-        </Reveal>
+        <TextImageSplit
+          title="Por qué tu aporte importa"
+          body={paragraphs ?? []}
+          image={image}
+        />
       </PageBody>
     </>
   );

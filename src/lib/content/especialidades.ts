@@ -1,12 +1,14 @@
 import type { EspecialidadesContent } from "@/types/tratamiento";
 
-// TODO(PIEL): el diagrama del cliente menciona "las 14 especialidades" pero el doc 3.2 lista 11.
-// El roster del Equipo (2.4) suma otras (anestesiología, nutrición, kinesiología, dermatología,
-// mecánica dental, instrumentación). Confirmar con PIEL el set final.
+// Listado final de PIEL (observaciones, última ronda): son exactamente estas 15, en
+// este orden. Se sacaron Psicopedagogía, Genética y Asistencia social (hoy no están en
+// PIEL) y Neonatología, que no figura en el listado.
 //
-// Fotos: se cargaron en las especialidades que tenían una foto real que las
-// representa. El resto sigue con el panel de marca hasta que lleguen las suyas.
-// TODO(PIEL): confirmar la asignación de cada foto (el documento pedía consultarla).
+// Fotos: Fonoaudiología, Kinesiología y Otorrinolaringología son las que eligió PIEL.
+// El resto de las que tienen foto conservan la asignación anterior. Las que no tienen
+// muestran el panel de marca con su ícono.
+// TODO(PIEL): fotos para Anestesiología, Instrumentación quirúrgica, Cirugía
+// traumatológica, Odontología, Nutrición, Dermatología y Mecánica dental.
 export const especialidadesContent: EspecialidadesContent = {
   header: {
     title: "Especialidades",
@@ -16,7 +18,7 @@ export const especialidadesContent: EspecialidadesContent = {
   specialties: [
     {
       icon: "stethoscope",
-      title: "Cirugía plástica infantil y cráneo-maxilofacial",
+      title: "Cirugía cráneo-maxilo-facial",
       description:
         "**Tratamiento quirúrgico** de fisuras labio-alvéolo-palatinas y otras malformaciones craneofaciales.",
       image: {
@@ -25,30 +27,24 @@ export const especialidadesContent: EspecialidadesContent = {
       },
     },
     {
-      icon: "hospital",
-      title: "Neonatología",
-      description: "Seguimiento y acompañamiento durante los primeros meses de vida.",
-      // Imagen generada con IA (tiene la marca C2PA de OpenAI). La eligió PIEL.
-      image: {
-        src: "/especialidades/neonatologia.jpg",
-        alt: "Una mamá le da la mamadera a su recién nacido mientras conversa con una profesional",
-      },
+      icon: "syringe",
+      title: "Anestesiología",
+      description: "Evaluación previa y cuidado anestésico del paciente en cada cirugía.",
     },
     {
-      icon: "hospital",
-      title: "Pediatría",
-      description: "Control clínico y seguimiento general del paciente.",
-      // La misma foto del Home: es la única real de un control pediátrico.
-      image: {
-        src: "/brand/hero/slide-1-que-es-piel.jpg",
-        alt: "Profesional de Asociación PIEL auscultando a un bebé con un estetoscopio en el consultorio",
-        position: "object-[center_35%]",
-      },
+      icon: "clipboard",
+      title: "Instrumentación quirúrgica",
+      description: "Preparación del instrumental y asistencia al equipo durante cada intervención.",
     },
     {
-      icon: "dna",
-      title: "Genética",
-      description: "Evaluación y orientación genética para pacientes y familias.",
+      icon: "bone",
+      title: "Cirugía traumatológica",
+      description: "Intervenciones sobre huesos y articulaciones que forman parte del tratamiento quirúrgico.",
+    },
+    {
+      icon: "tooth",
+      title: "Odontología",
+      description: "Cuidado de la salud bucal y tratamiento odontológico del paciente.",
     },
     {
       icon: "tooth",
@@ -69,14 +65,35 @@ export const especialidadesContent: EspecialidadesContent = {
       },
     },
     {
-      icon: "speech",
-      title: "Fonoaudiología",
-      description: "Evaluación y tratamiento del habla, lenguaje y alimentación.",
-    },
-    {
       icon: "ear",
       title: "Otorrinolaringología",
       description: "Seguimiento auditivo y respiratorio asociado a la fisura.",
+      // Foto vertical en un marco 16:10: el encuadre baja hasta la consulta.
+      image: {
+        src: "/especialidades/otorrinolaringologia.jpg",
+        alt: "Médico de Asociación PIEL revisando a una bebé que su mamá sostiene en brazos",
+        position: "object-[center_62%]",
+      },
+    },
+    {
+      icon: "speech",
+      title: "Fonoaudiología",
+      description: "Evaluación y tratamiento del habla, lenguaje y alimentación.",
+      image: {
+        src: "/especialidades/fonoaudiologia.jpg",
+        alt: "Un nene con auriculares en la cabina de evaluación auditiva, con la profesional del otro lado del vidrio",
+        position: "object-[center_45%]",
+      },
+    },
+    {
+      icon: "movement",
+      title: "Kinesiología",
+      description: "Estimulación del desarrollo motor y rehabilitación en cada etapa del crecimiento.",
+      image: {
+        src: "/especialidades/kinesiologia.jpg",
+        alt: "Kinesióloga de Asociación PIEL trabajando con un bebé sobre la colchoneta del consultorio",
+        position: "object-[center_70%]",
+      },
     },
     {
       icon: "heart",
@@ -88,20 +105,30 @@ export const especialidadesContent: EspecialidadesContent = {
       },
     },
     {
-      icon: "team",
-      title: "Psicopedagogía",
-      description: "Acompañamiento del aprendizaje e integración escolar.",
+      icon: "apple",
+      title: "Nutrición",
+      description: "Pautas de alimentación y seguimiento del crecimiento y el peso.",
     },
     {
-      icon: "hand-heart",
-      title: "Asistencia social",
-      description: "Orientación y acompañamiento social durante el tratamiento.",
-      // Foto vertical en un marco 16:10: el encuadre se centra en la conversación.
+      icon: "drop",
+      title: "Dermatología",
+      description: "Cuidado y seguimiento de la piel a lo largo del tratamiento.",
+    },
+    {
+      icon: "hospital",
+      title: "Pediatría",
+      description: "Control clínico y seguimiento general del paciente.",
+      // La misma foto del Home: es la única real de un control pediátrico.
       image: {
-        src: "/especialidades/asistencia-social.jpg",
-        alt: "Profesional de Asociación PIEL tomando notas mientras conversa con dos chicos",
-        position: "object-[center_45%]",
+        src: "/brand/hero/slide-1-que-es-piel.jpg",
+        alt: "Profesional de Asociación PIEL auscultando a un bebé con un estetoscopio en el consultorio",
+        position: "object-[center_35%]",
       },
+    },
+    {
+      icon: "tooth",
+      title: "Mecánica dental",
+      description: "Confección de las placas y aparatos que indican odontólogos y ortodoncistas.",
     },
   ],
 };

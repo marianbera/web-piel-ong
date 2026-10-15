@@ -14,6 +14,13 @@ export const donarContent: DonarPageContent = {
     "Detrás de cada consulta, tratamiento, cirugía y sonrisa recuperada existe una red de personas comprometidas con una misma convicción: que **todos los niños merecen la oportunidad de acceder al tratamiento que necesitan**.",
     "Gracias a ese compromiso colectivo, **miles de niños pudieron acceder a tratamientos especializados** y miles de familias encontraron contención, orientación y esperanza. Hoy podés formar parte de esa historia.",
   ],
+  // Foto elegida por PIEL para Donar. Va junto al texto del pie, no arriba: así los
+  // montos se siguen viendo sin scrollear.
+  image: {
+    src: "/se-parte/donar.jpg",
+    alt: "Un nene sonriendo con un globo en la sala de espera de Asociación PIEL",
+    position: "object-[center_30%]",
+  },
   amountOptions: [
     { value: 3000, label: "$3.000" },
     { value: 6000, label: "$6.000" },

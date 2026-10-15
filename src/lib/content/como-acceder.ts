@@ -91,7 +91,18 @@ export const obrasSocialesContent: ComoAccederPageContent = {
   },
   intro:
     "Actualmente atendemos pacientes con cobertura de las siguientes obras sociales y prepagas. Por consultas sobre cobertura, autorizaciones o modalidades de atención, **nuestro equipo podrá orientarlo según cada caso**.",
-  coverages: ["OSDE", "OMINT", "Medifé", "Jerárquicos Salud", "Etica+", "Osmédica", "OSCHOCA"],
+  // Logos bajados de los sitios oficiales (Medifé, Jerárquicos, Omint, Osmédica) y de
+  // Wikimedia Commons (OSDE). Etica+ y OSCHOCA no tienen un logo publicado en buena
+  // calidad que se pueda verificar: se muestran con el nombre hasta que PIEL los mande.
+  coverages: [
+    { name: "OSDE", logo: "/obras-sociales/osde.png" },
+    { name: "OMINT", logo: "/obras-sociales/omint.png" },
+    { name: "Medifé", logo: "/obras-sociales/medife.png" },
+    { name: "Jerárquicos Salud", logo: "/obras-sociales/jerarquicos-salud.png" },
+    { name: "Etica+" },
+    { name: "Osmédica", logo: "/obras-sociales/osmedica.png" },
+    { name: "OSCHOCA" },
+  ],
   note: "¿No encontrás tu cobertura? Contactanos para recibir orientación sobre tu caso.",
   cta: { label: "Consultar cobertura por WhatsApp", href: whatsappUrl },
 };

@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import SearchDialog from "@/components/layout/SearchDialog";
-import { SearchIcon } from "@/components/ui/icons";
+import { HeartIcon, SearchIcon } from "@/components/ui/icons";
 import { mainNav } from "@/lib/content/navigation";
 import type { SearchEntry } from "@/lib/search/searchIndex";
 
@@ -60,8 +60,9 @@ export default function Navbar({ searchIndex }: { searchIndex: SearchEntry[] }) 
         <Link
           href="/se-parte/donar"
           onClick={() => setMobileOpen(false)}
-          className="justify-self-start rounded-full bg-secondary px-4 py-2 text-sm font-semibold text-white transition hover:opacity-90 lg:hidden"
+          className="inline-flex items-center gap-1.5 justify-self-start rounded-full bg-secondary px-4 py-2 text-sm font-semibold text-white transition hover:opacity-90 lg:hidden"
         >
+          <HeartIcon aria-hidden className="h-4 w-4" />
           Donar
         </Link>
 
@@ -148,8 +149,9 @@ export default function Navbar({ searchIndex }: { searchIndex: SearchEntry[] }) 
           </Link>
           <Link
             href="/se-parte/donar"
-            className="rounded-full bg-secondary px-4 py-2 text-sm font-semibold text-white hover:opacity-90 transition"
+            className="inline-flex items-center gap-1.5 rounded-full bg-secondary px-4 py-2 text-sm font-semibold text-white hover:opacity-90 transition"
           >
+            <HeartIcon aria-hidden className="h-4 w-4" />
             Donar
           </Link>
         </div>
@@ -235,9 +237,10 @@ export default function Navbar({ searchIndex }: { searchIndex: SearchEntry[] }) 
             </Link>
             <Link
               href="/se-parte/donar"
-              className="rounded-full bg-secondary px-4 py-2 text-center text-sm font-semibold text-white"
+              className="inline-flex items-center justify-center gap-1.5 rounded-full bg-secondary px-4 py-2 text-sm font-semibold text-white"
               onClick={() => setMobileOpen(false)}
             >
+              <HeartIcon aria-hidden className="h-4 w-4" />
               Donar
             </Link>
           </div>

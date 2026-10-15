@@ -77,7 +77,8 @@ export const SCHEMAS: Record<Exclude<CollectionName, "equipo">, CollectionSchema
         key: "image",
         label: "Logo",
         type: "image",
-        help: "Preferentemente PNG con fondo transparente.",
+        optional: true,
+        help: "Preferentemente PNG con fondo transparente. Sin logo, se muestra el nombre.",
       },
       { key: "href", label: "Sitio web", type: "url", optional: true, placeholder: "https://…" },
       {
@@ -113,6 +114,15 @@ export const SCHEMAS: Record<Exclude<CollectionName, "equipo">, CollectionSchema
     description: "Las coberturas con las que PIEL trabaja actualmente.",
     addLabel: "Agregar cobertura",
     titleKey: "name",
-    fields: [{ key: "name", label: "Nombre", type: "text", placeholder: "OSDE, OMINT…" }],
+    fields: [
+      { key: "name", label: "Nombre", type: "text", placeholder: "OSDE, OMINT…" },
+      {
+        key: "logo",
+        label: "Logo",
+        type: "image",
+        optional: true,
+        help: "Preferentemente PNG con fondo transparente. Sin logo, se muestra el nombre.",
+      },
+    ],
   },
 };

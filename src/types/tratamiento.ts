@@ -11,7 +11,11 @@ export type SpecialtyIcon =
   | "heart"
   | "team"
   | "clipboard"
-  | "hand-heart";
+  | "hand-heart"
+  | "apple"
+  | "movement"
+  | "bone"
+  | "drop";
 
 /** Foto real de una sección. `position`: utilidad de object-position para el recorte. */
 export interface SectionPhoto {
