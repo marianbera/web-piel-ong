@@ -19,7 +19,8 @@ export const tratamientoHub: TratamientoHubContent = {
       href: "/tratamiento/enfoque",
     },
     {
-      title: "Las 14 especialidades",
+      // Listado final de PIEL: 15 especialidades (ver lib/content/especialidades.ts).
+      title: "Las 15 especialidades",
       description: "Todas las especialidades médicas involucradas en el tratamiento.",
       href: "/tratamiento/especialidades",
     },
@@ -50,11 +51,13 @@ export const enfoqueContent: EnfoqueContent = {
     "Creemos en la importancia de la contención. Por eso, cada consulta se desarrolla en un **entorno cercano, humano y pensado para los niños** y sus familias.",
     "**Más de 38 años de experiencia** y miles de pacientes tratados nos permitieron consolidar un **modelo de atención propio** para el abordaje integral de fisuras labio alvéolo palatinas.",
   ],
-  // Foto vertical en un marco 4:3: se baja el encuadre para que la nena quede entera.
+  // PIEL pidió una foto con una profesional en vez de la de la nena. Es la misma
+  // que la de Kinesiología en Especialidades (las dos venían del mismo link).
+  // Vertical en un marco 4:3: el encuadre baja hasta la profesional y el bebé.
   image: {
-    src: "/tratamiento/enfoque-sala-de-juegos.jpg",
-    alt: "Niña en la sala de juegos de Asociación PIEL, rodeada de juguetes",
-    position: "object-[center_55%]",
+    src: "/especialidades/kinesiologia.jpg",
+    alt: "Kinesióloga de Asociación PIEL trabajando con un bebé sobre la colchoneta del consultorio",
+    position: "object-[center_70%]",
   },
   highlights: [
     {
@@ -112,22 +115,21 @@ export const investigacionContent: DraftPageContent = {
   },
   intro:
     "Además de la asistencia, PIEL sostiene una **línea de trabajo académico y de formación**, encabezada por su fundador y director médico, el **Dr. Ricardo Bennun**.",
-  // Contenido armado con el CV del Dr. Bennun publicado en el sitio actual
-  // (asociacion-piel.org.ar/web/dr-ricardo-bennun), que llega hasta 2017.
-  // TODO(PIEL): revisar y actualizar con la actividad posterior a 2017 (cargos
-  // vigentes, publicaciones y congresos recientes).
+  // Textos corregidos por PIEL (observaciones, última ronda). Se respetan palabra por
+  // palabra; los títulos que el documento pone en cursiva van en negrita, que es el
+  // único énfasis que tiene el sitio.
   sections: [
     {
       title: "Cátedra UBA",
-      body: "El Dr. Bennun es **Doctor en Medicina por la Universidad de Buenos Aires** y docente autorizado de su Facultad de Medicina. Desde 2012 dirige el **Posgrado en Cirugía Plástica Pediátrica y Craneofacial** del Hospital de Clínicas José de San Martín (UBA). Antes fue vicedirector del posgrado en Cirugía Plástica del Hospital Garrahan (UBA), y es profesor del posgrado en Ortodoncia de la Universidad Maimónides.",
+      body: "El Dr. Bennun es **Doctor en Medicina por la Universidad de Buenos Aires** y docente autorizado de su Facultad de Medicina. Completó su formación en cirugía craneofacial como Clinical Fellow en el Boston Children's Hospital, asociado a la Universidad de Harvard (1983–1984). En 2012 creó el **Posgrado en Cirugía Plástica Pediátrica y Craneofacial** del Hospital de Clínicas \"General San Martín\" (UBA). Antes fue vicedirector del posgrado en Cirugía Plástica del Hospital Garrahan (UBA), y fue profesor del posgrado en Ortodoncia de la Universidad Maimónides (2005–2019).",
     },
     {
       title: "Publicaciones",
-      body: "Es editor del libro **Cleft Lip and Palate Management: A Comprehensive Atlas** (Wiley-Blackwell, 2015) y autor de capítulos en “Clinical Cases in Early Orthodontic Treatment” (Springer, 2017) y “Tratamiento interdisciplinario de las fisuras labio palatinas” (2007). Integra el consejo editorial de **The Journal of Craniofacial Surgery**. Participó además en investigaciones genéticas junto al Johns Hopkins Hospital y al Children’s Hospital de Boston.",
+      body: "Es editor del libro **Cleft Lip and Palate Management: A Comprehensive Atlas** (Wiley-Blackwell, 2015) y autor de capítulos en **Clinical Cases in Early Orthodontic Treatment** (Springer, 2017) y en \"Tratamiento interdisciplinario de las fisuras labio palatinas\" (2007). En 2023 publicó el capítulo \"Cleft Palate Repair\" en **The Embryologic Basis of Craniofacial Structure** (Springer-Verlag). Participó en un estudio de investigación genética sobre fisuras labio-alvéolo-palatinas publicado en el **European Journal of Human Genetics**, junto a investigadores de Johns Hopkins. Integra el consejo editorial de **The Journal of Craniofacial Surgery** desde 2016.",
     },
     {
       title: "Congresos y jornadas",
-      body: "El equipo lleva su experiencia a encuentros científicos de todo el mundo. El Dr. Bennun fue **profesor invitado del International Cleft Congress** (Chennai, India, 2017), **presidente del comité científico internacional** del VIII Congreso Brasileño de Fisuras Labio Palatinas (2016) y **presidente de honor** del VI Congreso Brasileño (2012). También fue tesorero de la Latin American CranioFacial Association (LATICFA).",
+      body: "El equipo lleva su experiencia a encuentros científicos de todo el mundo. En 2012, el Dr. Bennun fue cofundador de **LATICFA** (Latin American Craniofacial Association), de la que luego fue tesorero (2016–2024). En 2022 fue también cofundador de **AFLAPyCRA** (Asociación de Fisuras Labio Alveolo Palatinas y Craneofacial de Argentina). Fue **profesor invitado del International Cleft Congress** (Chennai, India, 2017), **presidente del comité científico internacional** del VIII Congreso Brasileño de Fisuras Labio Palatinas (2016) y **presidente de honor** del VI Congreso Brasileño (2012).",
     },
   ],
   pending: [

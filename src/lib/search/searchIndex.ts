@@ -207,7 +207,7 @@ export function buildSearchIndex(): SearchEntry[] {
       "extranjero",
     ]),
     entry(BLOCK.acceder, "/como-acceder/obras-sociales", obrasSocialesContent.header, [
-      ...(obrasSocialesContent.coverages ?? []),
+      ...(obrasSocialesContent.coverages ?? []).map((coverage) => coverage.name),
       "cobertura",
       "prepaga",
     ]),

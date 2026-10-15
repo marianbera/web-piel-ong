@@ -1,7 +1,7 @@
 import { head, put } from "@vercel/blob";
 import { equipoContent, premiosContent, prensaContent } from "@/lib/content/quienes-somos";
 import { obrasSocialesContent } from "@/lib/content/como-acceder";
-import { colaboradores } from "@/lib/content/colaboradores";
+import { colaboradores, empresas } from "@/lib/content/colaboradores";
 import type {
   AdminAward,
   AdminCoverage,
@@ -106,17 +106,28 @@ const seedPrensa: AdminPressItem[] = prensaContent.items.map((item, i) => ({
   ...item,
 }));
 
-const seedLogos: AdminLogo[] = colaboradores.map((logo, i) => ({
-  id: idFrom(logo.name, i),
-  name: logo.name,
-  image: logo.image,
-  scope: "colaboradores",
-}));
+const seedLogos: AdminLogo[] = [
+  ...colaboradores.map((logo, i) => ({
+    id: idFrom(logo.name, i),
+    name: logo.name,
+    image: logo.image,
+    scope: "colaboradores" as const,
+  })),
+  ...empresas.map((logo, i) => ({
+    id: idFrom(logo.name, colaboradores.length + i),
+    name: logo.name,
+    image: logo.image,
+    scope: "empresas" as const,
+  })),
+];
 
-const seedCoberturas: AdminCoverage[] = (obrasSocialesContent.coverages ?? []).map((name, i) => ({
-  id: idFrom(name, i),
-  name,
-}));
+const seedCoberturas: AdminCoverage[] = (obrasSocialesContent.coverages ?? []).map(
+  (coverage, i) => ({
+    id: idFrom(coverage.name, i),
+    name: coverage.name,
+    logo: coverage.logo,
+  })
+);
 
 /* ── Lectores usados por las páginas públicas ─────────────────────────────── */
 

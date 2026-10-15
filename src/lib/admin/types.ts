@@ -35,6 +35,7 @@ export interface AdminStory {
 export interface AdminLogo {
   id: string;
   name: string;
+  /** Vacío = la tarjeta muestra el nombre. */
   image: string;
   href?: string;
   /** Dónde se muestra: colaboradores (Nosotros) o empresas (Sé parte). */
@@ -50,6 +51,8 @@ export interface AdminAward {
 export interface AdminCoverage {
   id: string;
   name: string;
+  /** Ruta del logo. Vacío = se muestra el nombre. */
+  logo?: string;
 }
 
 /** Nombre de cada colección editable. Es también el nombre del archivo JSON. */

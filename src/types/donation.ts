@@ -23,5 +23,6 @@ export interface DonarPageContent {
   header: PageHeaderContent;
   intro: string;
   paragraphs?: string[];
+  image?: { src: string; alt: string; position?: string };
   amountOptions: AmountOption[];
 }

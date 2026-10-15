@@ -53,7 +53,7 @@ export const historiaContent: HistoriaPageContent = {
     "El 31 de julio de 1989, PIEL obtuvo su **personería jurídica** (I.G.J. N° 581), y en 1994 concretó la adquisición de su **sede propia en Avellaneda**, Provincia de Buenos Aires. La adecuación del espacio fue posible gracias al compromiso de las familias y al trabajo voluntario de padres y colaboradores, que acompañaron activamente el desarrollo de la institución desde sus inicios.",
     "Durante los primeros años, los profesionales del equipo contribuyeron con su vocación y profesionalismo, para lograr el **crecimiento progresivo del Centro Médico** y la consolidación de un espacio propio de atención.",
     "Ese mismo espíritu dio origen a iniciativas como el **Fondo Cooperativo de Reserva**, creado para facilitar el acceso al tratamiento mediante préstamos adaptados a las posibilidades de cada familia.",
-    "Hoy, PIEL cuenta con una sede donde se brinda **asistencia y rehabilitación interdisciplinaria** a través de consultorios externos, integrando especialidades como cirugía plástica infantil y cráneo-maxilofacial, neonatología, pediatría, genética, odontopediatría, ortodoncia, fonoaudiología, otorrinolaringología, psicología y asistencia social.",
+    "Hoy, PIEL cuenta con una sede donde se brinda **asistencia y rehabilitación interdisciplinaria** a través de consultorios externos, integrando especialidades como cirugía cráneo-maxilo-facial, pediatría, odontología, odontopediatría, ortodoncia, otorrinolaringología, fonoaudiología, kinesiología, psicología, nutrición y dermatología.",
   ],
 };
 
@@ -66,6 +66,12 @@ export const premiosContent: PremiosPageContent = {
   // TODO(PIEL): completar con reconocimientos nuevos posteriores a 2018, si los hubiera.
   // Nombre del fundador: "Dr. Ricardo Bennun" (corregido por PIEL en las observaciones 2026).
   awards: [
+    // Del comunicado de prensa de octubre de 2026 (DUA Comunicación) que PIEL envió
+    // en la última ronda de observaciones.
+    {
+      year: "2026",
+      text: "Placa de reconocimiento al Dr. Ricardo Bennun de la **Asociación Brasileña de Fisuras Labio Palatinas y Anomalías Craneofaciales (ABFLP)**, por su contribución y notable dedicación a la especialidad. Entregada en el XV Congreso Brasileño de Fisuras Labio Palatinas y Anomalías Craneofaciales (São Paulo).",
+    },
     {
       year: "2018",
       text: "Premio **“Abanderados de la Argentina Solidaria 2018”**, otorgado al Dr. Ricardo Bennun por Canal 13, grupo Clarín.",
@@ -169,11 +175,12 @@ export const equipoContent: EquipoPageContent = {
   rosterTitle: "Equipo médico",
   rosterNote:
     "Estos son los profesionales que integran el equipo, agrupados por área. Cada paciente es acompañado por los que su tratamiento necesite, **en coordinación permanente entre especialidades**.",
-  // Los profesionales son exactamente los del roster del doc fuente (2.4): lo único
-  // que cambió es que los nombres que venían agrupados en una línea ("Langsam Analía
-  // y Urban Rodríguez Carla") ahora son una card cada uno, y las especialidades se
-  // ordenaron por área. No se agregó ni se quitó ninguna persona.
-  // TODO(PIEL): faltan las fotos de los profesionales (`public/equipo/<archivo>.jpg`).
+  // Los profesionales son exactamente los de la tabla de PIEL (observaciones, última
+  // ronda), agrupados por área. Administración no se muestra: esto es el equipo médico.
+  // Las fotos son retratos circulares sobre fondo blanco (`public/equipo/`).
+  // TODO(PIEL): faltan las fotos de Aliberti, Yannibelli, Azurduy Wayar, Echagüe Vila,
+  // Langsam, Romero, S. Carmona, Basualdo, Gantner y Spizzirri. Se suben desde
+  // /panel → Equipo médico; mientras tanto la tarjeta muestra las iniciales.
   groups: [
     {
       title: "Cirugía y anestesia",
@@ -183,14 +190,36 @@ export const equipoContent: EquipoPageContent = {
         {
           name: "Dr. Ricardo Bennun",
           role: "Cirugía cráneo-maxilo-facial",
-          photo: "/equipo/ricardo-bennun.jpg",
+          // Recorte de busto de su retrato: el de cuerpo entero no entra en el círculo.
+          photo: "/equipo/ricardo-bennun-retrato.jpg",
         },
-        { name: "Astrada Silvana", role: "Cirugía cráneo-maxilo-facial" },
-        { name: "Camacho Roy", role: "Cirugía cráneo-maxilo-facial" },
-        { name: "Novoa Alejandro", role: "Cirugía traumatología" },
-        { name: "Moggi Luis", role: "Anestesiología" },
-        { name: "Ventorrutti Tatiana", role: "Anestesiología" },
-        { name: "Carrizo Ricardo", role: "Instrumentación quirúrgica" },
+        {
+          name: "Astrada Silvana",
+          role: "Cirugía cráneo-maxilo-facial",
+          photo: "/equipo/silvana-astrada.jpg",
+        },
+        {
+          name: "Camacho Roy",
+          role: "Cirugía cráneo-maxilo-facial",
+          photo: "/equipo/roy-camacho.jpg",
+        },
+        {
+          name: "Novoa Alejandro",
+          role: "Cirugía traumatología",
+          photo: "/equipo/alejandro-novoa.jpg",
+        },
+        { name: "Moggi Luis", role: "Anestesiología", photo: "/equipo/luis-moggi.jpg" },
+        {
+          name: "Ventorutti Tatiana",
+          role: "Anestesiología",
+          photo: "/equipo/tatiana-ventorutti.jpg",
+        },
+        {
+          name: "Carrizo Ricardo",
+          role: "Instrumentación quirúrgica",
+          photo: "/equipo/ricardo-carrizo.jpg",
+        },
+        { name: "Aliberti Romina", role: "Instrumentación quirúrgica" },
       ],
     },
     {
@@ -199,9 +228,13 @@ export const equipoContent: EquipoPageContent = {
         "El seguimiento clínico del paciente a lo largo del tratamiento, desde los primeros controles.",
       members: [
         { name: "Yannibelli Patricia", role: "Pediatría" },
-        { name: "Henrichsen Julieta", role: "Pediatría" },
-        { name: "Rivelli Ramiro", role: "Otorrinolaringología" },
-        { name: "Echague Vila Agustina", role: "Dermatología" },
+        {
+          name: "Henrichsen Julieta",
+          role: "Pediatría",
+          photo: "/equipo/julieta-henrichsen.jpg",
+        },
+        { name: "Azurduy Wayar Andres Alejandro", role: "Otorrinolaringología" },
+        { name: "Echagüe Vila Agustina", role: "Dermatología" },
       ],
     },
     {
@@ -209,10 +242,18 @@ export const equipoContent: EquipoPageContent = {
       description:
         "El cuidado de la boca, los maxilares y las piezas dentarias en cada etapa del crecimiento.",
       members: [
-        { name: "Giorgi Mariano", role: "Odontología" },
+        { name: "Giorgi Mariano", role: "Odontología", photo: "/equipo/mariano-giorgi.jpg" },
         { name: "Langsam Analía", role: "Odontopediatría" },
-        { name: "Urban Rodríguez Carla", role: "Odontopediatría" },
-        { name: "Ávila Claudia", role: "Ortodoncia" },
+        {
+          name: "Urban Rodríguez Carla",
+          role: "Odontopediatría",
+          photo: "/equipo/carla-urban-rodriguez.jpg",
+        },
+        {
+          name: "Ávila Claudia Marcela",
+          role: "Ortodoncia",
+          photo: "/equipo/claudia-avila.jpg",
+        },
         { name: "Romero Gilda", role: "Mecánica dental" },
       ],
     },
@@ -222,11 +263,11 @@ export const equipoContent: EquipoPageContent = {
         "El trabajo sobre el habla, la alimentación, el movimiento y la contención de la familia.",
       members: [
         { name: "Carmona Samanta", role: "Fonoaudiología" },
-        { name: "Miloro María", role: "Fonoaudiología" },
+        { name: "Miloro María", role: "Fonoaudiología", photo: "/equipo/maria-miloro.jpg" },
+        { name: "Spizzirri Alejandra", role: "Kinesiología" },
         { name: "Basualdo Vanesa", role: "Psicología" },
         { name: "Gantner Erica", role: "Psicología" },
-        { name: "Carmona Noelia", role: "Nutrición" },
-        { name: "Spizzirri Alejandra", role: "Kinesiología" },
+        { name: "Carmona Noelia", role: "Nutrición", photo: "/equipo/noelia-carmona.jpg" },
       ],
     },
   ],

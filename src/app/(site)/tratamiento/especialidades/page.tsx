@@ -6,11 +6,15 @@ import BrandPanel from "@/components/ui/BrandPanel";
 import Reveal from "@/components/ui/Reveal";
 import RichText from "@/components/ui/RichText";
 import {
+  AppleIcon,
+  BoneIcon,
   ClipboardCheckIcon,
   DnaIcon,
+  DropIcon,
   EarIcon,
   HandHeartIcon,
   HospitalIcon,
+  MovementIcon,
   SpeechIcon,
   StethoscopeIcon,
   SupportIcon,
@@ -38,6 +42,10 @@ const iconMap: Record<SpecialtyIcon, typeof StethoscopeIcon> = {
   team: TeamIcon,
   clipboard: ClipboardCheckIcon,
   "hand-heart": HandHeartIcon,
+  apple: AppleIcon,
+  movement: MovementIcon,
+  bone: BoneIcon,
+  drop: DropIcon,
 };
 
 export default function EspecialidadesPage() {

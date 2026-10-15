@@ -12,10 +12,15 @@ Consolidado de todos los `TODO(PIEL)` del código. Son decisiones o entregas que
 - **Dirección:** Av. Palaá 536, Avellaneda, Provincia de Buenos Aires.
 - **Nombre del fundador:** Dr. **Ricardo** Bennun (antes figuraba "Roberto").
 
-## 2. Especialidades (14 vs 11)
+## 2. Especialidades (RESUELTO — última ronda)
 
-- El diagrama del cliente menciona **"las 14 especialidades"**, pero el doc 3.2 lista **11**. El roster del Equipo (2.4) suma otras (anestesiología, nutrición, kinesiología, dermatología, mecánica dental, instrumentación). **Confirmar el set final.**
-  - `especialidades.ts` · `navigation.ts`.
+- PIEL pasó el listado final: **15 especialidades** (`especialidades.ts`). Se sacaron
+  Psicopedagogía, Genética y Asistencia social (hoy no están en PIEL) y Neonatología
+  (no figura en el listado). La card del hub dice "Las 15 especialidades" y el texto de
+  Historia nombra solo especialidades vigentes.
+- **Descripciones a revisar por PIEL:** las de Anestesiología, Instrumentación
+  quirúrgica, Cirugía traumatológica, Odontología, Kinesiología, Nutrición, Dermatología
+  y Mecánica dental se escribieron cortas y genéricas porque no había texto entregado.
 
 ## 3. Contenido faltante (SIN DOC entregado — no inventar)
 
@@ -24,7 +29,11 @@ Consolidado de todos los `TODO(PIEL)` del código. Son decisiones o entregas que
 - **Info para médicos** (`/como-acceder/medicos`): el diagrama pide derivar un paciente · materiales · protocolos. Misma solución: estructura publicada, texto pendiente (`medicosContent.sections` en `como-acceder.ts`).
 - ~~Perfiles de cirujanos principales~~ → el bloque "Dirección médica" se eliminó a pedido de PIEL: el staff arranca directo después de la bio del Dr. Bennun, con los cirujanos primero.
 - **Pacientes internacionales** (`/como-acceder/internacional`): el doc 5.2 corta en "Atención para familias del exterior…". **Todo lo demás del doc ya está migrado** — falta solo el final de ese párrafo.
-- **Premios**: completar con reconocimientos nuevos posteriores a 2018, si los hubiera.
+- **Premios**: se sumó la placa de la ABFLP (São Paulo, septiembre 2026), tomada del
+  comunicado de prensa que llegó en la última ronda. Faltan los reconocimientos
+  2019–2025, si los hubiera.
+- **Investigación y academia**: las 3 cards tienen los textos corregidos por PIEL en la
+  última ronda. El contenido fuente no tenía más bloques que esos tres.
 
 > Para completar cualquiera de estas páginas: cargar los ítems en el array `sections`
 > del content file correspondiente. En cuanto `sections.length > 0`, la página muestra
