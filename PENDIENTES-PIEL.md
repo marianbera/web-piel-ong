@@ -25,7 +25,6 @@ Consolidado de todos los `TODO(PIEL)` del código. Son decisiones o entregas que
 ## 3. Contenido faltante (SIN DOC entregado — no inventar)
 
 - ~~Prensa~~ → resuelto: se cargaron las 3 notas y 6 videos del sitio actual (noticias + videos del home), enlazando a la publicación original de cada medio. Quedó afuera "Puentes de esperanza": el video ya no existe en YouTube. Se editan desde `/panel` → Prensa.
-- **Investigación y academia** (`/tratamiento/investigacion`): las 3 cards (Cátedra UBA · publicaciones · congresos) se completaron con el **CV del Dr. Bennun publicado en el sitio actual, que llega hasta 2017**. **A revisar por PIEL:** confirmar que los cargos siguen vigentes ("desde 2012 dirige…", "integra el consejo editorial…") y sumar la actividad posterior (`investigacionContent.sections` en `tratamiento.ts`).
 - **Info para médicos** (`/como-acceder/medicos`): el diagrama pide derivar un paciente · materiales · protocolos. Misma solución: estructura publicada, texto pendiente (`medicosContent.sections` en `como-acceder.ts`).
 - ~~Perfiles de cirujanos principales~~ → el bloque "Dirección médica" se eliminó a pedido de PIEL: el staff arranca directo después de la bio del Dr. Bennun, con los cirujanos primero.
 - **Pacientes internacionales** (`/como-acceder/internacional`): el doc 5.2 corta en "Atención para familias del exterior…". **Todo lo demás del doc ya está migrado** — falta solo el final de ese párrafo.
@@ -45,44 +44,50 @@ Consolidado de todos los `TODO(PIEL)` del código. Son decisiones o entregas que
 **Ya cargadas ✅**
 - Hero del Home, slide 1 y 2 → `public/brand/hero/`.
 - Bloque humano "Cada tratamiento es una historia" → `public/brand/historias/`.
-- **Dr. Ricardo Bennun** → `public/equipo/ricardo-bennun.jpg`, en la card grande del fundador
-  (retrato vertical con la bio al costado) y en su tarjeta del staff.
+- **Equipo** → `public/equipo/`: Dr. Ricardo Bennun (card grande del fundador con
+  `ricardo-bennun.jpg`; en el staff, el recorte de busto `ricardo-bennun-retrato.jpg`) y
+  las **12 fotos de la última ronda**: Astrada, Camacho, Novoa, Moggi, Ventorutti,
+  Carrizo, Henrichsen, Giorgi, Urban Rodríguez, Ávila, Miloro y N. Carmona. Son retratos
+  circulares sobre blanco, recortados al círculo para que la cara llene la tarjeta.
 - **Nosotros** (fachada de la sede) → `public/nosotros/sede.jpg`.
-- **Nuestro enfoque** (sala de juegos) → `public/tratamiento/enfoque-sala-de-juegos.jpg`.
-- **Especialidades** → `public/especialidades/`: Cirugía plástica (Dr. Bennun con un bebé),
-  Neonatología, Pediatría (la misma foto del Home), Odontopediatría, Ortodoncia, Psicología
-  y Asistencia social. **A confirmar con PIEL** la asignación, como pedía el documento.
-  - La de **Neonatología** (`piel-2.jpg`) es una **imagen generada con IA** (marca C2PA de
-    OpenAI). Se usa porque la eligió PIEL; conviene reemplazarla por una foto real.
-  - Psicología y Asistencia social muestran la **misma escena** (la profesional con dos
-    chicos en el escritorio), desde dos ángulos.
-- **Acompañamiento** (sala de juegos, panorámica) y **Cuidados** (estimulación temprana) →
-  `public/pacientes/`. La otra foto de Cuidados (postura para alimentar) reusa la del Home,
-  `slide-2-sumate.jpg`.
+- **Nuestro enfoque** → la kinesióloga con un bebé (`especialidades/kinesiologia.jpg`).
+  PIEL pidió sacar la foto de la nena; el link que mandaron para Enfoque es el mismo que
+  el de Kinesiología, así que las dos secciones comparten la foto.
+- **Especialidades** → `public/especialidades/`: Cirugía cráneo-maxilo-facial (Dr. Bennun
+  con un bebé), Odontopediatría, Ortodoncia, Otorrinolaringología, Fonoaudiología,
+  Kinesiología, Psicología y Pediatría (la misma foto del Home). Las de ORL, Fono y Kine
+  son las que eligió PIEL (llegaron en HEIC; se convirtieron a JPG).
+- **Acompañamiento** → `pacientes/acompanamiento/consultorio.jpg`: la escena de
+  consultorio de Psicología, recortada en 21:9 (PIEL pidió algo que "dé más centro médico").
+- **Cuidados** (estimulación temprana) → `public/pacientes/`. La otra foto de Cuidados
+  (postura para alimentar) reusa la del Home, `slide-2-sumate.jpg`.
+- **Sé parte** → `public/se-parte/`: el nene con el globo (header del hub y pie de Donar),
+  la nena entre flores (Apadrinar) y la nena en la sala de juegos (Empresas).
 
 Todas se exportaron sin metadatos: las fotos de iPhone traían la ubicación GPS.
 
-**Todavía con placeholder, a la espera de fotos:**
-- Especialidades: **Genética, Fonoaudiología, Otorrinolaringología y Psicopedagogía**
-  (la foto de la cabina de audiometría se sacó de Otorrinolaringología a pedido de PIEL).
-
-**Imágenes generadas con IA:** en la tanda de prueba había 10 con la marca C2PA de OpenAI
-(15.jpg, piel-2.jpg, Gauna Eugenia Itati (2).jpg, varias con nombre IMG_… o ChatGPT…).
-Salvo `piel-2.jpg` (Neonatología, elegida por PIEL), no se publicaron: mostrar chicos
-generados por IA como pacientes reales puede engañar a las familias. Si existen los
-originales, sirven.
-
-- `public/equipo/` → **21 retratos** que faltan del staff (4:5 vertical).
-  Lista nombre → archivo en **`public/equipo/LEEME.md`**.
-  Para activar uno: agregar `photo: "/equipo/<archivo>.jpg"` al profesional en `quienes-somos.ts`.
-  Mientras tanto la card muestra las iniciales sobre el degradé de marca.
+**Pendientes de PIEL**
+- **Header de Sé parte:** el link "HEADER" de la última ronda apuntaba a un comunicado de
+  prensa (Word), no a una foto. Mientras tanto se usa la foto de Donar. Pedir la correcta.
+- **Apadrinar:** la foto llegó chica (687 × 617 px). Se ve bien en la columna, pero
+  conviene pedir el original.
+- **Equipo — 10 fotos que faltan:** Aliberti, Yannibelli, Azurduy Wayar, Echagüe Vila,
+  Langsam, Romero, S. Carmona, Basualdo, Gantner y Spizzirri. La tabla de PIEL marca
+  varias como "SÍ" (ya sacadas), pero no estaban en la carpeta de Drive. Se suben desde
+  `/panel` → Equipo médico. Detalle en **`public/equipo/LEEME.md`**.
+- **Especialidades sin foto:** Anestesiología, Instrumentación quirúrgica, Cirugía
+  traumatológica, Odontología, Nutrición, Dermatología y Mecánica dental (muestran el
+  panel de marca con su ícono).
 - `public/labio-leporino/` → las **4 ilustraciones** ya están cargadas y se muestran sin
-  recuadro, a todo el ancho de la columna y con su proporción real (antes iban en un marco
-  16:9 que les dejaba un hueco grande arriba y abajo). Son chicas (~770 px de ancho): si
-  PIEL tiene versiones en mayor resolución, conviene reemplazarlas. Detalle en
-  **`public/labio-leporino/LEEME.md`**.
+  recuadro, a todo el ancho de la columna y con su proporción real. Son chicas (~770 px
+  de ancho): si PIEL tiene versiones en mayor resolución, conviene reemplazarlas. Detalle
+  en **`public/labio-leporino/LEEME.md`**.
 - **Consentimiento:** las fotos de pacientes, familias y profesionales necesitan autorización
   de uso de imagen antes de publicarse.
+
+**Imágenes generadas con IA:** en la tanda de prueba había 10 con la marca C2PA de OpenAI.
+No se publicó ninguna (la de Neonatología se fue junto con la especialidad): mostrar
+chicos generados por IA como pacientes reales puede engañar a las familias.
 
 **Notas**
 - Las imágenes viejas de `public/brand/*.jpeg` **no son usables como foto**: son placas promocionales de Instagram con texto incrustado y cifras equivocadas.
@@ -91,14 +96,29 @@ originales, sirven.
 
 ## 5. Logos
 
+Todos los logos se muestran en **tarjetas blancas del mismo tamaño**, con el logo contenido
+y a opacidad completa (antes, sueltos, unos se veían cortados y otros lavados). Si un logo
+no tiene archivo, la tarjeta muestra el nombre.
+
 - ~~Guías y materiales~~ → la sección se eliminó a pedido de PIEL. `/pacientes/guias` redirige a Preguntas frecuentes.
-- ~~Logos "Colaboran con nosotros"~~ → resuelto: los 9 logos del carrusel del sitio actual
-  están en `public/colaboradores/` y se muestran en Nosotros. Se editan desde `/panel` → Logos.
-- **"Empresas que nos acompañan"** (Empresas): el sitio actual no tiene esa sección, así que
-  sigue vacía hasta que PIEL cargue los logos desde **`/panel` → Logos**.
-- **Ojo si el Blob Store ya existe:** los logos y la prensa nuevos son el contenido inicial.
-  Si alguien ya guardó esas secciones desde el panel, se sigue viendo lo guardado y hay que
-  cargarlos a mano.
+- **Colaboran con nosotros** (Nosotros): los 9 logos del sitio actual, en
+  `public/colaboradores/`. Al del Journal of Craniofacial Surgery se le recortó la franja
+  rosa. Son archivos chicos (~350 px): si PIEL consigue versiones mejores, conviene cambiarlos.
+- **Empresas que nos acompañan** (Sé parte → Empresas): las **20 empresas** de la última
+  ronda, en `public/empresas/`. PIEL no mandó archivos: se bajaron de Wikimedia Commons o
+  del sitio oficial de cada una.
+  - **Con el nombre en vez de logo (5):** Ribeiro (cerró su sitio), Sintyal (sin sitio),
+    Raffo y Biosystems (sus sitios bloquean la descarga) y **Grupo G.F.A. S.A.**: gfa.com.ar
+    es "Gonzalez Fischer & Asociados" y no se pudo confirmar que sea la misma empresa.
+  - PerkinElmer hoy se llama Revvity; se usó el logo de PerkinElmer porque es con el que
+    trabajó PIEL.
+- **Obras sociales y cobertura** (Cómo acceder): tarjetas con logo. OSDE, Omint, Medifé,
+  Jerárquicos Salud y Osmédica, en `public/obras-sociales/`. **Etica+ y OSCHOCA** van con el
+  nombre: de OSCHOCA solo hay un banner de baja resolución, y no se pudo confirmar que
+  Etica+ sea "Ética Salud". El panel tiene un campo de logo nuevo para cargarlos.
+- **Ojo si el Blob Store ya existe:** logos, prensa, coberturas y equipo son el contenido
+  inicial. Si alguien ya guardó esas secciones desde el panel, se sigue viendo lo guardado
+  (sin las fotos, logos ni cambios nuevos) y hay que cargarlos a mano.
 
 ## 6. Contacto, pagos y links
 
@@ -147,12 +167,11 @@ originales, sirven.
 - **Respuestas de "Antes de tu primera consulta"** (Pacientes de Argentina): las cuatro
   que están publicadas son provisorias y remiten al equipo. Reemplazar en
   `primeraConsultaFaqs`, en `lib/content/como-acceder.ts`.
-- **Investigación y academia:** las 3 cards ya tienen texto, armado con el CV del sitio
-  actual (hasta 2017). Falta que PIEL lo revise y lo actualice (ver sección 3).
+- ~~Investigación y academia~~ → resuelto: las 3 cards tienen los textos corregidos por PIEL.
 - **Alimentación y acompañamiento** en `/labio-leporino`: falta el contenido real de
   Nutrición y Fonoaudiología para ampliar ese bloque.
-- **Fotos de especialidades:** hay una carpeta de Drive en el documento de observaciones.
-  Antes de subirlas hay que consultar con PIEL cuál corresponde a cada sección.
+- ~~Fotos de especialidades~~ → PIEL asignó Fonoaudiología, Kinesiología y ORL en la
+  última ronda. Las que siguen sin foto están en la sección 4.
 
 ### Bloques escritos pero SIN PUBLICAR (esperan aprobación)
 Los dos están en `lib/content/como-acceder.ts` y no se renderizan hasta que se aprueben:
@@ -163,8 +182,9 @@ Los dos están en `lib/content/como-acceder.ts` y no se renderizan hasta que se 
   `bullets` de `internacionalContent`.
 
 ### Fotos del equipo
-Están en retoque, se envían aparte. **Ya no hace falta tocar código**: se suben desde
-`/panel` → Equipo médico. Ver `PANEL-PIEL.md`.
+Llegaron 12 en la última ronda y ya están publicadas. Faltan 10 (lista en la sección 4).
+**No hace falta tocar código**: se suben desde `/panel` → Equipo médico. Ver `PANEL-PIEL.md`.
+Formato: cuadradas, con la persona centrada; la tarjeta las muestra en círculo.
 
 ### ⚙️ Panel — pasos pendientes de infraestructura (Vercel)
 1. **Crear el Blob Store**: proyecto web-piel → pestaña *Storage* → *Create Database* →
