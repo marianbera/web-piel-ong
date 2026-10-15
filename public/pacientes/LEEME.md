@@ -17,7 +17,7 @@ Eso es todo — no hay que tocar el código de las páginas.
 |---|---|---|---|
 | `/brand/hero/slide-2-sumate.jpg` | Cuidados y alimentación | ✅ Postura semisentada para alimentar: se reusa la foto del Home, no hay archivo en esta carpeta | horizontal 3:2 |
 | `cuidados/estimulacion-temprana.jpg` | Cuidados y alimentación | ✅ Cargada: mamá con su bebé en brazos | horizontal 3:2 |
-| `acompanamiento/sala-de-juegos.jpg` | Acompañamiento | ✅ Cargada: chicos en la sala de juegos de la sede (el archivo ya está recortado en 21:9) | panorámica 21:9 |
+| `acompanamiento/consultorio.jpg` | Acompañamiento | ✅ Cargada: profesional conversando con dos chicos en un consultorio (reemplaza a la sala de juegos, a pedido de PIEL; ya recortada en 21:9) | panorámica 21:9 |
 
 > Las entradas `fisuraImages` y `alimentacionImages` de `pacientesImagenes.ts` quedaron de
 > las páginas que se unificaron y hoy no se muestran en ningún lado. Las ilustraciones
