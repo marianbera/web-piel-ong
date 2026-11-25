@@ -77,9 +77,9 @@ Todas se exportaron sin metadatos: las fotos de iPhone traían la ubicación GPS
   Langsam, Romero, S. Carmona, Basualdo, Gantner y Spizzirri. La tabla de PIEL marca
   varias como "SÍ" (ya sacadas), pero no estaban en la carpeta de Drive. Se suben desde
   `/panel` → Equipo médico. Detalle en **`public/equipo/LEEME.md`**.
-- **Especialidades sin foto:** Anestesiología, Instrumentación quirúrgica, Cirugía
-  traumatológica, Odontología, Nutrición, Dermatología y Mecánica dental (muestran el
-  panel de marca con su ícono).
+- **Especialidades sin foto:** Instrumentación quirúrgica, Cirugía traumatológica,
+  Odontología, Nutrición, Dermatología y Mecánica dental (muestran el panel de marca con
+  su ícono). Anestesiología ya tiene la suya (`especialidades/anestesia.jpg`).
 - `public/labio-leporino/` → las **4 ilustraciones** ya están cargadas y se muestran sin
   recuadro, a todo el ancho de la columna y con su proporción real. Son chicas (~770 px
   de ancho): si PIEL tiene versiones en mayor resolución, conviene reemplazarlas. Detalle
@@ -225,21 +225,27 @@ mensaje explicando qué falta.
   porque el pedido indicaba su período dentro de "Colaboran").
 - **Bio del Dr. Bennun:** dice "Exdirector del Servicio de Cirugía Plástica del Garrahan",
   pero el cargo que pasaron en ese servicio es "Médico Principal" (1988–1998). Confirmar.
-- **Grafía de "álveolo":** la definición oficial dice "labio-álveolo-palatinas" (igual
-  que el resto del Home); la Misión dice "labio-alvéolo-palatinas". Se publicaron tal
-  como llegaron. Confirmar si se unifica ("alvéolo" es la forma correcta).
-- **Secciones nuevas sin contenido** (`TODO: contenido PIEL` en el código):
-  - **Club de la Familia** → hoy es una sección de Acompañamiento
-    (`acompanamientoContent` en `pacientes.ts`). Falta el contenido ampliado y
-    confirmar el nombre ("Club de la Familia" vs. "Club de Familias").
-  - **Anestesia** → hoy es la tarjeta de Anestesiología en Especialidades, con texto
-    provisorio (`especialidades.ts`).
-  - **Libro en inglés** y **Nuevo libro en español** → bloques "En preparación" en
-    Investigación y academia (`investigacionContent.upcoming` en `tratamiento.ts`).
-    Confirmar si el libro en inglés es el atlas de Wiley-Blackwell (2015) que ya figura
-    en "Publicaciones".
+- **Secciones nuevas** (`TODO: contenido PIEL` en el código):
+  - **Club de la Familia** → sección de Acompañamiento (`acompanamientoContent` en
+    `pacientes.ts`), ya con foto (`pacientes/acompanamiento/club-de-la-familia.jpg`).
+    Falta el contenido ampliado y confirmar el nombre ("Club de la Familia" vs. "Club de
+    Familias").
+  - **Anestesia** → tarjeta de Anestesiología en Especialidades, ya con foto
+    (`especialidades/anestesia.jpg`). El texto sigue siendo provisorio.
+  - **Libros** → tarjetas con tapa en Investigación y academia
+    (`investigacionContent.books` en `tratamiento.ts`, tapas en `public/investigacion/`).
+    El de inglés es el atlas de Wiley-Blackwell (2015), confirmado: sus datos salen de la
+    misma constante que usa la card "Publicaciones". La tarjeta lista a los cuatro
+    editores de la tapa (Bennun, Harfin, Sándor y Genecov). El **Manual de Fisuras
+    Labiopalatinas** (Editorial Brujas) figura "En preparación" porque la tapa es una
+    maqueta preliminar: falta el año de publicación.
   - PIEL puede enviar la **lista de capítulos publicados en libros** y las
-    **publicaciones nacionales y extranjeras** para completar estas secciones.
+    **publicaciones nacionales y extranjeras** para completar "Publicaciones".
+- **Ortografía:** todo el sitio dice "alvéolo" / "labio-alvéolo-palatina". Quedan sin
+  tocar los nombres propios: "Labio Alveolo Palatinas" en el nombre de AFLAPyCRA y el
+  título del libro "Manual de Fisuras Labiopalatinas".
+- **Consentimiento:** las fotos de Anestesia y del Club de la Familia muestran
+  pacientes y familias reconocibles (ver sección 4).
 - **Ojo con el Blob Store:** Equipo, Premios y Logos se editan desde el panel. Si alguna
   de esas secciones ya se guardó alguna vez, se sigue viendo lo guardado y estos cambios
   (Aliberti/ORL/Nutrición, período de Herrod, Gantz y los logos nuevos) hay que hacerlos

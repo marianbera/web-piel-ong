@@ -13,7 +13,7 @@ export const quienesSomosHub: QuienesSomosHubContent = {
   },
   // Definición institucional oficial de PIEL (nov. 2026) + la cifra unificada de pacientes.
   intro:
-    "**P.I.E.L.** (Plástica Infantil con Excelencia en el Logro) es un **centro de referencia en cirugía plástica infantil y craneofacial** especializado en el **tratamiento integral** de las fisuras labio-álveolo-palatinas. Desde su fundación en 1988, acompañó a **más de 6.000 pacientes**.",
+    "**P.I.E.L.** (Plástica Infantil con Excelencia en el Logro) es un **centro de referencia en cirugía plástica infantil y craneofacial** especializado en el **tratamiento integral** de las fisuras labio-alvéolo-palatinas. Desde su fundación en 1988, acompañó a **más de 6.000 pacientes**.",
   sections: [
     {
       title: "Nosotros",
@@ -198,7 +198,7 @@ export const equipoContent: EquipoPageContent = {
       src: "/equipo/ricardo-bennun.jpg",
       alt: "Retrato del Dr. Ricardo Bennun, fundador y director médico de Asociación PIEL",
     },
-    bio: "Es **una de las figuras más reconocidas** de la cirugía plástica infantil en Argentina. Exdirector del Servicio de Cirugía Plástica del **Hospital de Pediatría Juan P. Garrahan**, dedicó su carrera al tratamiento de fisuras labio alvéolo palatinas y al desarrollo de un modelo de atención integral que hoy define a PIEL.",
+    bio: "Es **una de las figuras más reconocidas** de la cirugía plástica infantil en Argentina. Exdirector del Servicio de Cirugía Plástica del **Hospital de Pediatría Juan P. Garrahan**, dedicó su carrera al tratamiento de fisuras labio-alvéolo-palatinas y al desarrollo de un modelo de atención integral que hoy define a PIEL.",
     // Lleva al bloque de trayectoria de esta misma página (abajo de la bio).
     cta: { label: "Ver trayectoria completa", href: "#trayectoria" },
     // Formación y cargos que pasó PIEL (ronda de cambios de contenido, nov. 2026).

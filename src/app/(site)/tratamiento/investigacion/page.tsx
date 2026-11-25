@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 import PageBody from "@/components/ui/PageBody";
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
 };
 
 export default function InvestigacionPage() {
-  const { header, intro, sections, pending, note, upcoming } = investigacionContent;
+  const { header, intro, sections, pending, note, books } = investigacionContent;
 
   return (
     <>
@@ -49,11 +50,49 @@ export default function InvestigacionPage() {
               ))}
             </ul>
 
-            {/* Bloques pedidos por PIEL que esperan su contenido. */}
-            {upcoming && upcoming.blocks.length > 0 && (
+            {/* Libros: tapa a la izquierda (con su proporción real, sin recorte) y los
+                datos al costado. */}
+            {books && books.items.length > 0 && (
               <section className="mt-16">
-                <SectionHeading title={upcoming.title} accent />
-                <PendingSections blocks={upcoming.blocks} />
+                <SectionHeading title={books.title} accent />
+                <ul className="mt-10 grid gap-6 lg:grid-cols-2">
+                  {books.items.map((book, index) => (
+                    <li key={book.title} className="flex">
+                      <Reveal delay={index * 80} className="flex w-full">
+                        <Card className="flex h-full w-full flex-col gap-6 sm:flex-row sm:items-start">
+                          <Image
+                            src={book.cover.src}
+                            alt={book.cover.alt}
+                            width={book.cover.width}
+                            height={book.cover.height}
+                            sizes="(min-width: 640px) 9rem, 10rem"
+                            className="h-auto w-40 shrink-0 self-center rounded-md shadow-lg sm:w-36 sm:self-start"
+                          />
+                          <div>
+                            {book.status && (
+                              <span className="mb-3 inline-block rounded-full bg-piel-offwhite px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-wider text-piel-text/60">
+                                {book.status}
+                              </span>
+                            )}
+                            <h3 className="text-xl font-bold text-piel-navy">{book.title}</h3>
+                            {book.subtitle && (
+                              <p className="mt-1 text-piel-text/75">{book.subtitle}</p>
+                            )}
+                            <p className="mt-4 text-sm text-piel-text/80">
+                              <span className="font-semibold">
+                                {book.editors.length > 1 ? "Editores" : "Editor"}:
+                              </span>{" "}
+                              {book.editors.join(", ")}
+                            </p>
+                            <p className="mt-1 text-sm text-piel-text/70">
+                              {[book.publisher, book.year].filter(Boolean).join(", ")}
+                            </p>
+                          </div>
+                        </Card>
+                      </Reveal>
+                    </li>
+                  ))}
+                </ul>
               </section>
             )}
 

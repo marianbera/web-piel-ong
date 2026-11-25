@@ -6,7 +6,7 @@ export const nosotrosContent: NosotrosContent = {
     title: "Nosotros",
     // Definición institucional oficial de PIEL (ronda de cambios de contenido, nov. 2026).
     subtitle:
-      "P.I.E.L. (Plástica Infantil con Excelencia en el Logro) es un centro de referencia en cirugía plástica infantil y craneofacial especializado en el tratamiento integral de las fisuras labio-álveolo-palatinas.",
+      "P.I.E.L. (Plástica Infantil con Excelencia en el Logro) es un centro de referencia en cirugía plástica infantil y craneofacial especializado en el tratamiento integral de las fisuras labio-alvéolo-palatinas.",
   },
   intro: [
     "Desde hace **más de 38 años**, desarrollamos un **modelo de atención interdisciplinario** que integra cirugía, rehabilitación y seguimiento en un solo lugar, acompañando a cada paciente desde el diagnóstico prenatal hasta la finalización del tratamiento.",

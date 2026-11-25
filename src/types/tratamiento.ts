@@ -1,4 +1,22 @@
-import type { PageHeaderContent, SectionLink, Step } from "@/types/common";
+import type { DraftPageContent, PageHeaderContent, SectionLink, Step } from "@/types/common";
+
+/** Libro del equipo, mostrado como tarjeta con su tapa en Investigación y academia. */
+export interface BookItem {
+  title: string;
+  subtitle?: string;
+  /** Tal como figuran en la tapa. */
+  editors: string[];
+  publisher: string;
+  year?: string;
+  /** Estado visible (p. ej. "En preparación"). Sin él, el libro se da por publicado. */
+  status?: string;
+  /** Tapa en `public/investigacion/`, con sus medidas reales para no recortarla. */
+  cover: { src: string; alt: string; width: number; height: number };
+}
+
+export interface InvestigacionContent extends DraftPageContent {
+  books?: { title: string; items: BookItem[] };
+}
 
 export type SpecialtyIcon =
   | "stethoscope"

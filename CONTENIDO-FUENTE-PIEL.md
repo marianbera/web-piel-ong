@@ -74,6 +74,7 @@ Atendemos pacientes privados, con cobertura médica y también desarrollamos pro
 
 > **Actualizado (nov. 2026):** PIEL reemplazó la definición institucional, la Visión y la Misión.
 > Los textos vigentes están en `src/lib/content/nosotros.ts` y en `PENDIENTES-PIEL.md` (sección 10).
+> En el sitio la grafía se unificó a "alvéolo" / "labio-alvéolo-palatina" (este archivo conserva la de los Word).
 
 **VISIÓN:** Ser el centro de referencia en cirugía plástica infantil en Argentina y la región, reconocido por la calidad de sus resultados y su modelo de atención integral.
 

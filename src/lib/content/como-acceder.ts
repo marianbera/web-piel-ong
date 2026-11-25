@@ -51,7 +51,7 @@ export const argentinaContent: ComoAccederPageContent = {
     subtitle: "Atención especializada para familias de todo el país.",
   },
   intro:
-    "Atendemos pacientes de distintas provincias que buscan **atención especializada** en fisuras labio alvéolo palatinas y cirugía plástica infantil.",
+    "Atendemos pacientes de distintas provincias que buscan **atención especializada** en fisuras labio-alvéolo-palatinas y cirugía plástica infantil.",
   paragraphs: [
     "Nuestro **modelo interdisciplinario** permite acompañar a cada paciente desde el diagnóstico hasta las distintas etapas de tratamiento y seguimiento.",
     "Entendemos que muchas familias deben trasladarse desde diferentes localidades. Por eso organizamos consultas y tratamientos **de manera coordinada** para optimizar cada instancia de atención. Cada caso es único y requiere una evaluación personalizada, realizada por profesionales integrados.",
@@ -66,7 +66,7 @@ export const internacionalContent: ComoAccederPageContent = {
     subtitle: "Centro de referencia regional para familias del exterior.",
   },
   intro:
-    "PIEL recibe pacientes de **distintos países** que buscan atención especializada en fisuras labio alvéolo palatinas y cirugía plástica infantil.",
+    "PIEL recibe pacientes de **distintos países** que buscan atención especializada en fisuras labio-alvéolo-palatinas y cirugía plástica infantil.",
   paragraphs: [
     "Nuestra experiencia interdisciplinaria, desarrollada durante **más de 38 años**, nos ha permitido acompañar a miles de pacientes y consolidarnos como **centro de referencia regional**.",
     "**Un abordaje integral en un único lugar**: las distintas especialidades trabajan de manera coordinada dentro de una misma institución (cirugía plástica infantil, odontología, ortodoncia, fonoaudiología, psicología, pediatría y otras), abordando cada caso de forma integral.",
@@ -78,7 +78,7 @@ export const internacionalContent: ComoAccederPageContent = {
     "**Más de 38 años** de experiencia.",
     "**Más de 6.000 pacientes** tratados.",
     "Equipo interdisciplinario especializado.",
-    "Centro referente en fisuras labio alvéolo palatinas.",
+    "Centro referente en fisuras labio-alvéolo-palatinas.",
     "Atención integral centrada en el paciente y su familia.",
   ],
   cta: { label: "Contactar por WhatsApp", href: whatsappUrl },
@@ -154,7 +154,7 @@ export const medicosContent: DraftPageContent = {
     subtitle: "Derivaciones, materiales y protocolos para profesionales de la salud.",
   },
   intro:
-    "Trabajamos junto a pediatras, neonatólogos y equipos de salud de todo el país en el seguimiento de pacientes con fisuras labio alvéolo palatinas. Estamos preparando esta sección con el material para profesionales.",
+    "Trabajamos junto a pediatras, neonatólogos y equipos de salud de todo el país en el seguimiento de pacientes con fisuras labio-alvéolo-palatinas. Estamos preparando esta sección con el material para profesionales.",
   sections: [],
   pending: [
     {

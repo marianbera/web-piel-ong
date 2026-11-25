@@ -260,7 +260,7 @@ export function buildSearchIndex(): SearchEntry[] {
     entry(
       BLOCK.sitio,
       "/",
-      { title: "Inicio", subtitle: "Asociación PIEL — tratamiento integral de fisuras labio-álveolo-palatinas." },
+      { title: "Inicio", subtitle: "Asociación PIEL — tratamiento integral de fisuras labio-alvéolo-palatinas." },
       ["home", "portada"]
     ),
   ];

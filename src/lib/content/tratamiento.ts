@@ -1,6 +1,6 @@
-import type { DraftPageContent } from "@/types/common";
 import type {
   EnfoqueContent,
+  InvestigacionContent,
   OtrasAreasContent,
   TratamientoHubContent,
 } from "@/types/tratamiento";
@@ -11,7 +11,7 @@ export const tratamientoHub: TratamientoHubContent = {
     subtitle: "Todo el equipo y todas las especialidades, coordinadas en un solo lugar.",
   },
   intro:
-    "El tratamiento de las fisuras labio-álveolo-palatinas en PIEL combina cirugía, seguimiento médico y acompañamiento durante toda la infancia, con un **equipo interdisciplinario completo**.",
+    "El tratamiento de las fisuras labio-alvéolo-palatinas en PIEL combina cirugía, seguimiento médico y acompañamiento durante toda la infancia, con un **equipo interdisciplinario completo**.",
   sections: [
     {
       title: "Nuestro enfoque",
@@ -43,13 +43,13 @@ export const enfoqueContent: EnfoqueContent = {
   header: {
     title: "Nuestro enfoque",
     subtitle:
-      "El tratamiento de una fisura labio alvéolo palatina requiere mucho más que una intervención quirúrgica. Cada paciente necesita seguimiento, coordinación entre especialidades y un acompañamiento sostenido a lo largo del tiempo.",
+      "El tratamiento de una fisura labio-alvéolo-palatina requiere mucho más que una intervención quirúrgica. Cada paciente necesita seguimiento, coordinación entre especialidades y un acompañamiento sostenido a lo largo del tiempo.",
   },
   intro: [
     "En PIEL trabajamos con un **enfoque interdisciplinario** que permite evaluar y acompañar cada caso de manera integral, adaptando el tratamiento a cada etapa del crecimiento del paciente.",
     "**El mismo día y en un mismo lugar**, niños y familias pueden acceder a distintas especialidades, evitando la fragmentación habitual del sistema de salud y favoreciendo una mirada coordinada del tratamiento.",
     "Creemos en la importancia de la contención. Por eso, cada consulta se desarrolla en un **entorno cercano, humano y pensado para los niños** y sus familias.",
-    "**Más de 38 años de experiencia** y miles de pacientes tratados nos permitieron consolidar un **modelo de atención propio** para el abordaje integral de fisuras labio alvéolo palatinas.",
+    "**Más de 38 años de experiencia** y miles de pacientes tratados nos permitieron consolidar un **modelo de atención propio** para el abordaje integral de fisuras labio-alvéolo-palatinas.",
   ],
   // PIEL pidió una foto con una profesional en vez de la de la nena. Es la misma
   // que la de Kinesiología en Especialidades (las dos venían del mismo link).
@@ -105,10 +105,17 @@ export const otrasAreasContent: OtrasAreasContent = {
   ],
 };
 
+/** El atlas de Wiley: aparece en la card "Publicaciones" y como tarjeta en "Libros". */
+const ATLAS = {
+  title: "Cleft Lip and Palate Management: A Comprehensive Atlas",
+  publisher: "Wiley-Blackwell",
+  year: "2015",
+};
+
 // Los tres bloques son los que pide el diagrama del cliente (Cátedra UBA ·
 // publicaciones · congresos). `pending` es la estructura "en preparación" que se
 // muestra solo si `sections` queda vacío.
-export const investigacionContent: DraftPageContent = {
+export const investigacionContent: InvestigacionContent = {
   header: {
     title: "Investigación y academia",
     subtitle: "Formación, publicaciones y participación en congresos.",
@@ -125,7 +132,7 @@ export const investigacionContent: DraftPageContent = {
     },
     {
       title: "Publicaciones",
-      body: "Es editor del libro **Cleft Lip and Palate Management: A Comprehensive Atlas** (Wiley-Blackwell, 2015) y autor de capítulos en **Clinical Cases in Early Orthodontic Treatment** (Springer, 2017) y en \"Tratamiento interdisciplinario de las fisuras labio palatinas\" (2007). En 2023 publicó el capítulo \"Cleft Palate Repair\" en **The Embryologic Basis of Craniofacial Structure** (Springer-Verlag). Participó en un estudio de investigación genética sobre fisuras labio-alvéolo-palatinas publicado en el **European Journal of Human Genetics**, junto a investigadores de Johns Hopkins. Integra el consejo editorial de **The Journal of Craniofacial Surgery** desde 2016.",
+      body: `Es editor del libro **${ATLAS.title}** (${ATLAS.publisher}, ${ATLAS.year}) y autor de capítulos en **Clinical Cases in Early Orthodontic Treatment** (Springer, 2017) y en \"Tratamiento interdisciplinario de las fisuras labio palatinas\" (2007). En 2023 publicó el capítulo \"Cleft Palate Repair\" en **The Embryologic Basis of Craniofacial Structure** (Springer-Verlag). Participó en un estudio de investigación genética sobre fisuras labio-alvéolo-palatinas publicado en el **European Journal of Human Genetics**, junto a investigadores de Johns Hopkins. Integra el consejo editorial de **The Journal of Craniofacial Surgery** desde 2016.`,
     },
     {
       title: "Congresos y jornadas",
@@ -146,23 +153,41 @@ export const investigacionContent: DraftPageContent = {
       hint: "La participación de PIEL en congresos y encuentros científicos, nacionales e internacionales.",
     },
   ],
-  // TODO: contenido PIEL — los dos libros que PIEL pidió sumar (ronda de cambios de
-  // contenido, nov. 2026). Todavía sin datos: no inventar título, editorial ni año.
+  // Los dos libros que PIEL pidió sumar (nov. 2026), como tarjetas con su tapa.
+  // El de inglés es el mismo atlas de "Publicaciones" (confirmado): sale de ATLAS, así
+  // el título, la editorial y el año no se escriben dos veces.
   // PIEL puede enviar la lista de capítulos publicados en libros y las publicaciones
-  // nacionales y extranjeras para completar esta parte y la card "Publicaciones".
-  // Cuando llegue el texto, cada libro pasa a `sections` y se quita de acá.
-  // TODO: confirmar con PIEL si el "libro en inglés" es el atlas de Wiley-Blackwell
-  // (2015) que ya figura en "Publicaciones" o una publicación nueva.
-  upcoming: {
-    title: "Libros del equipo",
-    blocks: [
+  // nacionales y extranjeras para completar la card "Publicaciones".
+  books: {
+    title: "Libros",
+    items: [
       {
-        title: "Libro en inglés",
-        hint: "La publicación del equipo en inglés.",
+        title: ATLAS.title,
+        // Los cuatro editores que figuran en la tapa.
+        editors: ["Ricardo D. Bennun", "Julia F. Harfin", "George K. B. Sándor", "David Genecov"],
+        publisher: ATLAS.publisher,
+        year: ATLAS.year,
+        cover: {
+          src: "/investigacion/libro-ingles.jpg",
+          alt: `Tapa del libro ${ATLAS.title}, editado por Ricardo D. Bennun, Julia F. Harfin, George K. B. Sándor y David Genecov (${ATLAS.publisher})`,
+          width: 609,
+          height: 757,
+        },
       },
       {
-        title: "Nuevo libro en español",
-        hint: "La nueva publicación del equipo en español.",
+        title: "Manual de Fisuras Labiopalatinas",
+        subtitle: "Un nuevo paradigma para su abordaje integral y la prevención de secuelas",
+        editors: ["Ricardo D. Bennun"],
+        publisher: "Editorial Brujas",
+        // La tapa es una maqueta preliminar: el libro todavía no salió.
+        // TODO: confirmar con PIEL el año de publicación y quitar `status` cuando salga.
+        status: "En preparación",
+        cover: {
+          src: "/investigacion/libro-espanol.png",
+          alt: "Maqueta preliminar de la tapa del libro Manual de Fisuras Labiopalatinas, editado por Ricardo D. Bennun (Editorial Brujas)",
+          width: 1800,
+          height: 2760,
+        },
       },
     ],
   },

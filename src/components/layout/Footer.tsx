@@ -16,7 +16,7 @@ export default function Footer() {
           <p className="mt-3 font-heading text-xl font-bold">{siteName}</p>
           <p className="mt-3 text-sm text-white/80">
             Más de 38 años acompañando a niños y familias en el tratamiento integral de
-            fisuras labio alvéolo palatinas.
+            fisuras labio-alvéolo-palatinas.
           </p>
           {/* TODO(PIEL): el cliente quiere una nota que explique el porqué del nombre "PIEL" (logo retocado). Falta el texto. */}
           <div className="mt-4 flex gap-4">

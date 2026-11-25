@@ -64,3 +64,11 @@ export const acompanamientoImage: ContentImage = {
   alt: "Profesional de Asociación PIEL conversando con dos chicos en un consultorio",
   caption: "Ninguna familia atraviesa este proceso sola.",
 };
+
+// Club de la Familia: foto que pasó PIEL en la ronda de cambios de contenido (nov. 2026).
+// Va debajo de la sección del Club, en un marco 16:9.
+export const clubDeLaFamiliaImage: ContentImage = {
+  src: "/pacientes/acompanamiento/club-de-la-familia.jpg",
+  alt: "Madres, padres y chicos sentados en ronda en la sala de espera de Asociación PIEL, durante un encuentro entre familias",
+  caption: "Un encuentro de familias en la sala de espera de PIEL.",
+};

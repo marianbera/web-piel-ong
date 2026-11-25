@@ -7,8 +7,9 @@ import type { EspecialidadesContent } from "@/types/tratamiento";
 // Fotos: Fonoaudiología, Kinesiología y Otorrinolaringología son las que eligió PIEL.
 // El resto de las que tienen foto conservan la asignación anterior. Las que no tienen
 // muestran el panel de marca con su ícono.
-// TODO(PIEL): fotos para Anestesiología, Instrumentación quirúrgica, Cirugía
-// traumatológica, Odontología, Nutrición, Dermatología y Mecánica dental.
+// Anestesiología tiene la foto que pasó PIEL en la ronda de cambios de contenido (nov. 2026).
+// TODO(PIEL): fotos para Instrumentación quirúrgica, Cirugía traumatológica,
+// Odontología, Nutrición, Dermatología y Mecánica dental.
 export const especialidadesContent: EspecialidadesContent = {
   header: {
     title: "Especialidades",
@@ -27,11 +28,17 @@ export const especialidadesContent: EspecialidadesContent = {
       },
     },
     // TODO: contenido PIEL — PIEL quiere sumar contenido sobre Anestesia (ronda de
-    // cambios de contenido, nov. 2026). La descripción de abajo es provisoria.
+    // cambios de contenido, nov. 2026). La foto ya está; la descripción es provisoria.
     {
       icon: "syringe",
       title: "Anestesiología",
       description: "Evaluación previa y cuidado anestésico del paciente en cada cirugía.",
+      // Foto vertical en un marco 16:10: el encuadre queda en la cara y la máscara.
+      image: {
+        src: "/especialidades/anestesia.jpg",
+        alt: "Un nene con gorro quirúrgico sostiene con la mano la máscara de anestesia apoyada sobre su cara, antes de una cirugía",
+        position: "object-[center_45%]",
+      },
     },
     {
       icon: "clipboard",

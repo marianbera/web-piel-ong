@@ -28,4 +28,4 @@ export const siteLegal = {
 
 export const siteName = "Asociación PIEL";
 export const siteTagline =
-  "Cirugía plástica infantil especializada en fisuras labio-álveolo-palatinas";
+  "Cirugía plástica infantil especializada en fisuras labio-alvéolo-palatinas";

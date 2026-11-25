@@ -19,7 +19,7 @@ export const heroSlides: HeroSlide[] = [
     title: "¿Qué es Asociación P.I.E.L.?",
     // Arranca con la definición institucional oficial de PIEL (nov. 2026).
     subtitle:
-      "P.I.E.L. (Plástica Infantil con Excelencia en el Logro) es un centro de referencia en cirugía plástica infantil y craneofacial especializado en el tratamiento integral de las fisuras labio-álveolo-palatinas. Un equipo interdisciplinario que acompaña a cada paciente desde el diagnóstico hasta la finalización del tratamiento.",
+      "P.I.E.L. (Plástica Infantil con Excelencia en el Logro) es un centro de referencia en cirugía plástica infantil y craneofacial especializado en el tratamiento integral de las fisuras labio-alvéolo-palatinas. Un equipo interdisciplinario que acompaña a cada paciente desde el diagnóstico hasta la finalización del tratamiento.",
     cta: { label: "Conocenos", href: "/quienes-somos/nosotros" },
   },
   {
@@ -38,7 +38,7 @@ export const aboutSummary: AboutSummaryContent = {
   title: "Más de 38 años de experiencia y miles de historias que nos eligen.",
   // Las palabras entre **dobles asteriscos** se renderizan en negrita (ver RichText).
   // Definición institucional oficial de PIEL (ronda de cambios de contenido, nov. 2026).
-  text: "**P.I.E.L.** (**Plástica Infantil con Excelencia en el Logro**) es un **centro de referencia en cirugía plástica infantil y craneofacial** especializado en el **tratamiento integral** de las fisuras labio-álveolo-palatinas. Un **equipo interdisciplinario** que acompaña a cada paciente desde el diagnóstico hasta la finalización del tratamiento.",
+  text: "**P.I.E.L.** (**Plástica Infantil con Excelencia en el Logro**) es un **centro de referencia en cirugía plástica infantil y craneofacial** especializado en el **tratamiento integral** de las fisuras labio-alvéolo-palatinas. Un **equipo interdisciplinario** que acompaña a cada paciente desde el diagnóstico hasta la finalización del tratamiento.",
   cta: { label: "Conocer más sobre PIEL", href: "/quienes-somos" },
   stats: [
     { icon: "hospital", value: "+38", label: "años de trayectoria" },
@@ -121,6 +121,6 @@ export const accessHelp: AccessHelpContent = {
 // Bloque de donación (fuente 1.4). Disponible para reutilizar (p. ej. en /se-parte/donar).
 export const donateBlock: DonateBlockContent = {
   title: "Hacemos posible muchas sonrisas",
-  text: "Gracias al apoyo de quienes acompañan a PIEL, cada día más niños con fisuras labio alvéolo palatinas pueden acceder a su tratamiento. Tu ayuda puede cambiar el futuro de un niño y su familia.",
+  text: "Gracias al apoyo de quienes acompañan a PIEL, cada día más niños con fisuras labio-alvéolo-palatinas pueden acceder a su tratamiento. Tu ayuda puede cambiar el futuro de un niño y su familia.",
   cta: { label: "Sumate", href: "/se-parte/donar" },
 };

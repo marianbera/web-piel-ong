@@ -51,9 +51,4 @@ export interface DraftPageContent {
   pending: PendingBlock[];
   /** Cierre con la vía de contacto mientras tanto. */
   note?: string;
-  /**
-   * Bloques nuevos que PIEL pidió sumar a una página que ya tiene contenido, pero
-   * cuyo texto todavía no llegó. Se muestran "en preparación" debajo de `sections`.
-   */
-  upcoming?: { title: string; blocks: PendingBlock[] };
 }
