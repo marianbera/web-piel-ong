@@ -8,7 +8,12 @@ import TextImageSplit from "@/components/sections/TextImageSplit";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
 import RichText from "@/components/ui/RichText";
-import { bajaAporteMensualEmail, datosBancarios, donarContent } from "@/lib/content/donar";
+import {
+  bajaAporteMensualEmail,
+  datosBancarios,
+  DONACION_UNICA_HABILITADA,
+  donarContent,
+} from "@/lib/content/donar";
 import { isMercadoPagoConfigured } from "@/lib/donaciones/mercadopago";
 
 export const metadata: Metadata = {
@@ -20,7 +25,7 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 export default function DonarPage() {
-  const { header, intro, paragraphs, image, amountOptions } = donarContent;
+  const { header, intro, paragraphs, image, amountOptions, durationOptions } = donarContent;
   const pagoOnlineActivo = isMercadoPagoConfigured();
 
   // Solo se muestran los datos bancarios que ya estén cargados.
@@ -51,6 +56,8 @@ export default function DonarPage() {
                 aviso solo menciona la baja desde la cuenta de Mercado Pago. */}
             <DonationForm
               amountOptions={amountOptions}
+              durationOptions={durationOptions}
+              allowOneTime={DONACION_UNICA_HABILITADA}
               type="individual"
               submitLabel="Donar ahora"
               bajaMensualEmail={bajaAporteMensualEmail || undefined}

@@ -7,12 +7,17 @@ import {
 import {
   crearPreferencia,
   crearSuscripcion,
+  fechaFinSuscripcion,
   isMercadoPagoConfigured,
 } from "@/lib/donaciones/mercadopago";
+import { DONACION_UNICA_HABILITADA, donarContent } from "@/lib/content/donar";
 
-/** Monto mínimo razonable, para filtrar pruebas y errores de tipeo. */
-const MONTO_MINIMO = 100;
-const MONTO_MAXIMO = 10_000_000;
+/**
+ * Montos y duraciones permitidos: exactamente los del formulario. PIEL pidió
+ * montos fijos, así que cualquier otro valor se rechaza acá, no solo en la UI.
+ */
+const MONTOS_PERMITIDOS = new Set(donarContent.amountOptions.map((option) => option.value));
+const DURACIONES_PERMITIDAS = new Set(donarContent.durationOptions.map((option) => option.months));
 
 function siteUrl(request: Request) {
   // En Vercel siempre hay un host confiable en el header; en local cae al origin.
@@ -47,24 +52,35 @@ export async function POST(request: Request) {
   const frecuencia = body?.frequency === "mensual" ? "mensual" : "unica";
   const origen = String(body?.origin ?? "");
 
+  // `null` = sin fecha de fin. Solo aplica al aporte mensual.
+  const meses = body?.months === null || body?.months === undefined ? null : Number(body.months);
+
   if (!nombre || !email) {
     return NextResponse.json({ error: "Faltan el nombre y el email." }, { status: 400 });
   }
-  if (!Number.isFinite(monto) || monto < MONTO_MINIMO || monto > MONTO_MAXIMO) {
+  if (frecuencia === "unica" && !DONACION_UNICA_HABILITADA) {
     return NextResponse.json(
-      { error: `El monto tiene que estar entre $${MONTO_MINIMO} y $${MONTO_MAXIMO.toLocaleString("es-AR")}.` },
+      { error: "Por ahora las donaciones son mensuales." },
       { status: 400 }
     );
   }
+  if (!MONTOS_PERMITIDOS.has(monto)) {
+    return NextResponse.json({ error: "Elegí uno de los montos de la lista." }, { status: 400 });
+  }
+  if (frecuencia === "mensual" && !DURACIONES_PERMITIDAS.has(meses)) {
+    return NextResponse.json({ error: "Elegí una de las duraciones de la lista." }, { status: 400 });
+  }
 
   const referencia = crypto.randomUUID();
+  // Se calcula una sola vez: la misma fecha va a la base y a Mercado Pago.
+  const fin = frecuencia === "mensual" && meses !== null ? fechaFinSuscripcion(meses) : null;
 
   // Si la base no está configurada no bloqueamos el pago: es peor perder una
   // donación que perder su registro. Queda avisado en los logs.
   if (isDonationsDbConfigured()) {
     try {
       if (frecuencia === "mensual") {
-        await crearSuscripcionPendiente({ nombre, email, monto, referencia, origen });
+        await crearSuscripcionPendiente({ nombre, email, monto, referencia, origen, meses, fin });
       } else {
         await crearDonacionPendiente({
           nombre,
@@ -86,7 +102,7 @@ export async function POST(request: Request) {
   try {
     const checkoutUrl =
       frecuencia === "mensual"
-        ? await crearSuscripcion({ email, monto, referencia, siteUrl: siteUrl(request) })
+        ? await crearSuscripcion({ email, monto, referencia, fin, siteUrl: siteUrl(request) })
         : await crearPreferencia({ nombre, email, monto, referencia, siteUrl: siteUrl(request) });
     return NextResponse.json({ checkoutUrl });
   } catch (error) {

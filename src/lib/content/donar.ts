@@ -1,13 +1,26 @@
 import type { DonarPageContent } from "@/types/donation";
 
-// TODO(PIEL): montos sugeridos en borrador — ajustar con el equipo de PIEL.
+/**
+ * Modelo de donación que pidió PIEL (nov. 2026): todo MENSUAL, con montos FIJOS
+ * —la persona elige uno, no escribe el suyo— y una duración (por ejemplo, $3.000
+ * por mes durante 6 meses). Mercado Pago cobra solo cada mes hasta la fecha de fin.
+ *
+ * El servidor (`api/donations/checkout`) solo acepta los montos y las duraciones
+ * de esta lista: no alcanza con tocar el formulario para cobrar otro monto.
+ *
+ * TODO: confirmar con PIEL si quieren también la donación por única vez o si es
+ * todo mensual. El código está completo (Checkout Pro): para mostrarla, poner esto
+ * en `true` y vuelve el selector "Por única vez / Todos los meses".
+ */
+export const DONACION_UNICA_HABILITADA = false;
+
 export const donarContent: DonarPageContent = {
   header: {
     title: "Donar",
     subtitle: "Podés ayudar a devolver una sonrisa.",
   },
   intro:
-    "Cada colaboración ayuda a que **más niños accedan al tratamiento que necesitan**. Elegí el monto y la modalidad que mejor te queden.",
+    "Cada colaboración ayuda a que **más niños accedan al tratamiento que necesitan**. Elegí cuánto querés aportar por mes y durante cuánto tiempo.",
   // El texto largo de la fuente 1.4 se movió al pie de la página: PIEL pidió que
   // los montos se vean de entrada, sin scrollear.
   paragraphs: [
@@ -21,11 +34,17 @@ export const donarContent: DonarPageContent = {
     alt: "Un nene sonriendo con un globo en la sala de espera de Asociación PIEL",
     position: "object-[center_30%]",
   },
+  // Montos fijos mensuales que definió PIEL. Sin campo de "otro monto".
   amountOptions: [
     { value: 3000, label: "$3.000" },
     { value: 6000, label: "$6.000" },
     { value: 12000, label: "$12.000" },
-    { value: 25000, label: "$25.000" },
+  ],
+  // PIEL dio el ejemplo de 6 meses. TODO: confirmar con PIEL qué duraciones ofrecer.
+  durationOptions: [
+    { months: 6, label: "6 meses" },
+    { months: 12, label: "12 meses" },
+    { months: null, label: "Sin fecha de fin" },
   ],
 };
 

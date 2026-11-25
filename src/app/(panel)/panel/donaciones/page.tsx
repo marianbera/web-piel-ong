@@ -210,17 +210,17 @@ export default async function PanelDonacionesPage() {
 
           {suscripciones.length === 0 ? (
             <Aviso titulo="Todavía no hay aportes mensuales">
-              Cuando alguien elija &quot;Todos los meses&quot; en la página de Donar, va a
-              aparecer acá.
+              Cuando alguien done desde la página de Donar, su aporte mensual va a aparecer acá.
             </Aviso>
           ) : (
             <div className="mt-6 overflow-x-auto rounded-2xl border border-piel-navy/10 bg-white">
-              <table className="w-full min-w-[46rem] text-left text-sm">
+              <table className="w-full min-w-[54rem] text-left text-sm">
                 <thead className="border-b border-piel-navy/10 text-xs uppercase tracking-wide text-piel-text/60">
                   <tr>
                     <th className="px-4 py-3 font-semibold">Alta</th>
                     <th className="px-4 py-3 font-semibold">Donante</th>
                     <th className="px-4 py-3 text-right font-semibold">Monto por mes</th>
+                    <th className="px-4 py-3 font-semibold">Duración</th>
                     <th className="px-4 py-3 font-semibold">Estado</th>
                     <th className="px-4 py-3 font-semibold">ID de suscripción</th>
                   </tr>
@@ -237,6 +237,22 @@ export default async function PanelDonacionesPage() {
                       </td>
                       <td className="whitespace-nowrap px-4 py-3 text-right font-semibold tabular-nums text-piel-navy">
                         {pesos.format(Number(suscripcion.monto))}
+                      </td>
+                      {/* "Sin fecha de fin" también cubre las suscripciones hechas fuera
+                          del sitio (por ejemplo, desde un plan de MP): no traen duración. */}
+                      <td className="whitespace-nowrap px-4 py-3 text-piel-text/70">
+                        {suscripcion.meses ? (
+                          <>
+                            <span className="block">{suscripcion.meses} meses</span>
+                            {suscripcion.fin && (
+                              <span className="block text-xs tabular-nums text-piel-text/60">
+                                hasta el {fecha.format(new Date(suscripcion.fin))}
+                              </span>
+                            )}
+                          </>
+                        ) : (
+                          "Sin fecha de fin"
+                        )}
                       </td>
                       <td className="px-4 py-3">
                         <span

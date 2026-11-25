@@ -55,6 +55,10 @@ export interface Suscripcion {
   mp_preapproval_id: string | null;
   mp_status: string | null;
   origen: string | null;
+  /** Duración elegida en meses. `null` = sin fecha de fin (o suscripción hecha fuera del sitio). */
+  meses: number | null;
+  /** Fecha de fin enviada a Mercado Pago, si el aporte tiene duración. */
+  fin: string | null;
 }
 
 function connectionString() {
@@ -126,6 +130,9 @@ function ensureSchema() {
         )
       `;
       await sql`CREATE INDEX IF NOT EXISTS suscripciones_estado_idx ON suscripciones (estado)`;
+      // Agregadas con los aportes de duración fija (nov. 2026): cubren bases ya creadas.
+      await sql`ALTER TABLE suscripciones ADD COLUMN IF NOT EXISTS meses INTEGER`;
+      await sql`ALTER TABLE suscripciones ADD COLUMN IF NOT EXISTS fin TIMESTAMPTZ`;
     })().catch((error) => {
       // Si falla, se reintenta en la próxima llamada en vez de quedar cacheado en error.
       schemaReady = null;
@@ -219,12 +226,18 @@ export async function crearSuscripcionPendiente(datos: {
   monto: number;
   referencia: string;
   origen?: string;
+  /** Duración en meses; `null` = sin fecha de fin. */
+  meses: number | null;
+  fin: Date | null;
 }) {
   await ensureSchema();
   const sql = client();
   await sql`
-    INSERT INTO suscripciones (nombre, email, monto, referencia, origen)
-    VALUES (${datos.nombre}, ${datos.email}, ${datos.monto}, ${datos.referencia}, ${datos.origen ?? null})
+    INSERT INTO suscripciones (nombre, email, monto, referencia, origen, meses, fin)
+    VALUES (
+      ${datos.nombre}, ${datos.email}, ${datos.monto}, ${datos.referencia}, ${datos.origen ?? null},
+      ${datos.meses}, ${datos.fin ? datos.fin.toISOString() : null}
+    )
   `;
 }
 

@@ -2,12 +2,20 @@
 
 import { useState, type FormEvent } from "react";
 import AmountSelector from "@/components/sections/AmountSelector";
-import type { AmountOption, DonationFrequency, DonationType } from "@/types/donation";
+import type {
+  AmountOption,
+  DonationFrequency,
+  DonationType,
+  DurationOption,
+} from "@/types/donation";
 
 type Status = "idle" | "loading" | "error";
 
 interface DonationFormProps {
   amountOptions: AmountOption[];
+  durationOptions: DurationOption[];
+  /** Si es `false`, todo es mensual y no se muestra el selector de modalidad. */
+  allowOneTime: boolean;
   type: DonationType;
   submitLabel: string;
   bajaMensualEmail?: string;
@@ -15,6 +23,8 @@ interface DonationFormProps {
 
 export default function DonationForm({
   amountOptions,
+  durationOptions,
+  allowOneTime,
   type,
   submitLabel,
   bajaMensualEmail,
@@ -22,27 +32,17 @@ export default function DonationForm({
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [selectedAmount, setSelectedAmount] = useState<number | null>(amountOptions[0]?.value ?? null);
-  const [customAmount, setCustomAmount] = useState("");
+  const [months, setMonths] = useState<number | null>(durationOptions[0]?.months ?? null);
   const [frequency, setFrequency] = useState<DonationFrequency>("mensual");
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
-  function handleSelectPreset(value: number) {
-    setSelectedAmount(value);
-    setCustomAmount("");
-  }
-
-  function handleCustomAmountChange(value: string) {
-    setCustomAmount(value);
-    setSelectedAmount(null);
-  }
-
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    const amount = customAmount ? Number(customAmount) : selectedAmount;
-    if (!amount || amount <= 0) {
-      setErrorMessage("Elegí o ingresá un monto válido.");
+    const amount = selectedAmount;
+    if (!amount) {
+      setErrorMessage("Elegí un monto.");
       setStatus("error");
       return;
     }
@@ -59,6 +59,8 @@ export default function DonationForm({
           email,
           amount,
           frequency,
+          // La duración solo aplica al aporte mensual.
+          months: frequency === "mensual" ? months : null,
           type,
           origin: typeof window !== "undefined" ? window.location.pathname : "",
         }),
@@ -85,11 +87,13 @@ export default function DonationForm({
       <AmountSelector
         options={amountOptions}
         selected={selectedAmount}
-        customAmount={customAmount}
-        onSelect={handleSelectPreset}
-        onCustomAmountChange={handleCustomAmountChange}
+        onSelect={setSelectedAmount}
+        durations={durationOptions}
+        selectedMonths={months}
+        onMonthsChange={setMonths}
         frequency={frequency}
         onFrequencyChange={setFrequency}
+        allowOneTime={allowOneTime}
         bajaMensualEmail={bajaMensualEmail}
       />
 

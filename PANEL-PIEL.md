@@ -21,6 +21,10 @@ Pide usuario y contraseña. La sesión dura **8 horas** y después hay que volve
 
 ## ⚙️ Puesta en marcha (una sola vez)
 
+> ⚠️ **El sitio se migra de Vercel a Azure App Service** y no se configura nada en Vercel.
+> Los pasos de abajo describen la puesta en marcha original. Para Azure —dónde guarda el
+> panel su contenido y cómo se cargan las variables— ver **`HANDOFF.md`** (secciones 3 y 6).
+
 ### 1. Crear el Blob Store
 
 El sitio corre en Vercel, que tiene **filesystem de solo lectura**: nada que se guarde en

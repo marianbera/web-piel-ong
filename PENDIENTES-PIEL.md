@@ -125,15 +125,23 @@ no tiene archivo, la tarjeta muestra el nombre.
 ## 6. Contacto, pagos y links
 
 - **WhatsApp institucional:** `site.ts` tiene el placeholder `+54 9 11 0000-0000`. **Todos los CTA "por WhatsApp" dependen de esto.** Confirmar el número.
-- **Mercado Pago — integración escrita, faltan las credenciales.** Checkout Pro (aporte
-  único) + Suscripciones (aporte mensual) + registro de todo en `/panel/donaciones`.
-  Paso a paso completo en **`MERCADOPAGO-PIEL.md`**. Falta:
-  1. Crear la base **Neon Postgres** (Vercel → Storage) — inyecta `DATABASE_URL` sola.
-  2. Sacar el **Access Token** de la cuenta de MP de la asociación.
-  3. Configurar el **webhook** en MP con los eventos **Pagos** y **Planes y suscripciones**,
-     y copiar su clave secreta (`MP_WEBHOOK_SECRET`).
-  4. Probar con credenciales de TEST antes de pasar a producción (el aporte mensual,
-     con usuarios de prueba).
+- **Mercado Pago — integración escrita, falta la infraestructura.** Modelo pedido por PIEL
+  (nov. 2026): **todo mensual, con montos fijos** ($3.000 / $6.000 / $12.000, sin "otro
+  monto") y **duración** (6 meses, 12 meses o sin fecha de fin). Registro de todo en
+  `/panel/donaciones`. Paso a paso en **`MERCADOPAGO-PIEL.md`**; la puesta en marcha en
+  Azure, con las variables exactas, en **`HANDOFF.md`**. Falta:
+  1. Conectar la base **Neon Postgres** (`DATABASE_URL`).
+  2. Cargar el **Access Token** de producción (`MP_ACCESS_TOKEN`) en Azure.
+  3. Configurar el **webhook** en MP con la **URL final de Azure** y los eventos **Pagos** y
+     **Planes y suscripciones**, y cargar su clave secreta (`MP_WEBHOOK_SECRET`).
+  4. Probar el recorrido completo (ver HANDOFF.md, sección 8).
+  - **No se configura nada en Vercel:** el sitio se migra a Azure App Service.
+  - **A confirmar con PIEL:** si quieren también la **donación por única vez** (escrita y
+    apagada: `DONACION_UNICA_HABILITADA` en `lib/content/donar.ts`) y qué **duraciones**
+    ofrecer.
+  - **Planes PADRINAZGO:** PIEL tiene planes creados en MP que hoy no se usan. Si quieren
+    que las suscripciones nuevas entren en esos planes, hacen falta sus links
+    (TODO en `crearSuscripcion`, `lib/donaciones/mercadopago.ts`).
   - Mientras tanto la página de Donar no muestra el formulario: avisa que falta habilitarlo.
   - El aporte mensual pide que la persona **ingrese con su cuenta de Mercado Pago**
     (requisito de MP). El formulario lo avisa.
@@ -189,12 +197,14 @@ Llegaron 12 en la última ronda y ya están publicadas. Faltan 9 (lista en la se
 **No hace falta tocar código**: se suben desde `/panel` → Equipo médico. Ver `PANEL-PIEL.md`.
 Formato: cuadradas, con la persona centrada; la tarjeta las muestra en círculo.
 
-### ⚙️ Panel — pasos pendientes de infraestructura (Vercel)
-1. **Crear el Blob Store**: proyecto web-piel → pestaña *Storage* → *Create Database* →
-   *Blob* → conectar al proyecto. Vercel inyecta sola `BLOB_READ_WRITE_TOKEN`.
+### ⚙️ Panel — pasos pendientes de infraestructura (Azure)
+El sitio se migra a **Azure App Service** (ver `HANDOFF.md`). Falta:
+1. **Decidir dónde guarda el panel su contenido.** Hoy es Vercel Blob
+   (`BLOB_READ_WRITE_TOKEN`): o se crea un Blob Store en Vercel solo como almacenamiento,
+   o se pasa a Azure Blob Storage. Detalle en `HANDOFF.md`, sección 6.
 2. **Definir credenciales**: `ADMIN_USER`, `ADMIN_PASSWORD` y `ADMIN_SESSION_SECRET`
-   en *Settings → Environment Variables* (Production).
-3. **Redeploy**.
+   en las variables de la app en Azure.
+3. **Reiniciar / redesplegar** el App Service.
 
 Hasta que eso esté, el sitio se ve perfecto pero el panel no puede guardar: avisa con un
 mensaje explicando qué falta.

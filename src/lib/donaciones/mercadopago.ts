@@ -123,29 +123,65 @@ export function mapearEstadoSuscripcion(mpStatus: string): EstadoSuscripcion {
   }
 }
 
+/**
+ * Fecha de fin de un aporte de `meses` meses: hoy + `meses` meses − 1 día.
+ *
+ * El primer cobro sale al autorizar y los siguientes, el mismo día de cada mes.
+ * Con la fecha de fin un día antes de cumplirse los `meses`, entran exactamente
+ * `meses` cobros (siempre que la persona autorice dentro del primer mes, que es
+ * lo normal: se autoriza en el momento).
+ *
+ * Si el mes de destino no tiene ese día (un 31 de agosto + 6 meses), se usa su último
+ * día: sumar meses "a lo JavaScript" pasaría al 3 de marzo y entraría un cobro de más.
+ */
+export function fechaFinSuscripcion(meses: number, desde = new Date()): Date {
+  const fin = new Date(desde);
+  const dia = fin.getDate();
+  fin.setDate(1);
+  fin.setMonth(fin.getMonth() + meses);
+  const ultimoDiaDelMes = new Date(fin.getFullYear(), fin.getMonth() + 1, 0).getDate();
+  fin.setDate(Math.min(dia, ultimoDiaDelMes));
+  fin.setDate(fin.getDate() - 1);
+  return fin;
+}
+
 interface CrearSuscripcionArgs {
   email: string;
   monto: number;
   referencia: string;
+  /** Fecha de fin, para un aporte de duración fija. `null` = sin fecha de fin. */
+  fin: Date | null;
   siteUrl: string;
 }
 
 /**
  * Crea la suscripción mensual y devuelve la URL donde la persona la autoriza.
  *
- * Es una suscripción "sin plan": el monto lo elige cada donante. Se crea en
- * estado `pending` y la persona la confirma en Mercado Pago, con su cuenta, que
- * es donde después puede cancelarla. El primer cobro sale al autorizarla y los
- * siguientes, cada mes.
+ * Es una suscripción "sin plan" (`preapproval` con el Access Token), con uno de
+ * los montos fijos de `lib/content/donar.ts`. Se crea en estado `pending` y la
+ * persona la confirma en Mercado Pago, con su cuenta, que es donde después puede
+ * cancelarla. El primer cobro sale al autorizarla y los siguientes, cada mes,
+ * hasta `end_date` si el aporte tiene duración.
  *
  * A diferencia de la preferencia, la suscripción no acepta `notification_url`:
  * los avisos llegan al webhook configurado en la aplicación de Mercado Pago
  * (ver MERCADOPAGO-PIEL.md).
+ *
+ * TODO(PIEL): si en el futuro PIEL quiere que las suscripciones nuevas entren en
+ * sus planes PADRINAZGO ya creados en Mercado Pago, hacen falta los links (o los
+ * `preapproval_plan_id`) de esos planes. Dos caminos:
+ *  - Redirigir al link del plan (`mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=…`):
+ *    no usa el Access Token, pero el monto y la duración los fija el plan, y la
+ *    persona no pasa por nuestro formulario.
+ *  - Crear el preapproval por API con `preapproval_plan_id`: MP exige además
+ *    `card_token_id`, o sea tomar la tarjeta en el sitio con el SDK de JavaScript
+ *    de MP, y ahí sí hace falta la Public Key.
  */
 export async function crearSuscripcion({
   email,
   monto,
   referencia,
+  fin,
   siteUrl,
 }: CrearSuscripcionArgs): Promise<string> {
   const resultado = await new PreApproval(client()).create({
@@ -158,6 +194,7 @@ export async function crearSuscripcion({
         frequency_type: "months",
         transaction_amount: monto,
         currency_id: "ARS",
+        ...(fin ? { end_date: fin.toISOString() } : {}),
       },
       back_url: `${siteUrl}/se-parte/donar/gracias?modalidad=mensual`,
       status: "pending",
