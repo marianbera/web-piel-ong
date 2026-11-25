@@ -5,6 +5,7 @@ import EmptyState from "@/components/ui/EmptyState";
 import Card from "@/components/ui/Card";
 import Reveal from "@/components/ui/Reveal";
 import RichText from "@/components/ui/RichText";
+import SectionHeading from "@/components/ui/SectionHeading";
 import { premiosContent } from "@/lib/content/quienes-somos";
 import { getAwards } from "@/lib/admin/store";
 
@@ -18,6 +19,7 @@ export const dynamic = "force-dynamic";
 
 export default async function PremiosPage() {
   const awards = await getAwards();
+  const { scientific } = premiosContent;
 
   return (
     <>
@@ -46,6 +48,36 @@ export default async function PremiosPage() {
               </li>
             ))}
           </ul>
+        )}
+
+        {/* Premios científicos: misma tarjeta y misma grilla que los institucionales. */}
+        {scientific && scientific.awards.length > 0 && (
+          <section className="mt-20">
+            <SectionHeading title={scientific.title} accent />
+            {scientific.intro && (
+              <Reveal>
+                <p className="mt-6 max-w-3xl text-piel-text/80">
+                  <RichText text={scientific.intro} />
+                </p>
+              </Reveal>
+            )}
+            <ul className="mt-10 grid auto-rows-fr items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {scientific.awards.map((award, index) => (
+                <li key={`${award.year}-${index}`} className="flex">
+                  <Reveal delay={(index % 3) * 80} className="flex w-full">
+                    <Card className="flex h-full w-full flex-col">
+                      <span className="text-sm font-bold uppercase tracking-wide text-piel-burgundy">
+                        {award.year}
+                      </span>
+                      <p className="mt-2 text-sm text-piel-text/80">
+                        <RichText text={award.text} />
+                      </p>
+                    </Card>
+                  </Reveal>
+                </li>
+              ))}
+            </ul>
+          </section>
         )}
       </PageBody>
     </>

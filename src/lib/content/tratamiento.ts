@@ -146,5 +146,25 @@ export const investigacionContent: DraftPageContent = {
       hint: "La participación de PIEL en congresos y encuentros científicos, nacionales e internacionales.",
     },
   ],
+  // TODO: contenido PIEL — los dos libros que PIEL pidió sumar (ronda de cambios de
+  // contenido, nov. 2026). Todavía sin datos: no inventar título, editorial ni año.
+  // PIEL puede enviar la lista de capítulos publicados en libros y las publicaciones
+  // nacionales y extranjeras para completar esta parte y la card "Publicaciones".
+  // Cuando llegue el texto, cada libro pasa a `sections` y se quita de acá.
+  // TODO: confirmar con PIEL si el "libro en inglés" es el atlas de Wiley-Blackwell
+  // (2015) que ya figura en "Publicaciones" o una publicación nueva.
+  upcoming: {
+    title: "Libros del equipo",
+    blocks: [
+      {
+        title: "Libro en inglés",
+        hint: "La publicación del equipo en inglés.",
+      },
+      {
+        title: "Nuevo libro en español",
+        hint: "La nueva publicación del equipo en español.",
+      },
+    ],
+  },
   note: "Si sos profesional de la salud y buscás material académico o querés contactar al equipo, **escribinos** y te orientamos.",
 };

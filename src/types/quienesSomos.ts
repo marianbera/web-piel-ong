@@ -20,6 +20,12 @@ export interface PremiosPageContent {
   header: PageHeaderContent;
   intro?: string;
   awards: AwardItem[];
+  /**
+   * Premios científicos (trabajos premiados del equipo). Se muestran debajo de los
+   * reconocimientos institucionales, con el mismo formato. Viven en el código: el
+   * panel edita solo la lista institucional.
+   */
+  scientific?: { title: string; intro?: string; awards: AwardItem[] };
 }
 
 export interface TeamMember {
@@ -49,6 +55,13 @@ export interface EquipoFounder {
   /** Retrato vertical en `public/equipo/`. Sin foto, se muestran las iniciales. */
   photo?: { src: string; alt: string };
   cta?: { label: string; href: string };
+  /** Trayectoria (formación y cargos), en bloques con título. Se muestra debajo de la bio. */
+  trajectory?: FounderTrajectoryBlock[];
+}
+
+export interface FounderTrajectoryBlock {
+  title: string;
+  items: { period: string; text: string }[];
 }
 
 export interface EquipoPageContent {

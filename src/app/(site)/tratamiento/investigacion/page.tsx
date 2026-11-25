@@ -6,6 +6,7 @@ import Card from "@/components/ui/Card";
 import PendingSections from "@/components/sections/PendingSections";
 import Reveal from "@/components/ui/Reveal";
 import RichText from "@/components/ui/RichText";
+import SectionHeading from "@/components/ui/SectionHeading";
 import { investigacionContent } from "@/lib/content/tratamiento";
 
 export const metadata: Metadata = {
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 export default function InvestigacionPage() {
-  const { header, intro, sections, pending, note } = investigacionContent;
+  const { header, intro, sections, pending, note, upcoming } = investigacionContent;
 
   return (
     <>
@@ -47,6 +48,14 @@ export default function InvestigacionPage() {
                 </li>
               ))}
             </ul>
+
+            {/* Bloques pedidos por PIEL que esperan su contenido. */}
+            {upcoming && upcoming.blocks.length > 0 && (
+              <section className="mt-16">
+                <SectionHeading title={upcoming.title} accent />
+                <PendingSections blocks={upcoming.blocks} />
+              </section>
+            )}
 
             {note && (
               <Reveal>

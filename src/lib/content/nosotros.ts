@@ -4,8 +4,9 @@ export const nosotrosContent: NosotrosContent = {
   header: {
     eyebrow: "Centro Médico",
     title: "Nosotros",
+    // Definición institucional oficial de PIEL (ronda de cambios de contenido, nov. 2026).
     subtitle:
-      "Asociación PIEL es un centro de cirugía plástica infantil especializado en el tratamiento integral de fisuras labio alvéolo palatinas (comúnmente llamado labio leporino) y otras malformaciones craneofaciales.",
+      "P.I.E.L. (Plástica Infantil con Excelencia en el Logro) es un centro de referencia en cirugía plástica infantil y craneofacial especializado en el tratamiento integral de las fisuras labio-álveolo-palatinas.",
   },
   intro: [
     "Desde hace **más de 38 años**, desarrollamos un **modelo de atención interdisciplinario** que integra cirugía, rehabilitación y seguimiento en un solo lugar, acompañando a cada paciente desde el diagnóstico prenatal hasta la finalización del tratamiento.",
@@ -19,13 +20,14 @@ export const nosotrosContent: NosotrosContent = {
     alt: "Fachada de la sede de Asociación PIEL en Avellaneda, con el cartel de la asociación",
     position: "object-[center_40%]",
   },
+  // Visión y Misión: textos oficiales de PIEL (ronda de cambios de contenido, nov. 2026).
   vision: {
     title: "Visión",
-    text: "Ser el **centro de referencia** en cirugía plástica infantil en Argentina y la región, reconocido por la calidad de sus resultados y su **modelo de atención integral**.",
+    text: "Ser el **centro de referencia, nacional e internacional**, en cirugía plástica infantil y craneofacial, reconocido por su **modelo de atención integral** y la calidad de sus resultados.",
   },
   mission: {
     title: "Misión",
-    text: "Brindar un **tratamiento integral, coordinado y de excelencia** a niños con fisuras labio-alvéolo-palatinas y otras malformaciones craneofaciales, acompañando a cada paciente y su familia en todo el proceso.",
+    text: "Brindar **tratamiento interdisciplinario coordinado y de excelencia** a niños con fisuras labio-alvéolo-palatinas y otras patologías craneofaciales, acompañando a cada paciente y su familia **durante todo el proceso**.",
   },
   valuesTitle: "Nuestros valores",
   values: [

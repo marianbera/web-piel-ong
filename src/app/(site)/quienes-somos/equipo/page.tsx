@@ -93,6 +93,34 @@ export default async function EquipoPage() {
             </div>
           </Card>
         </Reveal>
+
+        {/* Trayectoria del fundador: destino de "Ver trayectoria completa". */}
+        {founder.trajectory && founder.trajectory.length > 0 && (
+          <section id="trayectoria" className="mt-12 scroll-mt-24">
+            <SectionHeading title="Trayectoria" accent />
+            <div className="mt-8 grid gap-6 lg:grid-cols-3">
+              {founder.trajectory.map((block, index) => (
+                <Reveal key={block.title} delay={index * 80} className="flex">
+                  <Card className="w-full">
+                    <h3 className="text-lg font-semibold text-piel-navy">{block.title}</h3>
+                    <ul className="mt-4 space-y-4">
+                      {block.items.map((item) => (
+                        <li key={`${item.period}-${item.text}`}>
+                          <span className="text-xs font-bold uppercase tracking-wide text-piel-burgundy">
+                            {item.period}
+                          </span>
+                          <p className="mt-1 text-sm text-piel-text/80">
+                            <RichText text={item.text} />
+                          </p>
+                        </li>
+                      ))}
+                    </ul>
+                  </Card>
+                </Reveal>
+              ))}
+            </div>
+          </section>
+        )}
       </PageBody>
 
       {/* Staff, directo después de la bio del fundador: el primer grupo son los

@@ -53,6 +53,10 @@ export const acompanamientoContent: ProsePageContent = {
       title: "La consulta con psicología",
       body: "La consulta al psicólogo permite **aclarar dudas y elaborar la angustia**, ayudando al grupo familiar a comprender y aceptar mejor al nuevo integrante.",
     },
+    // TODO: contenido PIEL — PIEL quiere sumar el "Club de la Familia" con contenido
+    // propio (ronda de cambios de contenido, nov. 2026). Hasta que llegue, queda esta
+    // sección. TODO: confirmar con PIEL el nombre ("Club de la Familia" / "Club de
+    // Familias"; el documento original decía "Club de padres").
     {
       title: "No están solos: el Club de Familias",
       body: "La sensación inicial más común es sentirse solos; a veces las explicaciones médicas no alcanzan y se necesita hablar con otras familias que atraviesan lo mismo. El **“Club de Familias” de Asociación PIEL** ofrece ese espacio de intercambio con contención profesional.",

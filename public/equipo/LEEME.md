@@ -34,14 +34,14 @@ del fundador) y `ricardo-bennun-retrato.jpg` (recorte de busto, en su tarjeta de
 | Moggi Luis | `luis-moggi.jpg` ✅ |
 | Ventorutti Tatiana | `tatiana-ventorutti.jpg` ✅ |
 | Carrizo Ricardo | `ricardo-carrizo.jpg` ✅ |
-| Aliberti Romina | `romina-aliberti.jpg` — falta |
+| Azurduy Wayar Andres Alejandro (ORL) | `andres-azurduy-wayar.jpg` — falta |
 
 ### Especialidades médicas
 | Profesional | Archivo |
 |---|---|
 | Yannibelli Patricia | `patricia-yannibelli.jpg` — falta |
 | Henrichsen Julieta | `julieta-henrichsen.jpg` ✅ |
-| Azurduy Wayar Andres Alejandro | `andres-azurduy-wayar.jpg` — falta |
+| Carmona Noelia (Nutrición) | `noelia-carmona.jpg` ✅ |
 | Echagüe Vila Agustina | `agustina-echague-vila.jpg` — falta |
 
 ### Salud bucal y ortodoncia
@@ -61,7 +61,6 @@ del fundador) y `ricardo-bennun-retrato.jpg` (recorte de busto, en su tarjeta de
 | Spizzirri Alejandra | `alejandra-spizzirri.jpg` — falta |
 | Basualdo Vanesa | `vanesa-basualdo.jpg` — falta |
 | Gantner Erica | `erica-gantner.jpg` — falta |
-| Carmona Noelia | `noelia-carmona.jpg` ✅ |
 
 > La tabla de PIEL marca como "SÍ" (foto ya sacada) a Langsam, Azurduy, S. Carmona,
 > Spizzirri, Basualdo, Gantner, Yannibelli y Romero, pero esas fotos no estaban en la

@@ -72,6 +72,9 @@ Lo que diferencia a PIEL no es solo su experiencia, sino su forma de trabajar: u
 
 Atendemos pacientes privados, con cobertura médica y también desarrollamos programas de acceso para quienes no pueden afrontar el tratamiento.
 
+> **Actualizado (nov. 2026):** PIEL reemplazó la definición institucional, la Visión y la Misión.
+> Los textos vigentes están en `src/lib/content/nosotros.ts` y en `PENDIENTES-PIEL.md` (sección 10).
+
 **VISIÓN:** Ser el centro de referencia en cirugía plástica infantil en Argentina y la región, reconocido por la calidad de sus resultados y su modelo de atención integral.
 
 **MISIÓN:** Brindar un tratamiento integral, coordinado y de excelencia a niños con fisuras labio-alvéolo-palatinas y otras malformaciones craneofaciales, acompañando a cada paciente y su familia en todo el proceso.

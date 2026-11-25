@@ -26,6 +26,8 @@ export const especialidadesContent: EspecialidadesContent = {
         alt: "El Dr. Ricardo Bennun con un bebé en brazos, en un consultorio de Asociación PIEL",
       },
     },
+    // TODO: contenido PIEL — PIEL quiere sumar contenido sobre Anestesia (ronda de
+    // cambios de contenido, nov. 2026). La descripción de abajo es provisoria.
     {
       icon: "syringe",
       title: "Anestesiología",

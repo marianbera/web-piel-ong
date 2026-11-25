@@ -11,8 +11,9 @@ export const quienesSomosHub: QuienesSomosHubContent = {
     title: "Quiénes somos",
     subtitle: "Un centro de referencia con más de 38 años de trayectoria.",
   },
+  // Definición institucional oficial de PIEL (nov. 2026) + la cifra unificada de pacientes.
   intro:
-    "PIEL es un centro de cirugía plástica infantil especializado en el **tratamiento integral** de fisuras labio-álveolo-palatinas, con **más de 6.000 pacientes tratados** desde su fundación en 1988.",
+    "**P.I.E.L.** (Plástica Infantil con Excelencia en el Logro) es un **centro de referencia en cirugía plástica infantil y craneofacial** especializado en el **tratamiento integral** de las fisuras labio-álveolo-palatinas. Desde su fundación en 1988, acompañó a **más de 6.000 pacientes**.",
   sections: [
     {
       title: "Nosotros",
@@ -26,7 +27,7 @@ export const quienesSomosHub: QuienesSomosHubContent = {
     },
     {
       title: "Premios",
-      description: "Reconocimientos institucionales recibidos a lo largo de los años.",
+      description: "Reconocimientos institucionales y premios científicos a lo largo de los años.",
       href: "/quienes-somos/premios",
     },
     {
@@ -99,7 +100,8 @@ export const premiosContent: PremiosPageContent = {
       text: "Nominación del **Honorable Senado de la Nación**, por una nueva técnica para el tratamiento de pacientes con fisuras.",
     },
     {
-      year: "2008 – actualidad",
+      // Período corregido por PIEL (nov. 2026): el subsidio terminó en 2024.
+      year: "2008 – 2024",
       text: "Subsidio de la **Fundación Herrod** (Suiza) para la provisión de instrumental médico para la atención interdisciplinaria de niños con fisuras labio palatinas.",
     },
     {
@@ -151,6 +153,34 @@ export const premiosContent: PremiosPageContent = {
       text: "**“Entidad Solidaria”**, Jornadas de Reconocimiento y Solidaridad del FREPASO.",
     },
   ],
+  // Premios científicos que pasó PIEL en la ronda de cambios de contenido (nov. 2026).
+  // Los títulos de publicaciones van entre comillas: el sitio no usa cursiva.
+  scientific: {
+    title: "Premios científicos",
+    intro: "Trabajos premiados por sociedades científicas, universidades e instituciones médicas.",
+    awards: [
+      {
+        year: "2001",
+        text: "**Mejor Trabajo Seleccionado** para el Year Book of Plastic, Reconstructive and Aesthetic Surgery: “Nonsurgical Correction of Nasal Deformity: A 6-Year Follow-up”, pág. 16-18, Mosby Ed.",
+      },
+      {
+        year: "1998",
+        text: "**Premio Bienal Prof. Dr. Diego Zavaleta**, Facultad de Medicina U.B.A., mejor trabajo de Cirugía. Tema: “Nueva Estrategia para la corrección de la deformidad nasal en pacientes con Fisura labio-alvéolo-palatina”.",
+      },
+      {
+        year: "1996",
+        text: "**Premio Mejor Trabajo**, Hospital Nacional de Pediatría Prof. Dr. Juan P. Garrahan. Tema: “Tratamiento neonatal interdisciplinario del paciente con fisura labio-alvéolo-palatina”.",
+      },
+      {
+        year: "1995",
+        text: "**Premio Senior**, Sociedad Argentina de Cirugía Plástica. Tema: “Colgajo a pedículo occipital para la reconstrucción de defectos faciales”.",
+      },
+      {
+        year: "1994",
+        text: "**Premio Pedro Ovidio Bolo**, Asociación Médica Argentina, mejor trabajo de Cirugía. Tema: “Malformaciones Cráneo-maxilo-faciales”.",
+      },
+    ],
+  },
 };
 
 export const equipoContent: EquipoPageContent = {
@@ -169,8 +199,49 @@ export const equipoContent: EquipoPageContent = {
       alt: "Retrato del Dr. Ricardo Bennun, fundador y director médico de Asociación PIEL",
     },
     bio: "Es **una de las figuras más reconocidas** de la cirugía plástica infantil en Argentina. Exdirector del Servicio de Cirugía Plástica del **Hospital de Pediatría Juan P. Garrahan**, dedicó su carrera al tratamiento de fisuras labio alvéolo palatinas y al desarrollo de un modelo de atención integral que hoy define a PIEL.",
-    // TODO(PIEL): falta el destino real de "Ver trayectoria completa" (página/bio del fundador).
-    cta: { label: "Ver trayectoria completa", href: "#" },
+    // Lleva al bloque de trayectoria de esta misma página (abajo de la bio).
+    cta: { label: "Ver trayectoria completa", href: "#trayectoria" },
+    // Formación y cargos que pasó PIEL (ronda de cambios de contenido, nov. 2026).
+    // Cada bloque va del más reciente al más antiguo. "1998/01" del original se
+    // escribe como período completo (1998 – 2001).
+    // TODO: confirmar con PIEL — la bio dice "Exdirector del Servicio de Cirugía Plástica
+    // del Garrahan" y el cargo que pasaron ahí es "Médico Principal" (1988–1998).
+    trajectory: [
+      {
+        title: "Estudios de posgrado",
+        items: [
+          {
+            period: "1998 – 2001",
+            text: "**Carrera Docente**, Facultad de Medicina, Universidad Nacional de Buenos Aires.",
+          },
+          {
+            period: "1998 – 2000",
+            text: "**Maestría en Epidemiología, Gestión y Políticas de Salud**, Departamento de Salud Comunitaria, Universidad Nacional de Lanús.",
+          },
+          {
+            period: "1983 – 1984",
+            text: "**Clinical Fellow en Cirugía Cráneo-maxilo-facial**, Children's Hospital Medical Center, Boston, Harvard University School of Medicine.",
+          },
+        ],
+      },
+      {
+        title: "Doctorado",
+        items: [{ period: "2005", text: "**Tesis Doctoral**, Facultad de Medicina, U.B.A." }],
+      },
+      {
+        title: "Cargos",
+        items: [
+          {
+            period: "01/03/2012 – actualidad",
+            text: "**Director de la Carrera de Postgrado en Cirugía Plástica Infantil y Cráneo-maxilo-facial**, Sede Hospital de Clínicas, Facultad de Ciencias Médicas, U.B.A.",
+          },
+          {
+            period: "01/03/1988 – 06/04/1998",
+            text: "**Médico Principal** (por concurso abierto de oposición y antecedentes), Servicio de Cirugía Plástica y Quemados, Hospital Nacional de Pediatría “Prof. Dr. Juan P. Garrahan”.",
+          },
+        ],
+      },
+    ],
   },
   rosterTitle: "Equipo médico",
   rosterNote:
@@ -178,8 +249,10 @@ export const equipoContent: EquipoPageContent = {
   // Los profesionales son exactamente los de la tabla de PIEL (observaciones, última
   // ronda), agrupados por área. Administración no se muestra: esto es el equipo médico.
   // Las fotos son retratos circulares sobre fondo blanco (`public/equipo/`).
-  // TODO(PIEL): faltan las fotos de Aliberti, Yannibelli, Azurduy Wayar, Echagüe Vila,
-  // Langsam, Romero, S. Carmona, Basualdo, Gantner y Spizzirri. Se suben desde
+  // Ronda de cambios de contenido (nov. 2026): en "Cirugía y anestesia" se quitó a
+  // Aliberti y entró ORL; en "Especialidades médicas" salió ORL y entró Nutrición.
+  // TODO(PIEL): faltan las fotos de Yannibelli, Azurduy Wayar, Echagüe Vila, Langsam,
+  // Romero, S. Carmona, Basualdo, Gantner y Spizzirri. Se suben desde
   // /panel → Equipo médico; mientras tanto la tarjeta muestra las iniciales.
   groups: [
     {
@@ -219,7 +292,7 @@ export const equipoContent: EquipoPageContent = {
           role: "Instrumentación quirúrgica",
           photo: "/equipo/ricardo-carrizo.jpg",
         },
-        { name: "Aliberti Romina", role: "Instrumentación quirúrgica" },
+        { name: "Azurduy Wayar Andres Alejandro", role: "Otorrinolaringología" },
       ],
     },
     {
@@ -233,7 +306,7 @@ export const equipoContent: EquipoPageContent = {
           role: "Pediatría",
           photo: "/equipo/julieta-henrichsen.jpg",
         },
-        { name: "Azurduy Wayar Andres Alejandro", role: "Otorrinolaringología" },
+        { name: "Carmona Noelia", role: "Nutrición", photo: "/equipo/noelia-carmona.jpg" },
         { name: "Echagüe Vila Agustina", role: "Dermatología" },
       ],
     },
@@ -267,7 +340,6 @@ export const equipoContent: EquipoPageContent = {
         { name: "Spizzirri Alejandra", role: "Kinesiología" },
         { name: "Basualdo Vanesa", role: "Psicología" },
         { name: "Gantner Erica", role: "Psicología" },
-        { name: "Carmona Noelia", role: "Nutrición", photo: "/equipo/noelia-carmona.jpg" },
       ],
     },
   ],

@@ -30,7 +30,9 @@ Consolidado de todos los `TODO(PIEL)` del código. Son decisiones o entregas que
 - **Pacientes internacionales** (`/como-acceder/internacional`): el doc 5.2 corta en "Atención para familias del exterior…". **Todo lo demás del doc ya está migrado** — falta solo el final de ese párrafo.
 - **Premios**: se sumó la placa de la ABFLP (São Paulo, septiembre 2026), tomada del
   comunicado de prensa que llegó en la última ronda. Faltan los reconocimientos
-  2019–2025, si los hubiera.
+  2019–2025, si los hubiera. Los **premios científicos** (1994–2001) están en una
+  sección aparte de la misma página (`premiosContent.scientific`); a diferencia de la
+  lista institucional, **no se editan desde el panel**.
 - **Investigación y academia**: las 3 cards tienen los textos corregidos por PIEL en la
   última ronda. El contenido fuente no tenía más bloques que esos tres.
 
@@ -71,7 +73,7 @@ Todas se exportaron sin metadatos: las fotos de iPhone traían la ubicación GPS
   prensa (Word), no a una foto. Mientras tanto se usa la foto de Donar. Pedir la correcta.
 - **Apadrinar:** la foto llegó chica (687 × 617 px). Se ve bien en la columna, pero
   conviene pedir el original.
-- **Equipo — 10 fotos que faltan:** Aliberti, Yannibelli, Azurduy Wayar, Echagüe Vila,
+- **Equipo — 9 fotos que faltan:** Yannibelli, Azurduy Wayar, Echagüe Vila,
   Langsam, Romero, S. Carmona, Basualdo, Gantner y Spizzirri. La tabla de PIEL marca
   varias como "SÍ" (ya sacadas), pero no estaban en la carpeta de Drive. Se suben desde
   `/panel` → Equipo médico. Detalle en **`public/equipo/LEEME.md`**.
@@ -143,7 +145,8 @@ no tiene archivo, la tarjeta muestra el nombre.
   Mercado Pago (es cierto y funciona sin nada más). Falta definir si además se ofrece un
   correo: cargarlo en `bajaAporteMensualEmail` (mismo archivo) y el aviso lo suma.
 - ~~Historias externas~~ → el CTA del Home ahora apunta a `/historias`, una página propia del sitio nuevo. Se carga desde `/panel` → Historias reales.
-- **"Ver trayectoria completa"** del fundador (Equipo): falta el destino real (página/bio). Hoy apunta a `#`.
+- ~~"Ver trayectoria completa"~~ → resuelto: lleva al bloque "Trayectoria" de la misma
+  página de Equipo (posgrado, doctorado y cargos que pasó PIEL).
 - ~~Ubicación~~ → resuelto: Av. Palaá 536, Avellaneda, Provincia de Buenos Aires, con mapa embebido en Pacientes de Argentina e Internacionales.
 
 ## 7. Nombre del fundador (RESUELTO)
@@ -182,7 +185,7 @@ Los dos están en `lib/content/como-acceder.ts` y no se renderizan hasta que se 
   `bullets` de `internacionalContent`.
 
 ### Fotos del equipo
-Llegaron 12 en la última ronda y ya están publicadas. Faltan 10 (lista en la sección 4).
+Llegaron 12 en la última ronda y ya están publicadas. Faltan 9 (lista en la sección 4).
 **No hace falta tocar código**: se suben desde `/panel` → Equipo médico. Ver `PANEL-PIEL.md`.
 Formato: cuadradas, con la persona centrada; la tarjeta las muestra en círculo.
 
@@ -195,6 +198,52 @@ Formato: cuadradas, con la persona centrada; la tarjeta las muestra en círculo.
 
 Hasta que eso esté, el sitio se ve perfecto pero el panel no puede guardar: avisa con un
 mensaje explicando qué falta.
+
+---
+
+## 10. Ronda de cambios de contenido (noviembre 2026)
+
+**Aplicado**
+- **Definición institucional** oficial ("P.I.E.L. (Plástica Infantil con Excelencia en el
+  Logro) es un centro de referencia…") en el hero y el bloque "Quiénes somos" del Home,
+  la intro del hub de Quiénes somos y la bajada de Nosotros.
+- **Visión y Misión** nuevas en Nosotros.
+- **Colaboran con nosotros:** salió la Fundación Gantz; entraron AFLAPyCRA, Colgate,
+  Red Abanderados y Herrod Foundation (2008–2024). Colgate usa el logo de
+  Colgate-Palmolive que ya estaba en `public/empresas/`. En Premios, el subsidio de la
+  Fundación Herrod pasó de "2008 – actualidad" a **2008 – 2024**.
+- **Premios científicos** (2001, 1998, 1996, 1995, 1994) en una sección nueva de Premios.
+- **Dr. Bennun:** bloque "Trayectoria" en Equipo con estudios de posgrado, doctorado y cargos.
+- **Equipo:** en "Cirugía y anestesia" salió Aliberti y entró ORL (Azurduy Wayar); en
+  "Especialidades médicas" salió ORL y entró Nutrición (N. Carmona, que estaba en
+  Rehabilitación).
+
+**Pendiente de PIEL**
+- **Logos** de AFLAPyCRA, Red Abanderados y Herrod Foundation: mientras tanto la tarjeta
+  muestra el nombre. Se cargan desde `/panel` → Logos.
+- **Herrod en Colaboran:** confirmar que va ahí además de en Premios (se interpretó así
+  porque el pedido indicaba su período dentro de "Colaboran").
+- **Bio del Dr. Bennun:** dice "Exdirector del Servicio de Cirugía Plástica del Garrahan",
+  pero el cargo que pasaron en ese servicio es "Médico Principal" (1988–1998). Confirmar.
+- **Grafía de "álveolo":** la definición oficial dice "labio-álveolo-palatinas" (igual
+  que el resto del Home); la Misión dice "labio-alvéolo-palatinas". Se publicaron tal
+  como llegaron. Confirmar si se unifica ("alvéolo" es la forma correcta).
+- **Secciones nuevas sin contenido** (`TODO: contenido PIEL` en el código):
+  - **Club de la Familia** → hoy es una sección de Acompañamiento
+    (`acompanamientoContent` en `pacientes.ts`). Falta el contenido ampliado y
+    confirmar el nombre ("Club de la Familia" vs. "Club de Familias").
+  - **Anestesia** → hoy es la tarjeta de Anestesiología en Especialidades, con texto
+    provisorio (`especialidades.ts`).
+  - **Libro en inglés** y **Nuevo libro en español** → bloques "En preparación" en
+    Investigación y academia (`investigacionContent.upcoming` en `tratamiento.ts`).
+    Confirmar si el libro en inglés es el atlas de Wiley-Blackwell (2015) que ya figura
+    en "Publicaciones".
+  - PIEL puede enviar la **lista de capítulos publicados en libros** y las
+    **publicaciones nacionales y extranjeras** para completar estas secciones.
+- **Ojo con el Blob Store:** Equipo, Premios y Logos se editan desde el panel. Si alguna
+  de esas secciones ya se guardó alguna vez, se sigue viendo lo guardado y estos cambios
+  (Aliberti/ORL/Nutrición, período de Herrod, Gantz y los logos nuevos) hay que hacerlos
+  a mano desde `/panel`.
 
 ### Decisiones de implementación a revisar con PIEL
 - **Textos justificados:** se aplican al cuerpo de texto desde 640 px de ancho. En

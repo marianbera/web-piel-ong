@@ -5,6 +5,13 @@
  *
  * Es la carga inicial: desde /panel → Logos se pueden sumar, editar o quitar.
  * El sitio viejo no enlazaba a ninguna organización, así que acá tampoco.
+ *
+ * Ronda de cambios de contenido (nov. 2026): se quitó la Fundación Gantz y se sumaron
+ * AFLAPyCRA, Colgate, Red Abanderados y la Herrod Foundation con su período (2008–2024).
+ * Las que tienen `image: ""` muestran el nombre en la tarjeta hasta que llegue el logo.
+ * Colgate reusa el logo de Colgate-Palmolive que ya está en `public/empresas/`.
+ * TODO(PIEL): logos de AFLAPyCRA, Red Abanderados y Herrod Foundation (cargarlos desde
+ * /panel → Logos). TODO: confirmar con PIEL si Herrod va en Colaboran además de Premios.
  */
 export const colaboradores: { name: string; image: string }[] = [
   { name: "Smile Train", image: "/colaboradores/smile-train.png" },
@@ -17,11 +24,17 @@ export const colaboradores: { name: string; image: string }[] = [
     image: "/colaboradores/journal-of-craniofacial-surgery.jpg",
   },
   { name: "Hospital Sobrapar – Crânio e Face", image: "/colaboradores/hospital-sobrapar.jpg" },
-  { name: "Fundación Gantz – Hospital del Niño con Fisura", image: "/colaboradores/fundacion-gantz.jpg" },
   {
     name: "Associação Brasileira de Fissuras Lábio Palatinas (ABFLP)",
     image: "/colaboradores/abflp.png",
   },
+  {
+    name: "Asociación de Fisuras Labio Alveolo Palatinas y Craneofacial de Argentina (AFLAPyCRA)",
+    image: "", // TODO: logo
+  },
+  { name: "Colgate", image: "/empresas/colgate-palmolive.png" },
+  { name: "Red Abanderados", image: "" }, // TODO: logo
+  { name: "Herrod Foundation (2008–2024)", image: "" }, // TODO: logo
 ];
 
 /**
