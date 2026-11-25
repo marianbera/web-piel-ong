@@ -3,6 +3,7 @@ import { Inter, Playfair_Display } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import WhatsAppFab from "@/components/layout/WhatsAppFab";
+import MetaPixel from "@/components/analytics/MetaPixel";
 import { buildSearchIndex } from "@/lib/search/searchIndex";
 import { siteName, siteTagline } from "@/lib/content/site";
 import "../globals.css";
@@ -69,6 +70,8 @@ export default function SiteLayout({
         <main className="flex-1 pb-16 sm:pb-20">{children}</main>
         <Footer />
         <WhatsAppFab />
+        {/* Meta Pixel: medición de la pauta. No bloquea el render (ver MetaPixel). */}
+        <MetaPixel />
       </body>
     </html>
   );

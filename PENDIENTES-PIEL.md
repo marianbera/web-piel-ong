@@ -148,6 +148,11 @@ no tiene archivo, la tarjeta muestra el nombre.
   - El botón **"Donar online"** de `sections/DonateBand` sigue detrás de `ONLINE_PAYMENTS_ENABLED`.
   - **A resolver con PIEL:** comisiones de MP (hay condiciones para ONGs), comprobantes
     fiscales de donación y política de privacidad (se guardan nombre y email de donantes).
+- **Meta Pixel (instalado, ID 1177959361247481):** mide visitas para la pauta. Implica
+  cookies de Meta, así que la **política de privacidad** tiene que mencionarlo. Como es un
+  sitio de salud infantil, conviene dejar **apagada** la *coincidencia avanzada automática*
+  en Events Manager (si no, Meta puede leer el email de los formularios, incluido el de
+  Donar) y no crear eventos con datos de pacientes.
 - **Datos bancarios para transferencia (Donar):** faltan **CBU, alias, CUIT y banco**. Cargarlos en `datosBancarios`, en `lib/content/donar.ts`. Mientras estén vacíos, el bloque de transferencia no se muestra.
 - **Baja del aporte mensual:** hoy el formulario dice que se da de baja desde la cuenta de
   Mercado Pago (es cierto y funciona sin nada más). Falta definir si además se ofrece un

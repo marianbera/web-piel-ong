@@ -96,6 +96,7 @@ valor real va al repo.**
 | `RESEND_API_KEY` | Para contacto | Envío del formulario de contacto | El formulario responde "no está configurado" |
 | `MAILERLITE_API_KEY` | Para newsletter | Suscripción al newsletter | El newsletter responde con error |
 | `MAILERLITE_GROUP_ID` | Para newsletter | Grupo de MailerLite | Ídem |
+| `NEXT_PUBLIC_META_PIXEL_ID` | No | ID del Meta Pixel. Si falta, se usa el de PIEL (`1177959361247481`), que está en `src/components/analytics/MetaPixel.tsx`. Se lee al compilar | — |
 
 **No hacen falta:**
 
@@ -206,5 +207,9 @@ sumarlo en `mapearEstadoSuscripcion`, en `src/lib/donaciones/mercadopago.ts`).
   en `src/components/sections/DonateBand.tsx`. Ponerlo en `true` cuando MP esté andando.
 - **Remitente del formulario de contacto:** `web@asociacion-piel.org.ar` en
   `src/app/api/contacto/route.ts`; tiene que ser un dominio verificado en Resend.
+- **Meta Pixel** (`src/components/analytics/`): va en el layout del sitio público (no en
+  el panel) y solo en builds de producción. Manda el PageView inicial y uno por cada
+  cambio de ruta. Al probar en Azure, verificarlo con la extensión *Meta Pixel Helper* o
+  en *Events Manager → Probar eventos*.
 - **Contenido guardado desde el panel:** si una sección se guarda alguna vez desde el
   panel, desde ahí manda lo guardado y no el código. Ver `PENDIENTES-PIEL.md`, sección 5.
