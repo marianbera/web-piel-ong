@@ -18,7 +18,9 @@ export default function HistoriasStack({ images }: { images: StackImage[] }) {
 
   useEffect(() => {
     if (count <= 1) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // Rota siempre (también con prefers-reduced-motion): es un cambio lento y
+    // suave de fotos, y sin esto en muchos Windows con animaciones desactivadas
+    // la pila quedaba quieta.
     const timer = setInterval(() => setActive((prev) => (prev + 1) % count), 4500);
     return () => clearInterval(timer);
   }, [count]);
